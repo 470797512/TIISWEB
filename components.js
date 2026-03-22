@@ -66,12 +66,12 @@ function buildNavbar(currentPage) {
           <div class="navbar__dropdown">
             <div class="navbar__dropdown-group-title">Undergraduate</div>
             <a href="courses.html#bbus">Bachelor of Business</a>
-            <a href="courses.html#bit">Bachelor of IT</a>
+            <a href="courses.html#bit">Bachelor of Information Technology</a>
             <div class="navbar__dropdown-group-title" style="margin-top:8px">Postgraduate</div>
             <a href="courses.html#mcs">Master of Cyber Security</a>
-            <a href="courses.html#mba">Master of Business Admin</a>
-            <a href="courses.html#mpaa">Master of Prof. Accounting</a>
-            <a href="courses.html#gcit">Grad Cert in IT</a>
+            <a href="courses.html#mba">Master of Business Administration</a>
+            <a href="courses.html#mpaa">Master of Professional Accounting</a>
+            <a href="courses.html#gcit">Graduate Certificate in Information Technology</a>
           </div>
         </li>
         <li class="navbar__item"><a href="campuses.html" class="navbar__link">Campuses</a></li>
@@ -115,10 +115,10 @@ function buildNavbar(currentPage) {
     <a href="courses.html" class="navbar__mobile-link">Courses</a>
     <div class="navbar__mobile-sub">
       <a href="courses.html#bbus">Bachelor of Business</a>
-      <a href="courses.html#bit">Bachelor of IT</a>
+      <a href="courses.html#bit">Bachelor of Information Technology</a>
       <a href="courses.html#mcs">Master of Cyber Security</a>
-      <a href="courses.html#mba">MBA</a>
-      <a href="courses.html#mpaa">Master of Prof. Accounting</a>
+      <a href="courses.html#mba">Master of Business Administration</a>
+      <a href="courses.html#mpaa">Master of Professional Accounting</a>
     </div>
     <a href="tiis-online/index.html" class="navbar__mobile-link">TIIS Online</a>
     <a href="campuses.html" class="navbar__mobile-link">Campuses</a>
