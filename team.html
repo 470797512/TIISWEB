@@ -64,45 +64,65 @@
   </section>
 
 
-  <!-- Board of Directors -->
-  <section class="section section--gray" id="board">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">Governance</span>
-        <h2>Board of Directors</h2>
-      </div>
-      <div class="card-grid card-grid--4" id="board-grid"></div>
-    </div>
-  </section>
-
-
-  <!-- Academic Team -->
+  <!-- Academic & Management Team (every member here has a photo) -->
   <section class="section" id="academic">
     <div class="container">
       <div class="section-header fade-in">
         <span class="section-label">Academic Leadership</span>
-        <h2>Academic & Management Team</h2>
+        <h2>Academic &amp; Management Team</h2>
+        <p class="section-subtitle">The people who lead our teaching, quality and student support. Select anyone to read their background.</p>
       </div>
-      <!-- Key Leaders -->
-      <div class="card-grid card-grid--3" id="leaders-grid" style="margin-bottom:48px;"></div>
+      <ul class="people people--2" id="leaders-grid"></ul>
+    </div>
+  </section>
 
-      <!-- Academic Board -->
-      <div class="section-header fade-in" style="margin-top:48px;">
-        <span class="section-label">Academic Governance</span>
-        <h2>Academic Board</h2>
+
+  <!-- Professional Team (every member here has a photo) -->
+  <section class="section section--gray" id="professional">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Support &amp; Services</span>
+        <h2>Professional Team</h2>
+        <p class="section-subtitle">Admissions, student services and administration.</p>
       </div>
-      <div class="card-grid card-grid--4" id="academic-board-grid" style="margin-bottom:48px;"></div>
+      <ul class="people people--3" id="professional-grid"></ul>
+    </div>
+  </section>
 
-      <!-- Lecturers -->
-      <div class="lecturers-accordion fade-in" style="margin-top:48px;" id="lecturers-section">
+
+  <!-- Governance.
+       Neither the Board of Directors nor the Academic Board has a full set of
+       photographs, so both are set as name-and-role rosters rather than photo
+       grids. A roster is the normal way an institution lists a governing body,
+       and it avoids a grid half-filled with initials placeholders. -->
+  <section class="section" id="board">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Governance</span>
+        <h2>Boards &amp; Governance</h2>
+        <p class="section-subtitle">TIIS is governed by a Board of Directors, with academic standards overseen by an independent Academic Board.</p>
+      </div>
+
+      <div class="roster-group fade-in">
+        <h3 class="roster-group__title">Board of Directors</h3>
+        <ul class="roster roster--2" id="board-roster"></ul>
+      </div>
+
+      <div class="roster-group fade-in">
+        <h3 class="roster-group__title">Academic Board</h3>
+        <ul class="roster roster--2" id="academic-board-roster"></ul>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Teaching staff -->
+  <section class="section section--gray" id="lecturers">
+    <div class="container">
+      <div class="lecturers-accordion fade-in" id="lecturers-section">
         <button class="lecturers-accordion__toggle" id="lecturersToggle" aria-expanded="false" aria-controls="lecturersPanel">
           <div class="lecturers-accordion__header">
             <div class="lecturers-accordion__icon-group">
-              <div class="lecturers-accordion__badge">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
-                </svg>
-              </div>
               <div class="lecturers-accordion__title-group">
                 <span class="section-label" style="margin-bottom:4px;">Teaching Staff</span>
                 <h2 style="margin-bottom:0;">Our Lecturers</h2>
@@ -119,22 +139,9 @@
           </div>
         </button>
         <div class="lecturers-accordion__panel" id="lecturersPanel">
-          <div class="lecturers-list" id="lecturers-list"></div>
+          <ul class="roster roster--3" id="lecturers-roster"></ul>
         </div>
       </div>
-    </div>
-  </section>
-
-
-  <!-- Professional Team -->
-  <section class="section section--gray" id="professional">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">Support & Services</span>
-        <h2>Professional Team</h2>
-        <p class="section-subtitle">The dedicated staff working behind the scenes to support your TIIS experience.</p>
-      </div>
-      <div class="card-grid card-grid--4" id="professional-grid"></div>
     </div>
   </section>
 
@@ -261,116 +268,112 @@
   };
 
   /* ── Helpers ── */
-  function getInitials(name) {
-    const clean = name.replace(/^(Dr|Mr|Ms|Mrs|Professor|Prof)\s+/i, '');
-    const words = clean.split(/\s+/).filter(w => w.length > 0 && w !== '(Amy)');
-    if (words.length >= 2) return (words[0][0] + words[words.length - 1][0]).toUpperCase();
-    return words[0] ? words[0].substring(0, 2).toUpperCase() : '??';
+
+  /* Photo handling.
+     There is no initials-placeholder path any more. A grid where half the
+     tiles are generated monograms looks broken, and it draws attention to
+     exactly the thing that is missing. Instead the page picks its layout per
+     group: groups where everyone has a photograph are rendered as photo
+     cards, and groups without a full set are rendered as name-and-role
+     rosters, which need no image at all.
+
+     buildPhotoHTML still guards against a missing file so that a card group
+     degrades to a plain tinted panel rather than a broken image. */
+  function buildPhotoHTML(person) {
+    if (!person.photo) return '';
+    return `<img src="${person.photo}" alt="${person.name}" style="width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async">`;
   }
 
-  /* Initials placeholders (shown when a member has no photo).
-     The gradient and the initials colour must be chosen together: the
-     "light" tone previously paired a near-white gradient with white
-     initials, so those initials were invisible. Keeping the pair in one
-     table stops the two halves drifting apart again. */
-  const PLACEHOLDER = {
-    dark:  { gradient: 'var(--navy-light), var(--blue)', color: 'var(--white)' }, // white 7.4:1+
-    light: { gradient: '#e8f2fc, #f1f5f9',               color: 'var(--blue)'  }, // blue 6.5:1+
-  };
+  function buildPhotoStyle(person) {
+    return person.photo
+      ? 'overflow:hidden;'
+      : 'background:var(--blue-pale);';
+  }
 
-  function buildPhotoHTML(person, size, tone = 'dark') {
-    if (person.photo) {
-      return `<img src="${person.photo}" alt="${person.name}" style="width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async">`;
+  /* ── People rows (photo groups) ──
+     Not a large photo grid: 7 of the 15 team photographs are under 400px on
+     their long edge (several are 200px), so a full-bleed tile upscaled them
+     2x or more and they looked soft. A portrait at 88px displays every one of
+     them at or below its native resolution, stays crisp on retina, and suits
+     the editorial layout used elsewhere on the site. */
+  function buildPersonRow(person, delayClass, opts = {}) {
+    const snippet = opts.withBio && person.bio
+      ? `<p class="person__bio">${person.bio.split('\n')[0].substring(0, 130)}…</p>`
+      : '';
+    const interactive = person.bio;
+    const inner = `
+        <div class="person__portrait">
+          <img src="${person.photo}" alt="${person.name}" width="88" height="88"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="person__text">
+          <span class="person__name">${person.name}</span>
+          <span class="person__role">${person.role}</span>
+          ${snippet}
+        </div>`;
+
+    if (!interactive) {
+      return `<li class="person fade-in ${delayClass}">${inner}</li>`;
     }
-    const initials = getInitials(person.name);
-    const fontSize = size === 'large' ? '3rem' : '2.5rem';
-    const color = (PLACEHOLDER[tone] || PLACEHOLDER.dark).color;
-    // aria-hidden: the full name is already in the adjacent name element, so
-    // the initials are decoration rather than extra content to announce.
-    return `<span aria-hidden="true" style="font-size:${fontSize};color:${color};font-weight:700;">${initials}</span>`;
+    return `<li class="person person--linked fade-in ${delayClass}">
+        <button type="button" class="person__button"
+                onclick="openModal(${JSON.stringify(person).replace(/"/g,'&quot;')})">
+          ${inner}
+          <span class="person__more">Read background</span>
+        </button>
+      </li>`;
   }
 
-  function buildPhotoStyle(person, tone = 'dark') {
-    if (person.photo) return `overflow:hidden;`;
-    const gradient = (PLACEHOLDER[tone] || PLACEHOLDER.dark).gradient;
-    return `background:linear-gradient(135deg, ${gradient}); display:flex; align-items:center; justify-content:center;`;
-  }
-
-  /* ── Card Builders ── */
-  function buildTeamCard(person, delayClass, tone) {
-    const hasModal = person.bio ? 'data-has-modal' : '';
-    const photoStyle = buildPhotoStyle(person, tone);
-    const photoContent = buildPhotoHTML(person, 'small', tone);
-    return `
-      <div class="team-card fade-in ${delayClass}" ${hasModal}
-           onclick="openModal(${JSON.stringify(person).replace(/"/g,'&quot;')})">
-        <div class="team-card__photo" style="${photoStyle}">${photoContent}</div>
-        <div class="team-card__info">
-          <div class="team-card__name">${person.name}</div>
-          <div class="team-card__role">${person.role}</div>
-        </div>
-      </div>`;
-  }
-
-  function buildLeaderCard(person, delayClass) {
-    const photoStyle = person.photo
-      ? `aspect-ratio:1; overflow:hidden;`
-      : `aspect-ratio:1; ${buildPhotoStyle(person, 'light')}`;
-    const photoContent = buildPhotoHTML(person, 'large', 'light');
-    const bioSnippet = person.bio ? person.bio.split('\n')[0].substring(0, 120) + '…' : '';
-    return `
-      <div class="card fade-in ${delayClass}" data-has-modal
-           onclick="openModal(${JSON.stringify(person).replace(/"/g,'&quot;')})">
-        <div class="card__image" style="${photoStyle}">${photoContent}</div>
-        <div class="card__body">
-          <span class="card__tag">${person.role}</span>
-          <h4 class="card__title">${person.name}</h4>
-          <p class="card__desc">${bioSnippet}</p>
-        </div>
-      </div>`;
-  }
-
-  /* ── Render Grids ── */
-  function renderGrid(containerId, people, type, tone) {
+  /* ── Roster builder (groups without a full set of photos) ── */
+  function renderRoster(containerId, people) {
     const el = document.getElementById(containerId);
     if (!el) return;
-    const delays = ['delay-1','delay-2','delay-3','delay-4'];
-    el.innerHTML = people.map((p, i) => {
-      const d = delays[i % delays.length];
-      if (type === 'leader') return buildLeaderCard(p, d);
-      return buildTeamCard(p, d, tone || 'dark');
+    el.innerHTML = people.map(person => {
+      // Only the entries that actually have a biography are interactive;
+      // the rest are plain text rather than dead-looking buttons.
+      const inner = `<span class="roster__name">${person.name}</span>` +
+                    `<span class="roster__role">${person.role}</span>`;
+      if (!person.bio) {
+        return `<li class="roster__item">${inner}</li>`;
+      }
+      return `<li class="roster__item roster__item--linked">
+          <button type="button" class="roster__button"
+                  onclick="openModal(${JSON.stringify(person).replace(/"/g,'&quot;')})">
+            ${inner}
+          </button>
+        </li>`;
     }).join('');
   }
 
-  renderGrid('board-grid', teamData.board, 'card', 'dark');
-  renderGrid('leaders-grid', teamData.leaders, 'leader');
-  renderGrid('academic-board-grid', teamData.academicBoard, 'card', 'light');
-  renderGrid('professional-grid', teamData.professional, 'card', 'light');
+  /* ── Render ──
+     Photo cards for the two groups with a complete set of photographs;
+     rosters for the three that do not have one. If you add the missing
+     photographs later, move that group from renderRoster to renderPeople. */
+  function renderPeople(containerId, people, opts) {
+    const el = document.getElementById(containerId);
+    if (!el) return;
+    const delays = ['delay-1','delay-2','delay-3','delay-4'];
+    el.innerHTML = people
+      .map((p, i) => buildPersonRow(p, delays[i % delays.length], opts))
+      .join('');
+  }
+
+  renderPeople('leaders-grid', teamData.leaders, { withBio: true });  // 9 of 9 have photos
+  renderPeople('professional-grid', teamData.professional);            // 6 of 6 have photos
+  renderRoster('board-roster', teamData.board);                  // 0 of 7
+  renderRoster('academic-board-roster', teamData.academicBoard);  // 3 of 5
+  renderRoster('lecturers-roster', teamData.lecturers);          // 0 of 30
 
   /* ── Lecturers Accordion ── */
   (function() {
     const count = document.getElementById('lecturerCount');
-    const list = document.getElementById('lecturers-list');
     const toggle = document.getElementById('lecturersToggle');
     const panel = document.getElementById('lecturersPanel');
-    if (!count || !list || !toggle || !panel) return;
+    if (!count || !toggle || !panel) return;
 
-    count.textContent = teamData.lecturers.length + ' members';
-
-    list.innerHTML = teamData.lecturers.map((p, i) => {
-      const initials = getInitials(p.name);
-      const delay = Math.min(i * 30, 600);
-      return `
-        <div class="lecturer-row" style="transition-delay:${delay}ms">
-          <div class="lecturer-row__avatar">
-            <span>${initials}</span>
-          </div>
-          <div class="lecturer-row__info">
-            <div class="lecturer-row__name">${p.name}</div>
-            <div class="lecturer-row__role">${p.role}</div>
-          </div>
-        </div>`;
-    }).join('');
+    // The roster itself is filled by renderRoster above; this only handles
+    // the count and the open/close behaviour.
+    count.textContent = teamData.lecturers.length + ' lecturers';
 
     /* The panel is collapsed with max-height:0 + overflow:hidden, which hides
        it visually but leaves every row in the accessibility tree and tab
@@ -419,10 +422,14 @@
     modalName.textContent = person.name;
     modalRole.textContent = person.role;
 
+    // No photograph means no avatar frame at all — the name and role carry
+    // the header. An initials monogram here just restates the name.
     if (person.photo) {
       modalAvatar.innerHTML = `<img src="${person.photo}" alt="${person.name}" loading="lazy" decoding="async">`;
+      modalAvatar.hidden = false;
     } else {
-      modalAvatar.innerHTML = `<span class="team-modal__avatar-initials">${getInitials(person.name)}</span>`;
+      modalAvatar.innerHTML = '';
+      modalAvatar.hidden = true;
     }
 
     if (person.bio) {
