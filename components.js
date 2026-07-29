@@ -2,6 +2,21 @@
    TIIS — Shared Components (Navbar, Footer, Utils)
    =================================================== */
 
+/* ---- Site configuration ----
+   Social profiles previously rendered as href="#", so all three
+   footer icons were dead links. Fill in the real URLs here and the
+   icon appears; leave a value empty and the icon is omitted rather
+   than shipping a link that goes nowhere. */
+const SOCIAL_LINKS = {
+  facebook: '',
+  instagram: '',
+  linkedin: '',
+};
+
+// Honour the OS "reduce motion" setting for JS-driven motion too.
+const PREFERS_REDUCED_MOTION =
+  window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // ---- SVG Icons ----
 const ICONS = {
   chevronDown: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>',
@@ -91,7 +106,8 @@ function buildNavbar(currentPage) {
 
       <a href="apply.html" class="navbar__cta navbar__cta-desktop">Apply Now</a>
 
-      <button class="navbar__toggle" id="navToggle" aria-label="Open menu">
+      <button class="navbar__toggle" id="navToggle" aria-label="Open menu"
+              aria-expanded="false" aria-controls="mobileMenu">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -99,10 +115,20 @@ function buildNavbar(currentPage) {
 
   document.body.prepend(nav);
 
+  // Skip link — first thing in the tab order.
+  const skip = document.createElement('a');
+  skip.className = 'skip-link';
+  skip.href = '#main';
+  skip.textContent = 'Skip to main content';
+  document.body.prepend(skip);
+
   // Mobile menu
   const mobileMenu = document.createElement('div');
   mobileMenu.className = 'navbar__mobile-menu';
   mobileMenu.id = 'mobileMenu';
+  mobileMenu.setAttribute('role', 'dialog');
+  mobileMenu.setAttribute('aria-modal', 'true');
+  mobileMenu.setAttribute('aria-label', 'Site menu');
   mobileMenu.innerHTML = `
     <button class="navbar__mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
     <a href="index.html" class="navbar__mobile-link">Home</a>
@@ -142,43 +168,127 @@ function buildNavbar(currentPage) {
   const close = document.getElementById('mobileClose');
   const olay = document.getElementById('mobileOverlay');
 
+  // Elements that can hold focus while the drawer is open.
+  const FOCUSABLE = 'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
+  let lastFocused = null;
+
   function openMenu() {
+    lastFocused = document.activeElement;
     mobileMenu.classList.add('active');
     overlay.classList.add('active');
     overlay.style.display = 'block';
+    // Lock the page without losing scroll position on close.
     document.body.style.overflow = 'hidden';
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Close menu');
+    // Move focus into the drawer so keyboard and screen-reader users
+    // land inside it rather than continuing behind the overlay.
+    (mobileMenu.querySelector(FOCUSABLE) || mobileMenu).focus();
   }
+
   function closeMenu() {
+    if (!mobileMenu.classList.contains('active')) return;
     mobileMenu.classList.remove('active');
     overlay.classList.remove('active');
     document.body.style.overflow = '';
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open menu');
     setTimeout(() => { overlay.style.display = 'none'; }, 300);
+    if (lastFocused && document.contains(lastFocused)) lastFocused.focus();
   }
 
   toggle.addEventListener('click', openMenu);
   close.addEventListener('click', closeMenu);
   olay.addEventListener('click', closeMenu);
 
-  // Scroll effect
+  // Escape closes the drawer; Tab is trapped inside it while open.
+  document.addEventListener('keydown', (e) => {
+    if (!mobileMenu.classList.contains('active')) return;
+
+    if (e.key === 'Escape') {
+      closeMenu();
+      return;
+    }
+
+    if (e.key !== 'Tab') return;
+
+    const items = [...mobileMenu.querySelectorAll(FOCUSABLE)]
+      .filter(el => el.offsetParent !== null);
+    if (!items.length) return;
+
+    const first = items[0];
+    const last = items[items.length - 1];
+
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
+
+  // Following a link inside the drawer should also close it (matters for
+  // same-page #anchor links, where no navigation occurs).
+  mobileMenu.querySelectorAll('a[href]').forEach(a => {
+    a.addEventListener('click', closeMenu);
+  });
+
+  // Reset when resizing up to the desktop layout, otherwise the body stays
+  // scroll-locked with the drawer hidden by the media query.
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) closeMenu();
+  });
+
+  // ---- Transparent -> solid on scroll (home only) ----
   if (isHome) {
     const navEl = document.getElementById('navbar');
     const logoEl = document.getElementById('navLogo');
     const toggleSpans = toggle.querySelectorAll('span');
 
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 60) {
-        navEl.classList.remove('navbar--transparent');
-        navEl.classList.add('navbar--solid');
-        logoEl.src = logoEl.dataset.color;
-        toggleSpans.forEach(s => s.style.background = 'var(--navy)');
-      } else {
-        navEl.classList.remove('navbar--solid');
-        navEl.classList.add('navbar--transparent');
-        logoEl.src = logoEl.dataset.white;
-        toggleSpans.forEach(s => s.style.background = 'var(--white)');
-      }
-    });
+    function syncNavbar() {
+      const solid = window.scrollY > 60;
+      navEl.classList.toggle('navbar--solid', solid);
+      navEl.classList.toggle('navbar--transparent', !solid);
+      logoEl.src = solid ? logoEl.dataset.color : logoEl.dataset.white;
+      toggleSpans.forEach(s => {
+        s.style.background = solid ? 'var(--navy)' : 'var(--white)';
+      });
+    }
+
+    window.addEventListener('scroll', syncNavbar, { passive: true });
+    // Run once on load. Without this, arriving already scrolled — a reload
+    // with restored scroll position, a back-navigation, or a link to
+    // index.html#anchor — left the navbar transparent, i.e. white links on
+    // a white background.
+    syncNavbar();
   }
+
+  markCurrentPage(nav, mobileMenu);
+}
+
+
+/* ---- Mark the current page in the navigation ----
+   Nothing indicated which page you were on. */
+function markCurrentPage(nav, mobileMenu) {
+  const here = window.location.pathname.replace(/\/$/, '/index.html');
+
+  [nav, mobileMenu].forEach(root => {
+    root.querySelectorAll('a[href]').forEach(a => {
+      // The logo is a home link, but announcing it as the current page is
+      // just noise next to the "Home" nav item.
+      if (a.classList.contains('navbar__logo')) return;
+      const url = new URL(a.getAttribute('href'), window.location.href);
+      if (url.origin !== window.location.origin) return;
+      // Compare paths only — a link to about.html#values still marks About.
+      const target = url.pathname.replace(/\/$/, '/index.html');
+      if (target !== here) return;
+      // Bare page links get the marker; deep #anchor links in a dropdown
+      // shouldn't all light up, only the one matching the current hash.
+      if (url.hash && url.hash !== window.location.hash) return;
+      a.setAttribute('aria-current', 'page');
+    });
+  });
 }
 
 
@@ -248,9 +358,12 @@ function buildFooter() {
       <div class="footer__bottom">
         <p>&copy; ${new Date().getFullYear()} The Institute of International Studies (TIIS). All rights reserved.</p>
         <div class="footer__socials">
-          <a href="#" aria-label="Facebook">${ICONS.facebook}</a>
-          <a href="#" aria-label="Instagram">${ICONS.instagram}</a>
-          <a href="#" aria-label="LinkedIn">${ICONS.linkedin}</a>
+          ${Object.entries(SOCIAL_LINKS)
+            .filter(([, url]) => url)
+            .map(([name, url]) => `
+          <a href="${url}" aria-label="TIIS on ${name[0].toUpperCase() + name.slice(1)}"
+             target="_blank" rel="noopener noreferrer">${ICONS[name]}</a>`)
+            .join('')}
         </div>
       </div>
     </div>
@@ -279,6 +392,18 @@ function buildScrollTop() {
 
 // ---- Scroll Animations ----
 function initScrollAnimations() {
+  const targets = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in');
+  if (!targets.length) return;
+
+  // If motion is unwelcome, or the browser lacks IntersectionObserver, leave
+  // everything in its default visible state and do nothing else.
+  if (PREFERS_REDUCED_MOTION || !('IntersectionObserver' in window)) return;
+
+  // Opt in to the hidden starting state only now that we know we can reveal
+  // it again. The CSS keeps content visible until this class is present, so a
+  // JS error can never leave the page blank.
+  document.documentElement.classList.add('js-reveal');
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -288,8 +413,18 @@ function initScrollAnimations() {
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in').forEach(el => {
-    observer.observe(el);
+  targets.forEach(el => observer.observe(el));
+
+  // Anything already above the fold — or skipped by an #anchor jump that
+  // landed further down the page — is revealed immediately rather than
+  // waiting for a scroll that may never come.
+  requestAnimationFrame(() => {
+    targets.forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight) {
+        el.classList.add('visible');
+        observer.unobserve(el);
+      }
+    });
   });
 }
 
@@ -299,43 +434,106 @@ function initCarousel(trackId) {
   const track = document.getElementById(trackId);
   if (!track) return;
 
-  const slides = track.children;
+  const region = track.parentElement;
+  const slides = [...track.children];
   const total = slides.length;
+  if (!total) return;
   let current = 0;
 
-  const dotsContainer = track.parentElement.querySelector('.carousel-dots');
-  const prevBtn = track.parentElement.querySelector('.carousel-btn--prev');
-  const nextBtn = track.parentElement.querySelector('.carousel-btn--next');
+  const dotsContainer = region.querySelector('.carousel-dots');
+  const prevBtn = region.querySelector('.carousel-btn--prev');
+  const nextBtn = region.querySelector('.carousel-btn--next');
+
+  // Expose the carousel as a labelled group and announce slide changes.
+  region.setAttribute('role', 'group');
+  region.setAttribute('aria-roledescription', 'carousel');
+  region.setAttribute('aria-label', 'Student testimonials');
+  track.setAttribute('aria-live', 'polite');
+
+  slides.forEach((slide, i) => {
+    slide.setAttribute('role', 'group');
+    slide.setAttribute('aria-roledescription', 'slide');
+    slide.setAttribute('aria-label', `${i + 1} of ${total}`);
+  });
 
   function goTo(index) {
     current = ((index % total) + total) % total;
     track.style.transform = `translateX(-${current * 100}%)`;
+
+    // Keep off-screen slides out of the tab order and the a11y tree —
+    // previously every quote was focusable and read out at once.
+    slides.forEach((slide, i) => {
+      const isCurrent = i === current;
+      slide.setAttribute('aria-hidden', String(!isCurrent));
+      slide.querySelectorAll('a, button').forEach(el => {
+        if (isCurrent) el.removeAttribute('tabindex');
+        else el.setAttribute('tabindex', '-1');
+      });
+    });
+
     if (dotsContainer) {
       dotsContainer.querySelectorAll('.carousel-dot').forEach((d, i) => {
         d.classList.toggle('active', i === current);
+        d.setAttribute('aria-selected', String(i === current));
       });
     }
   }
 
-  if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
-  if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
+  if (prevBtn) prevBtn.addEventListener('click', () => { stop(); goTo(current - 1); });
+  if (nextBtn) nextBtn.addEventListener('click', () => { stop(); goTo(current + 1); });
 
   if (dotsContainer) {
+    dotsContainer.setAttribute('role', 'tablist');
     for (let i = 0; i < total; i++) {
       const dot = document.createElement('button');
       dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
-      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
-      dot.addEventListener('click', () => goTo(i));
+      dot.type = 'button';
+      dot.setAttribute('role', 'tab');
+      dot.setAttribute('aria-label', `Show testimonial ${i + 1} of ${total}`);
+      dot.setAttribute('aria-selected', String(i === 0));
+      dot.addEventListener('click', () => { stop(); goTo(i); });
       dotsContainer.appendChild(dot);
     }
   }
 
-  // Auto-play
-  let timer = setInterval(() => goTo(current + 1), 5000);
-  track.parentElement.addEventListener('mouseenter', () => clearInterval(timer));
-  track.parentElement.addEventListener('mouseleave', () => {
-    timer = setInterval(() => goTo(current + 1), 5000);
+  // Left/right arrows move between slides when focus is in the carousel.
+  region.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') { stop(); goTo(current - 1); }
+    else if (e.key === 'ArrowRight') { stop(); goTo(current + 1); }
   });
+
+  // ---- Auto-play ----
+  let timer = null;
+  // A user who has taken control (clicked a dot/arrow, or tabbed in) should
+  // not have the slide yanked out from under them a moment later.
+  let userEngaged = false;
+
+  function start() {
+    if (timer || userEngaged || PREFERS_REDUCED_MOTION) return;
+    timer = setInterval(() => goTo(current + 1), 5000);
+  }
+
+  function pause() {
+    if (timer) { clearInterval(timer); timer = null; }
+  }
+
+  function stop() {
+    userEngaged = true;
+    pause();
+  }
+
+  region.addEventListener('mouseenter', pause);
+  region.addEventListener('mouseleave', start);
+  region.addEventListener('focusin', stop);
+
+  // Don't animate in a background tab.
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) pause();
+    else start();
+  });
+
+  goTo(0);
+  start();
 }
 
 
@@ -343,6 +541,17 @@ function initCarousel(trackId) {
 function initCounters() {
   const counters = document.querySelectorAll('[data-count]');
   if (!counters.length) return;
+
+  const finalValue = el =>
+    (el.dataset.prefix || '') + el.dataset.count + (el.dataset.suffix || '');
+
+  // The markup ships "0" as the placeholder, so a counter that never animates
+  // displays a wrong number. Without motion (or without IntersectionObserver)
+  // write the real value straight away.
+  if (PREFERS_REDUCED_MOTION || !('IntersectionObserver' in window)) {
+    counters.forEach(el => { el.textContent = finalValue(el); });
+    return;
+  }
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -369,6 +578,73 @@ function initCounters() {
   }, { threshold: 0.5 });
 
   counters.forEach(c => observer.observe(c));
+}
+
+
+/* ---- Enquiry form ----
+   The previous handler called preventDefault() and revealed a "we've received
+   your enquiry" message without sending anything anywhere, so every submission
+   was silently discarded while telling the visitor the opposite.
+
+   With no server available, this validates the fields, then hands the enquiry
+   to the visitor's own mail client pre-addressed and pre-filled. The status
+   message describes what actually happened. If the form is given a real
+   action/method, this handler steps aside and lets the browser submit it. */
+function initEnquiryForm(formId, statusId) {
+  const form = document.getElementById(formId);
+  const status = document.getElementById(statusId);
+  if (!form || !status) return;
+
+  const mailto = form.dataset.mailto;
+  // A real endpoint takes precedence over the mailto fallback.
+  if (!mailto || form.getAttribute('action')) return;
+
+  function setStatus(message, kind) {
+    status.textContent = message;
+    status.className = `form-status form-status--${kind} is-visible`;
+  }
+
+  function firstInvalid() {
+    return [...form.elements].find(el => el.willValidate && !el.checkValidity());
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // novalidate is set so we control the messaging; validate explicitly.
+    const bad = firstInvalid();
+    if (bad) {
+      setStatus('Please complete the required fields before sending.', 'error');
+      bad.focus();
+      bad.reportValidity();
+      return;
+    }
+
+    const get = name => (form.elements[name]?.value || '').trim();
+    const name = get('name');
+    const subject = get('subject') || 'Website enquiry';
+
+    const body = [
+      `Name: ${name}`,
+      `Email: ${get('email')}`,
+      `Phone: ${get('phone') || '—'}`,
+      `Subject: ${subject}`,
+      '',
+      get('message'),
+    ].join('\n');
+
+    const href = `mailto:${mailto}`
+      + `?subject=${encodeURIComponent(`[Website enquiry] ${subject}`)}`
+      + `&body=${encodeURIComponent(body)}`;
+
+    setStatus(
+      `Your email app should now open with this enquiry addressed to ${mailto}. `
+      + `Send it from there and we'll be in touch. If nothing opened, email ${mailto} directly.`,
+      'info'
+    );
+
+    window.location.href = href;
+  });
 }
 
 
@@ -413,16 +689,58 @@ function injectIconSprite() {
 }
 
 
+/* ---- Wrap page content in a <main> landmark ----
+   The pages are a flat list of <section>s with no landmark, so assistive
+   tech had no "main content" region to jump to and the skip link had no
+   target. Runs before the navbar and footer are injected, so whatever is
+   already in <body> is exactly the page's own content. */
+function wrapMainContent() {
+  if (document.getElementById('main')) return;
+
+  const main = document.createElement('main');
+  main.id = 'main';
+  // Focusable via the skip link, but not a stop in normal tab order.
+  main.setAttribute('tabindex', '-1');
+
+  const body = document.body;
+  const content = [...body.children].filter(el => {
+    const tag = el.tagName;
+    return tag !== 'SCRIPT' && tag !== 'NOSCRIPT' && tag !== 'TEMPLATE';
+  });
+  if (!content.length) return;
+
+  body.insertBefore(main, content[0]);
+  content.forEach(el => main.appendChild(el));
+}
+
+
 // ---- Initialize everything ----
 function initPage(pageName) {
+  wrapMainContent();
   injectIconSprite();
   buildNavbar(pageName);
   buildFooter();
   buildScrollTop();
+  improveImageLoading();
 
   // Wait for DOM to be ready
   requestAnimationFrame(() => {
     initScrollAnimations();
     initCounters();
+  });
+}
+
+
+/* ---- Image loading hints for JS-injected images ----
+   Images in the static markup carry loading/decoding attributes directly —
+   setting them from JS would run after the parser has already begun fetching.
+   This only covers the images this script creates itself (nav and footer
+   logos), which the parser never sees. */
+function improveImageLoading() {
+  document.querySelectorAll('.footer img, .navbar__logo img').forEach(img => {
+    if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+    if (img.closest('.footer') && !img.hasAttribute('loading')) {
+      img.setAttribute('loading', 'lazy');
+    }
   });
 }

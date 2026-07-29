@@ -7,11 +7,27 @@
   <meta name="description" content="Study a Bachelor of Information Technology at TIIS — AQF Level 7, 3 years, specialisations in Web & Mobile or Cyber Security. CRICOS 113724B.">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/png" href="images/logos/TIIS-Logo-black-and-white-1024x1024.png">
+
+  <!-- Fonts: preconnect so the TLS handshake overlaps HTML parsing -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
+
+  <!-- Social sharing. Add og:url and og:image using your production
+       domain (absolute URLs are required) to get link preview images. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TIIS — The Institute of International Studies">
+  <meta property="og:locale" content="en_AU">
+  <meta property="og:title" content="Bachelor of Information Technology — TIIS | BIT">
+  <meta property="og:description" content="Study a Bachelor of Information Technology at TIIS — AQF Level 7, 3 years, specialisations in Web & Mobile or Cyber Security. CRICOS 113724B.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bachelor of Information Technology — TIIS | BIT">
+  <meta name="twitter:description" content="Study a Bachelor of Information Technology at TIIS — AQF Level 7, 3 years, specialisations in Web & Mobile or Cyber Security. CRICOS 113724B.">
 </head>
 <body>
 
   <section class="hero hero--medium">
-    <div class="hero__bg"><img src="images/courses/it-hero.png" alt="Information technology"></div>
+    <div class="hero__bg"><img src="images/courses/it-hero.png" alt="Information technology" loading="eager" fetchpriority="high" decoding="sync"></div>
     <div class="hero__overlay"></div>
     <div class="hero__content">
       <div class="hero-badges">
@@ -55,7 +71,7 @@
           </div>
         </div>
         <div class="split__image fade-in-right">
-          <img src="images/courses/it-hero.png" alt="IT lab" style="aspect-ratio:4/3;object-fit:cover;">
+          <img src="images/courses/it-hero.png" alt="IT lab" style="aspect-ratio:4/3;object-fit:cover;" loading="eager" fetchpriority="high" decoding="sync">
         </div>
       </div>
     </div>
@@ -74,7 +90,7 @@
         <div class="detail-grid__item"><span class="detail-grid__label">Intakes</span><span class="detail-grid__value">Jan, Mar, May, Jul, Sep, Nov</span></div>
         <div class="detail-grid__item"><span class="detail-grid__label">Indicative Fee</span><span class="detail-grid__value">Approx. $60,500 total course fee</span></div>
       </div>
-      <p class="text-sm" style="color:var(--gray-400);text-align:center;margin-top:16px;">* Duration may vary. &nbsp;** Subject to regulatory approval and visa conditions.</p>
+      <p class="text-sm" style="color:var(--text-muted);text-align:center;margin-top:16px;">* Duration may vary. &nbsp;** Subject to regulatory approval and visa conditions.</p>
     </div>
   </section>
 
@@ -83,7 +99,7 @@
       <div class="section-header fade-in"><span class="section-label">Curriculum</span><h2>Course Structure</h2><p class="section-subtitle">17 compulsory core units plus 7 specialisation units from your chosen stream.</p></div>
 
       <div class="subject-block fade-in" style="margin-bottom:32px;">
-        <div class="subject-block__header subject-block__header--blue">
+        <div class="subject-block__header subject-block__header--tone-1">
           <span class="subject-block__icon"><svg class="icon icon--md"><use href="#icon-monitor"/></svg></span>
           <div><div class="subject-block__heading">Core IT Units — 17 Units (Compulsory)</div><div class="subject-block__sub">Comprehensive foundation across IT, systems, and business disciplines</div></div>
         </div>
@@ -114,14 +130,14 @@
       </div>
 
       <div class="fade-in">
-        <div class="section-divider"><div class="section-divider__line"></div><span class="section-divider__label">Specialisation Streams — Choose One (7 Units)</span><div class="section-divider__line"></div></div>
+        <div class="section-divider"><div class="section-divider__line"></div><span class="section-divider__label">Specialisation Streams: Choose One (7 Units)</span><div class="section-divider__line"></div></div>
         <div class="spec-tabs">
           <button class="spec-tab active" onclick="showSpec(event,'spec-web')"><svg class="icon icon--sm"><use href="#icon-code"/></svg> Web &amp; Mobile</button>
           <button class="spec-tab" onclick="showSpec(event,'spec-cyber')"><svg class="icon icon--sm"><use href="#icon-shield"/></svg> Cyber Security</button>
         </div>
 
         <div id="spec-web" class="spec-panel active">
-          <div class="subject-block"><div class="subject-block__header subject-block__header--teal"><span class="subject-block__icon"><svg class="icon icon--md"><use href="#icon-code"/></svg></span><div><div class="subject-block__heading">Web &amp; Mobile Applications Development</div><div class="subject-block__sub">Object-oriented programming, mobile apps, cloud &amp; big data</div></div></div>
+          <div class="subject-block"><div class="subject-block__header subject-block__header--tone-2"><span class="subject-block__icon"><svg class="icon icon--md"><use href="#icon-code"/></svg></span><div><div class="subject-block__heading">Web &amp; Mobile Applications Development</div><div class="subject-block__sub">Object-oriented programming, mobile apps, cloud &amp; big data</div></div></div>
           <div class="subject-block__body"><table class="subject-table"><thead><tr><th>Unit Code</th><th>Unit Name</th></tr></thead><tbody>
             <tr><td><span class="unit-code">BMW201</span></td><td>Object-Oriented Programming</td></tr>
             <tr><td><span class="unit-code">BMW202</span></td><td>Web Application and Server Management</td></tr>
@@ -134,7 +150,7 @@
         </div>
 
         <div id="spec-cyber" class="spec-panel">
-          <div class="subject-block"><div class="subject-block__header subject-block__header--purple"><span class="subject-block__icon"><svg class="icon icon--md"><use href="#icon-shield"/></svg></span><div><div class="subject-block__heading">Cyber Security</div><div class="subject-block__sub">Security essentials, cryptography, forensics &amp; network security</div></div></div>
+          <div class="subject-block"><div class="subject-block__header subject-block__header--tone-3"><span class="subject-block__icon"><svg class="icon icon--md"><use href="#icon-shield"/></svg></span><div><div class="subject-block__heading">Cyber Security</div><div class="subject-block__sub">Security essentials, cryptography, forensics &amp; network security</div></div></div>
           <div class="subject-block__body"><table class="subject-table"><thead><tr><th>Unit Code</th><th>Unit Name</th></tr></thead><tbody>
             <tr><td><span class="unit-code">BCS201</span></td><td>Cyber Security Essentials</td></tr>
             <tr><td><span class="unit-code">BCS202</span></td><td>Human Factors in Cyber Security</td></tr>
@@ -156,14 +172,14 @@
           <span class="section-label">Admissions</span>
           <h2>Entry Requirements</h2>
           <div style="display:flex;flex-direction:column;gap:16px;margin-top:20px;">
-            <div class="subject-block" style="box-shadow:none;border-color:var(--gray-200);"><div style="padding:16px 20px;"><h5 style="color:var(--navy);margin-bottom:6px;font-size:0.875rem;display:flex;align-items:center;gap:8px;"><svg class="icon icon--sm" style="color:var(--blue)"><use href="#icon-graduation"/></svg> Academic Requirements</h5><p class="text-sm" style="margin:0;color:var(--gray-600);">Year 12 (ATAR ≥ 60) with Mathematics, OR AQF Level 5 Diploma or higher, OR recognised bridging or enabling program.</p></div></div>
-            <div class="subject-block" style="box-shadow:none;border-color:var(--gray-200);"><div style="padding:16px 20px;"><h5 style="color:var(--navy);margin-bottom:6px;font-size:0.875rem;display:flex;align-items:center;gap:8px;"><svg class="icon icon--sm" style="color:var(--blue)"><use href="#icon-message-circle"/></svg> English Language</h5><p class="text-sm" style="margin:0;color:var(--gray-600);">IELTS 6.0 overall (no band below 6.0), or equivalent.</p></div></div>
-            <div class="subject-block" style="box-shadow:none;border-color:var(--gray-200);"><div style="padding:16px 20px;"><h5 style="color:var(--navy);margin-bottom:6px;font-size:0.875rem;display:flex;align-items:center;gap:8px;"><svg class="icon icon--sm" style="color:var(--blue)"><use href="#icon-calendar"/></svg> Intakes &amp; Location</h5><p class="text-sm" style="margin:0;color:var(--gray-600);">Jan, Mar, May, Jul, Sep, Nov — Sydney &amp; Melbourne</p></div></div>
+            <div class="subject-block" style="box-shadow:none;border-color:var(--gray-200);"><div style="padding:16px 20px;"><h3 class="h-size-lg" style="color:var(--navy);margin-bottom:6px;font-size:0.875rem;display:flex;align-items:center;gap:8px;"><svg class="icon icon--sm" style="color:var(--blue)"><use href="#icon-graduation"/></svg> Academic Requirements</h3><p class="text-sm" style="margin:0;color:var(--gray-600);">Year 12 (ATAR ≥ 60) with Mathematics, OR AQF Level 5 Diploma or higher, OR recognised bridging or enabling program.</p></div></div>
+            <div class="subject-block" style="box-shadow:none;border-color:var(--gray-200);"><div style="padding:16px 20px;"><h3 class="h-size-lg" style="color:var(--navy);margin-bottom:6px;font-size:0.875rem;display:flex;align-items:center;gap:8px;"><svg class="icon icon--sm" style="color:var(--blue)"><use href="#icon-message-circle"/></svg> English Language</h3><p class="text-sm" style="margin:0;color:var(--gray-600);">IELTS 6.0 overall (no band below 6.0), or equivalent.</p></div></div>
+            <div class="subject-block" style="box-shadow:none;border-color:var(--gray-200);"><div style="padding:16px 20px;"><h3 class="h-size-lg" style="color:var(--navy);margin-bottom:6px;font-size:0.875rem;display:flex;align-items:center;gap:8px;"><svg class="icon icon--sm" style="color:var(--blue)"><use href="#icon-calendar"/></svg> Intakes &amp; Location</h3><p class="text-sm" style="margin:0;color:var(--gray-600);">Jan, Mar, May, Jul, Sep, Nov — Sydney &amp; Melbourne</p></div></div>
           </div>
           <a href="apply.html" class="btn btn--primary" style="margin-top:28px;">Start Your Application</a>
         </div>
         <div class="split__image fade-in-left">
-          <img src="images/hero/carlos-lindner-ZVo7vtXilCs-unsplash.jpg" alt="Students" style="aspect-ratio:3/4;object-fit:cover;">
+          <img src="images/hero/carlos-lindner-ZVo7vtXilCs-unsplash.jpg" alt="Students" style="aspect-ratio:3/4;object-fit:cover;" loading="lazy" decoding="async">
         </div>
       </div>
     </div>
@@ -186,7 +202,7 @@
       <div class="cta-banner fade-in">
         <h2>Launch Your Tech Career</h2>
         <p>Build tomorrow's technology solutions. Apply to the BIT today.</p>
-        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;">
+        <div class="cta-banner__actions">
           <a href="apply.html" class="btn btn--white btn--lg">Apply Now</a>
           <a href="contact.html" class="btn btn--outline btn--lg">Contact Us</a>
         </div>

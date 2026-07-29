@@ -4,22 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Campuses — TIIS | Sydney & Melbourne</title>
-  <meta name="description" content="TIIS campuses in Sydney CBD and Melbourne Docklands — contemporary learning spaces, collaborative areas, academic libraries, and state-of-the-art IT facilities.">
+  <meta name="description" content="TIIS campuses in Sydney CBD and Melbourne Docklands — contemporary learning spaces, collaborative areas, a library and computer labs.">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/png" href="images/logos/TIIS-Logo-black-and-white-1024x1024.png">
+
+  <!-- Fonts: preconnect so the TLS handshake overlaps HTML parsing -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
+
+  <!-- Social sharing. Add og:url and og:image using your production
+       domain (absolute URLs are required) to get link preview images. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TIIS — The Institute of International Studies">
+  <meta property="og:locale" content="en_AU">
+  <meta property="og:title" content="Campuses — TIIS | Sydney & Melbourne">
+  <meta property="og:description" content="TIIS campuses in Sydney CBD and Melbourne Docklands — contemporary learning spaces, collaborative areas, a library and computer labs.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Campuses — TIIS | Sydney & Melbourne">
+  <meta name="twitter:description" content="TIIS campuses in Sydney CBD and Melbourne Docklands — contemporary learning spaces, collaborative areas, a library and computer labs.">
 </head>
 <body>
 
   <!-- Hero -->
   <section class="hero hero--medium">
     <div class="hero__bg">
-      <img src="images/courses/2-scaled.jpg" alt="TIIS campus">
+      <img src="images/courses/2-scaled.jpg" alt="TIIS campus" loading="eager" fetchpriority="high" decoding="sync">
     </div>
     <div class="hero__overlay"></div>
     <div class="hero__content">
       <span class="hero__label">Campus Locations</span>
-      <h1 class="hero__title">Learn in Australia's Most Vibrant Cities</h1>
-      <p class="hero__subtitle">Contemporary learning environments in the heart of Sydney and Melbourne, designed to inspire academic and personal growth.</p>
+      <h1 class="hero__title">Sydney and Melbourne</h1>
+      <p class="hero__subtitle">Ultimo in Sydney, Docklands in Melbourne. Both within a few minutes of public transport.</p>
     </div>
   </section>
 
@@ -29,8 +45,8 @@
     <div class="container">
       <div class="section-header fade-in">
         <span class="section-label">Facilities</span>
-        <h2>Our Campuses Feature</h2>
-        <p class="section-subtitle">Meticulously designed spaces fostering an environment conducive to academic and social pursuits.</p>
+        <h2>What's on Campus</h2>
+        <p class="section-subtitle">The same facilities at both sites.</p>
       </div>
 
       <div class="card-grid card-grid--3">
@@ -38,43 +54,43 @@
           <div class="feature-card__icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l-9 4.5 9 4.5 9-4.5L10 1z"/><path d="M3 7.5v5.25l7 3.5 7-3.5V7.5l-7 3.5-7-3.5z"/></svg>
           </div>
-          <h4 class="feature-card__title">Professional Learning Spaces</h4>
-          <p class="feature-card__desc">Contemporary classrooms equipped with modern technology for an optimal learning experience.</p>
+          <h3 class="feature-card__title">Professional Learning Spaces</h3>
+          <p class="feature-card__desc">Classrooms with projectors and teaching computers.</p>
         </div>
         <div class="feature-card fade-in delay-2">
           <div class="feature-card__icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M7 8a3 3 0 100-6 3 3 0 000 6zM14.5 9a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM1.615 16.428a1.224 1.224 0 01-.569-1.175 6.002 6.002 0 0111.908 0c.058.467-.172.92-.57 1.174A9.953 9.953 0 017 18a9.953 9.953 0 01-5.385-1.572zM14.5 16h-.106c.07-.297.088-.611.048-.933a7.47 7.47 0 00-1.588-3.755 4.502 4.502 0 015.874 2.636.818.818 0 01-.36.98A7.465 7.465 0 0114.5 16z"/></svg>
           </div>
-          <h4 class="feature-card__title">Collaborative Areas</h4>
-          <p class="feature-card__desc">Open spaces designed for group study, discussions, and collaborative projects.</p>
+          <h3 class="feature-card__title">Collaborative Areas</h3>
+          <p class="feature-card__desc">Open areas for group work between classes.</p>
         </div>
         <div class="feature-card fade-in delay-3">
           <div class="feature-card__icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M10.75 16.82A7.462 7.462 0 0115 15.5c.71 0 1.396.098 2.046.282A.75.75 0 0018 15.06V4.31a.75.75 0 00-.543-.72A9.958 9.958 0 0015 3.25a9.958 9.958 0 00-4.25.965v12.605zM9.25 4.215A9.958 9.958 0 005 3.25c-.846 0-1.667.105-2.457.306A.75.75 0 002 4.31v10.75a.75.75 0 00.957.72A7.462 7.462 0 015 15.5a7.46 7.46 0 014.25 1.32V4.215z"/></svg>
           </div>
-          <h4 class="feature-card__title">Academic Learning Centre</h4>
-          <p class="feature-card__desc">Library and learning resources to support your academic research and study needs.</p>
+          <h3 class="feature-card__title">Academic Learning Centre</h3>
+          <p class="feature-card__desc">Library, databases and study space.</p>
         </div>
         <div class="feature-card fade-in delay-4">
           <div class="feature-card__icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M15.988 3.012A2.25 2.25 0 0118 5.25v6.5A2.25 2.25 0 0115.75 14H13.5l-3.02 3.02a.75.75 0 01-1.06 0L6.4 14H4.25A2.25 2.25 0 012 11.75v-6.5A2.25 2.25 0 014.25 3h11.5c.085 0 .17.005.252.012z" clip-rule="evenodd"/></svg>
           </div>
-          <h4 class="feature-card__title">Meeting Rooms</h4>
-          <p class="feature-card__desc">Private meeting rooms available for tutorials, group work, and academic consultations.</p>
+          <h3 class="feature-card__title">Meeting Rooms</h3>
+          <p class="feature-card__desc">Bookable rooms for tutorials and consultations with staff.</p>
         </div>
         <div class="feature-card fade-in delay-5">
           <div class="feature-card__icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M2.5 3A1.5 1.5 0 001 4.5v4A1.5 1.5 0 002.5 10h6A1.5 1.5 0 0010 8.5v-4A1.5 1.5 0 008.5 3h-6zm11 2A1.5 1.5 0 0012 6.5v7a1.5 1.5 0 001.5 1.5h4a1.5 1.5 0 001.5-1.5v-7A1.5 1.5 0 0017.5 5h-4zm-10 7A1.5 1.5 0 002 13.5v2A1.5 1.5 0 003.5 17h5A1.5 1.5 0 0010 15.5v-2A1.5 1.5 0 008.5 12h-5z" clip-rule="evenodd"/></svg>
           </div>
-          <h4 class="feature-card__title">IT Facilities</h4>
-          <p class="feature-card__desc">Cutting-edge computer labs and high-speed internet access throughout the campus.</p>
+          <h3 class="feature-card__title">IT Facilities</h3>
+          <p class="feature-card__desc">Computer labs and wi-fi throughout.</p>
         </div>
         <div class="feature-card fade-in delay-6">
           <div class="feature-card__icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.274 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clip-rule="evenodd"/></svg>
           </div>
-          <h4 class="feature-card__title">Prime City Locations</h4>
-          <p class="feature-card__desc">Centrally located with excellent public transport access and nearby amenities.</p>
+          <h3 class="feature-card__title">Prime City Locations</h3>
+          <p class="feature-card__desc">Both campuses sit in the city, near shops and food.</p>
         </div>
       </div>
     </div>
@@ -111,15 +127,15 @@
           </p>
 
           <div class="campus-transport">
-            <h5>🚌 By Bus</h5>
+            <h3 class="h-size-lg">🚌 By Bus</h3>
             <p>Several bus exchanges are nearby. Visit <a href="https://www.sydneybuses.info/" style="color:var(--blue);">Sydney Buses</a> for timetables and routes.</p>
           </div>
           <div class="campus-transport">
-            <h5>🚂 By Train</h5>
+            <h3 class="h-size-lg">🚂 By Train</h3>
             <p>Central Station — a short walk from the campus, connecting you to the entire Sydney rail network.</p>
           </div>
           <div class="campus-transport">
-            <h5>🚃 By Light Rail</h5>
+            <h3 class="h-size-lg">🚃 By Light Rail</h3>
             <p>Haymarket Stop is only a 15-minute walk away, providing easy access via Sydney's light rail system.</p>
           </div>
         </div>
@@ -147,11 +163,11 @@
           </p>
 
           <div class="campus-transport">
-            <h5>🚌 By Bus</h5>
+            <h3 class="h-size-lg">🚌 By Bus</h3>
             <p>Several bus exchanges are nearby. Visit <a href="https://www.ptv.vic.gov.au/" style="color:var(--blue);">PTV Victoria</a> for timetables and routes.</p>
           </div>
           <div class="campus-transport">
-            <h5>🚃 By Tram</h5>
+            <h3 class="h-size-lg">🚃 By Tram</h3>
             <p>D11-Waterfront City/Docklands Dr Stop is just 2 minutes from campus — accessible via trams 35, 70, and 86.</p>
           </div>
         </div>
@@ -164,9 +180,9 @@
   <section class="section">
     <div class="container">
       <div class="cta-banner fade-in">
-        <h2>Visit Us Today</h2>
-        <p>Experience our campus facilities first-hand. We'd love to show you around.</p>
-        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; position:relative;">
+        <h2>Come and See It</h2>
+        <p>Call ahead and we will arrange a time to show you the campus and answer questions in person.</p>
+        <div class="cta-banner__actions">
           <a href="contact.html" class="btn btn--white btn--lg">Contact Us</a>
           <a href="tel:+61280980702" class="btn btn--outline btn--lg">Call +61 2 8098 0702</a>
         </div>

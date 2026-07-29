@@ -7,10 +7,26 @@
   <meta name="description" content="Study a Master of Professional Accounting Advanced at TIIS — AQF Level 9, 2 years, 16 compulsory units across 4 stages. CRICOS 102564D.">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/png" href="images/logos/TIIS-Logo-black-and-white-1024x1024.png">
+
+  <!-- Fonts: preconnect so the TLS handshake overlaps HTML parsing -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
+
+  <!-- Social sharing. Add og:url and og:image using your production
+       domain (absolute URLs are required) to get link preview images. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TIIS — The Institute of International Studies">
+  <meta property="og:locale" content="en_AU">
+  <meta property="og:title" content="Master of Professional Accounting Advanced — TIIS | MPAA">
+  <meta property="og:description" content="Study a Master of Professional Accounting Advanced at TIIS — AQF Level 9, 2 years, 16 compulsory units across 4 stages. CRICOS 102564D.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Master of Professional Accounting Advanced — TIIS | MPAA">
+  <meta name="twitter:description" content="Study a Master of Professional Accounting Advanced at TIIS — AQF Level 9, 2 years, 16 compulsory units across 4 stages. CRICOS 102564D.">
 </head>
 <body>
   <section class="hero hero--medium">
-    <div class="hero__bg"><img src="images/courses/accounting-hero.png" alt="Accounting professionals"></div>
+    <div class="hero__bg"><img src="images/courses/accounting-hero.png" alt="Accounting professionals" loading="eager" fetchpriority="high" decoding="sync"></div>
     <div class="hero__overlay"></div>
     <div class="hero__content">
       <div class="hero-badges">
@@ -59,7 +75,7 @@
             </div>
           </div>
         </div>
-        <div class="split__image fade-in-right"><img src="images/people/teenagers-using-laptop-reading.jpg" alt="Students studying" style="aspect-ratio:4/3;object-fit:cover;"></div>
+        <div class="split__image fade-in-right"><img src="images/people/teenagers-using-laptop-reading.jpg" alt="Students studying" style="aspect-ratio:4/3;object-fit:cover;" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </section>
@@ -85,9 +101,9 @@
       <div class="section-header fade-in"><span class="section-label">Curriculum</span><h2>Program Structure</h2><p class="section-subtitle">16 compulsory units across 4 progressive stages of accounting practice.</p></div>
       <div class="stages-grid">
         <div class="stage-card fade-in delay-1">
-          <div class="stage-card__header" style="background:linear-gradient(135deg,#065f46,#059669);">
+          <div class="stage-card__header stage-card__header--tone-1">
             <div class="stage-card__num">1</div>
-            <div><div class="stage-card__title">Business &amp; Accounting Foundations</div><div class="stage-card__subtitle">4 units — Entry-level accounting and business knowledge</div></div>
+            <div><div class="stage-card__title">Business &amp; Accounting Foundations</div><div class="stage-card__subtitle">4 units · Entry-level accounting and business knowledge</div></div>
           </div>
           <div class="stage-card__body"><table class="subject-table"><thead><tr><th>Unit Code</th><th>Unit Name</th></tr></thead><tbody>
             <tr><td><span class="unit-code unit-code--green">MPA501</span></td><td>Accounting Principles</td></tr>
@@ -98,9 +114,9 @@
         </div>
 
         <div class="stage-card fade-in delay-2">
-          <div class="stage-card__header" style="background:linear-gradient(135deg,#0f4c75,#1b6ca8);">
+          <div class="stage-card__header stage-card__header--tone-2">
             <div class="stage-card__num">2</div>
-            <div><div class="stage-card__title">Core Accounting &amp; Systems</div><div class="stage-card__subtitle">4 units — Financial reporting and information systems</div></div>
+            <div><div class="stage-card__title">Core Accounting &amp; Systems</div><div class="stage-card__subtitle">4 units · Financial reporting and information systems</div></div>
           </div>
           <div class="stage-card__body"><table class="subject-table"><thead><tr><th>Unit Code</th><th>Unit Name</th></tr></thead><tbody>
             <tr><td><span class="unit-code">MPA505</span></td><td>Corporate Accounting</td></tr>
@@ -111,9 +127,9 @@
         </div>
 
         <div class="stage-card fade-in delay-3">
-          <div class="stage-card__header" style="background:linear-gradient(135deg,#2d1b69,#553c9a);">
+          <div class="stage-card__header stage-card__header--tone-3">
             <div class="stage-card__num">3</div>
-            <div><div class="stage-card__title">Advanced Accounting Practice</div><div class="stage-card__subtitle">4 units — Auditing, taxation and contemporary theory</div></div>
+            <div><div class="stage-card__title">Advanced Accounting Practice</div><div class="stage-card__subtitle">4 units · Auditing, taxation and contemporary theory</div></div>
           </div>
           <div class="stage-card__body"><table class="subject-table"><thead><tr><th>Unit Code</th><th>Unit Name</th></tr></thead><tbody>
             <tr><td><span class="unit-code">MPA509</span></td><td>Contemporary Accounting Theory: Research &amp; Practice</td></tr>
@@ -124,9 +140,9 @@
         </div>
 
         <div class="stage-card stage-card--full fade-in delay-4">
-          <div class="stage-card__header" style="background:linear-gradient(135deg,#78350f,#b45309);">
+          <div class="stage-card__header stage-card__header--tone-4">
             <div class="stage-card__num">4</div>
-            <div><div class="stage-card__title">Advanced Professional &amp; Strategic Units</div><div class="stage-card__subtitle">4 units — Strategic leadership, reporting, performance &amp; advanced audit</div></div>
+            <div><div class="stage-card__title">Advanced Professional &amp; Strategic Units</div><div class="stage-card__subtitle">4 units · Strategic leadership, reporting, performance &amp; advanced audit</div></div>
           </div>
           <div class="stage-card__body"><table class="subject-table"><thead><tr><th>Unit Code</th><th>Unit Name</th></tr></thead><tbody>
             <tr><td><span class="unit-code unit-code--gold">MPAA601</span></td><td>Strategic Business Leadership</td></tr>
@@ -150,13 +166,13 @@
         <div class="split__content fade-in-right">
           <span class="section-label">Admissions</span><h2>Entry Requirements</h2>
           <div style="display:flex;flex-direction:column;gap:16px;margin-top:20px;">
-            <div class="subject-block" style="box-shadow:none;border-color:var(--gray-200);"><div style="padding:16px 20px;"><h5 style="color:var(--navy);margin-bottom:6px;font-size:0.875rem;display:flex;align-items:center;gap:8px;"><svg class="icon icon--sm" style="color:var(--blue)"><use href="#icon-graduation"/></svg> Academic Requirements</h5><p class="text-sm" style="margin:0;color:var(--gray-600);">A recognised undergraduate degree in a <strong>non-accounting discipline</strong>, OR a relevant graduate certificate. Applicants with an Australian undergraduate accounting degree are not eligible.</p></div></div>
-            <div class="subject-block" style="box-shadow:none;border-color:var(--gray-200);"><div style="padding:16px 20px;"><h5 style="color:var(--navy);margin-bottom:6px;font-size:0.875rem;display:flex;align-items:center;gap:8px;"><svg class="icon icon--sm" style="color:var(--blue)"><use href="#icon-message-circle"/></svg> English Language</h5><p class="text-sm" style="margin:0;color:var(--gray-600);">IELTS 6.5 overall (no band below 6.0). Students not meeting requirements may complete an ELICOS program prior to commencement.</p></div></div>
-            <div class="subject-block" style="box-shadow:none;border-color:var(--gray-200);"><div style="padding:16px 20px;"><h5 style="color:var(--navy);margin-bottom:6px;font-size:0.875rem;display:flex;align-items:center;gap:8px;"><svg class="icon icon--sm" style="color:var(--blue)"><use href="#icon-calendar"/></svg> Intakes &amp; Location</h5><p class="text-sm" style="margin:0;color:var(--gray-600);">Jan, Mar, May, Jul, Sep, Nov — Sydney &amp; Melbourne</p></div></div>
+            <div class="subject-block" style="box-shadow:none;border-color:var(--gray-200);"><div style="padding:16px 20px;"><h3 class="h-size-lg" style="color:var(--navy);margin-bottom:6px;font-size:0.875rem;display:flex;align-items:center;gap:8px;"><svg class="icon icon--sm" style="color:var(--blue)"><use href="#icon-graduation"/></svg> Academic Requirements</h3><p class="text-sm" style="margin:0;color:var(--gray-600);">A recognised undergraduate degree in a <strong>non-accounting discipline</strong>, OR a relevant graduate certificate. Applicants with an Australian undergraduate accounting degree are not eligible.</p></div></div>
+            <div class="subject-block" style="box-shadow:none;border-color:var(--gray-200);"><div style="padding:16px 20px;"><h3 class="h-size-lg" style="color:var(--navy);margin-bottom:6px;font-size:0.875rem;display:flex;align-items:center;gap:8px;"><svg class="icon icon--sm" style="color:var(--blue)"><use href="#icon-message-circle"/></svg> English Language</h3><p class="text-sm" style="margin:0;color:var(--gray-600);">IELTS 6.5 overall (no band below 6.0). Students not meeting requirements may complete an ELICOS program prior to commencement.</p></div></div>
+            <div class="subject-block" style="box-shadow:none;border-color:var(--gray-200);"><div style="padding:16px 20px;"><h3 class="h-size-lg" style="color:var(--navy);margin-bottom:6px;font-size:0.875rem;display:flex;align-items:center;gap:8px;"><svg class="icon icon--sm" style="color:var(--blue)"><use href="#icon-calendar"/></svg> Intakes &amp; Location</h3><p class="text-sm" style="margin:0;color:var(--gray-600);">Jan, Mar, May, Jul, Sep, Nov — Sydney &amp; Melbourne</p></div></div>
           </div>
           <a href="apply.html" class="btn btn--primary" style="margin-top:28px;">Start Your Application</a>
         </div>
-        <div class="split__image fade-in-left"><img src="images/hero/carlos-lindner-ZVo7vtXilCs-unsplash.jpg" alt="Students" style="aspect-ratio:3/4;object-fit:cover;"></div>
+        <div class="split__image fade-in-left"><img src="images/hero/carlos-lindner-ZVo7vtXilCs-unsplash.jpg" alt="Students" style="aspect-ratio:3/4;object-fit:cover;" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </section>
@@ -173,7 +189,7 @@
     </div>
   </section>
 
-  <section class="section"><div class="container"><div class="cta-banner fade-in"><h2>Begin Your Advanced Accounting Career</h2><p>Join TIIS's flagship accounting program and elevate your professional expertise.</p><div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;"><a href="apply.html" class="btn btn--white btn--lg">Apply Now</a><a href="contact.html" class="btn btn--outline btn--lg">Contact Us</a></div></div></div></section>
+  <section class="section"><div class="container"><div class="cta-banner fade-in"><h2>Begin Your Advanced Accounting Career</h2><p>The Master of Professional Accounting (Advanced) is accredited by CPA Australia, CAANZ and ACCA.</p><div class="cta-banner__actions"><a href="apply.html" class="btn btn--white btn--lg">Apply Now</a><a href="contact.html" class="btn btn--outline btn--lg">Contact Us</a></div></div></div></section>
 
   <script src="components.js"></script>
   <script>initPage('courses');</script>

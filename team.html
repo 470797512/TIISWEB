@@ -7,13 +7,29 @@
   <meta name="description" content="Meet the TIIS team — our Board of Directors, Academic Board, academic staff, and professional team dedicated to your educational success.">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/png" href="images/logos/TIIS-Logo-black-and-white-1024x1024.png">
+
+  <!-- Fonts: preconnect so the TLS handshake overlaps HTML parsing -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
+
+  <!-- Social sharing. Add og:url and og:image using your production
+       domain (absolute URLs are required) to get link preview images. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TIIS — The Institute of International Studies">
+  <meta property="og:locale" content="en_AU">
+  <meta property="og:title" content="Our Team — TIIS | Leadership & Academic Staff">
+  <meta property="og:description" content="Meet the TIIS team — our Board of Directors, Academic Board, academic staff, and professional team dedicated to your educational success.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Our Team — TIIS | Leadership & Academic Staff">
+  <meta name="twitter:description" content="Meet the TIIS team — our Board of Directors, Academic Board, academic staff, and professional team dedicated to your educational success.">
 </head>
 <body>
 
   <!-- Hero -->
   <section class="hero hero--medium">
     <div class="hero__bg">
-      <img src="images/courses/1-scaled.jpg" alt="TIIS campus">
+      <img src="images/courses/1-scaled.jpg" alt="TIIS campus" loading="eager" fetchpriority="high" decoding="sync">
     </div>
     <div class="hero__overlay"></div>
     <div class="hero__content">
@@ -31,15 +47,15 @@
         <div class="split__image fade-in-left">
           <img src="images/team/anand-karuppiah.jpg"
                alt="Anand Karuppiah, CEO of TIIS"
-               style="aspect-ratio: 3/4; object-fit: cover; object-position: top;">
+               style="aspect-ratio: 3/4; object-fit: cover; object-position: top;" loading="lazy" decoding="async">
         </div>
         <div class="split__content fade-in-right">
           <span class="section-label">Welcome Message</span>
           <h2>A Message from Our CEO</h2>
           <p>Welcome to TIIS — a place where quality education, innovation, and student success come together.</p>
           <p>At TIIS, we are committed to delivering high-quality, industry-relevant programs designed to equip students with the knowledge, skills, and capabilities required to succeed in a rapidly changing global environment. Our courses are developed in alignment with Australian regulatory standards and industry expectations.</p>
-          <p>Equally important to academic excellence is our strong commitment to student support. We provide comprehensive academic, personal, and wellbeing services to ensure that every student feels supported throughout their learning journey.</p>
-          <p style="font-style:italic; color:var(--gray-400); margin-top:24px; margin-bottom:4px;">Warm regards,</p>
+          <p>Equally important to academic excellence is our strong commitment to student support. We provide comprehensive academic, personal, and wellbeing services to ensure that every student is supported from enrolment through to graduation.</p>
+          <p style="font-style:italic; color:var(--text-muted); margin-top:24px; margin-bottom:4px;">Warm regards,</p>
           <p style="font-weight:700; color:var(--navy); margin:0;">Mr Anand Karuppiah</p>
           <p style="color:var(--gray-500); margin:0; font-size:0.875rem;">Chief Executive Officer</p>
         </div>
@@ -129,7 +145,7 @@
       <div class="cta-banner fade-in">
         <h2>Join Our Community</h2>
         <p>Interested in career opportunities at TIIS? We're always looking for talented people.</p>
-        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; position:relative;">
+        <div class="cta-banner__actions">
           <a href="contact.html" class="btn btn--white btn--lg">Get in Touch</a>
           <a href="courses.html" class="btn btn--outline btn--lg">View Courses</a>
         </div>
@@ -252,25 +268,39 @@
     return words[0] ? words[0].substring(0, 2).toUpperCase() : '??';
   }
 
-  function buildPhotoHTML(person, size) {
+  /* Initials placeholders (shown when a member has no photo).
+     The gradient and the initials colour must be chosen together: the
+     "light" tone previously paired a near-white gradient with white
+     initials, so those initials were invisible. Keeping the pair in one
+     table stops the two halves drifting apart again. */
+  const PLACEHOLDER = {
+    dark:  { gradient: 'var(--navy-light), var(--blue)', color: 'var(--white)' }, // white 7.4:1+
+    light: { gradient: '#e8f2fc, #f1f5f9',               color: 'var(--blue)'  }, // blue 6.5:1+
+  };
+
+  function buildPhotoHTML(person, size, tone = 'dark') {
     if (person.photo) {
-      return `<img src="${person.photo}" alt="${person.name}" style="width:100%;height:100%;object-fit:cover;">`;
+      return `<img src="${person.photo}" alt="${person.name}" style="width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async">`;
     }
     const initials = getInitials(person.name);
     const fontSize = size === 'large' ? '3rem' : '2.5rem';
-    return `<span style="font-size:${fontSize};color:var(--white);font-weight:700;">${initials}</span>`;
+    const color = (PLACEHOLDER[tone] || PLACEHOLDER.dark).color;
+    // aria-hidden: the full name is already in the adjacent name element, so
+    // the initials are decoration rather than extra content to announce.
+    return `<span aria-hidden="true" style="font-size:${fontSize};color:${color};font-weight:700;">${initials}</span>`;
   }
 
-  function buildPhotoStyle(person, gradient) {
+  function buildPhotoStyle(person, tone = 'dark') {
     if (person.photo) return `overflow:hidden;`;
+    const gradient = (PLACEHOLDER[tone] || PLACEHOLDER.dark).gradient;
     return `background:linear-gradient(135deg, ${gradient}); display:flex; align-items:center; justify-content:center;`;
   }
 
   /* ── Card Builders ── */
-  function buildTeamCard(person, delayClass, gradient) {
+  function buildTeamCard(person, delayClass, tone) {
     const hasModal = person.bio ? 'data-has-modal' : '';
-    const photoStyle = buildPhotoStyle(person, gradient);
-    const photoContent = buildPhotoHTML(person, 'small');
+    const photoStyle = buildPhotoStyle(person, tone);
+    const photoContent = buildPhotoHTML(person, 'small', tone);
     return `
       <div class="team-card fade-in ${delayClass}" ${hasModal}
            onclick="openModal(${JSON.stringify(person).replace(/"/g,'&quot;')})">
@@ -285,8 +315,8 @@
   function buildLeaderCard(person, delayClass) {
     const photoStyle = person.photo
       ? `aspect-ratio:1; overflow:hidden;`
-      : `aspect-ratio:1; background:linear-gradient(135deg, var(--blue-pale), var(--gray-100)); display:flex; align-items:center; justify-content:center;`;
-    const photoContent = buildPhotoHTML(person, 'large');
+      : `aspect-ratio:1; ${buildPhotoStyle(person, 'light')}`;
+    const photoContent = buildPhotoHTML(person, 'large', 'light');
     const bioSnippet = person.bio ? person.bio.split('\n')[0].substring(0, 120) + '…' : '';
     return `
       <div class="card fade-in ${delayClass}" data-has-modal
@@ -301,21 +331,21 @@
   }
 
   /* ── Render Grids ── */
-  function renderGrid(containerId, people, type, gradient) {
+  function renderGrid(containerId, people, type, tone) {
     const el = document.getElementById(containerId);
     if (!el) return;
     const delays = ['delay-1','delay-2','delay-3','delay-4'];
     el.innerHTML = people.map((p, i) => {
       const d = delays[i % delays.length];
       if (type === 'leader') return buildLeaderCard(p, d);
-      return buildTeamCard(p, d, gradient || 'var(--navy-light), var(--blue)');
+      return buildTeamCard(p, d, tone || 'dark');
     }).join('');
   }
 
-  renderGrid('board-grid', teamData.board, 'card', 'var(--navy-light), var(--blue)');
+  renderGrid('board-grid', teamData.board, 'card', 'dark');
   renderGrid('leaders-grid', teamData.leaders, 'leader');
-  renderGrid('academic-board-grid', teamData.academicBoard, 'card', '#e8f2fc, #f1f5f9');
-  renderGrid('professional-grid', teamData.professional, 'card', '#e8f2fc, #f1f5f9');
+  renderGrid('academic-board-grid', teamData.academicBoard, 'card', 'light');
+  renderGrid('professional-grid', teamData.professional, 'card', 'light');
 
   /* ── Lecturers Accordion ── */
   (function() {
@@ -342,6 +372,17 @@
         </div>`;
     }).join('');
 
+    /* The panel is collapsed with max-height:0 + overflow:hidden, which hides
+       it visually but leaves every row in the accessibility tree and tab
+       order — so a screen reader read out all the lecturers while the toggle
+       reported aria-expanded="false". Mark it hidden (and inert where
+       supported) whenever it is closed. */
+    function setPanelHidden(hidden) {
+      panel.setAttribute('aria-hidden', String(hidden));
+      if ('inert' in HTMLElement.prototype) panel.inert = hidden;
+    }
+    setPanelHidden(true);
+
     toggle.addEventListener('click', () => {
       const isOpen = panel.classList.contains('open');
       if (isOpen) {
@@ -351,10 +392,12 @@
         });
         panel.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
+        setPanelHidden(true);
       } else {
         panel.classList.add('open');
         panel.style.maxHeight = panel.scrollHeight + 'px';
         toggle.setAttribute('aria-expanded', 'true');
+        setPanelHidden(false);
         panel.addEventListener('transitionend', function handler() {
           panel.style.maxHeight = 'none';
           panel.removeEventListener('transitionend', handler);
@@ -377,7 +420,7 @@
     modalRole.textContent = person.role;
 
     if (person.photo) {
-      modalAvatar.innerHTML = `<img src="${person.photo}" alt="${person.name}">`;
+      modalAvatar.innerHTML = `<img src="${person.photo}" alt="${person.name}" loading="lazy" decoding="async">`;
     } else {
       modalAvatar.innerHTML = `<span class="team-modal__avatar-initials">${getInitials(person.name)}</span>`;
     }

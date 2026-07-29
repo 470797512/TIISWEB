@@ -3,40 +3,83 @@
    Derived from TIIS main site design language
    =================================================== */
 
-/* --- Google Fonts --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+/* --- Google Fonts ---
+   Loaded via <link rel=preconnect> + <link rel=stylesheet> in each page's
+   <head>. An @import here forced the browser to download and parse this
+   sheet before it could even discover the font request. */
 
 /* --- CSS Custom Properties (same as main site) --- */
 :root {
-  /* Primary palette */
-  --navy: #0a1628;
-  --navy-light: #132744;
-  --blue: #0055a4;
+  /* Primary palette.
+     --blue is the logo colour and stays exactly as it was; everything
+     around it was retuned.
+
+     The neutrals used to be Tailwind's slate ramp — cold, blue-tinted, and
+     the same greys as every other site built from a template. They also
+     competed with the brand blue. They are now a warm paper-neutral ramp:
+     blue against warm grey is the classic print pairing and reads
+     considered rather than default.
+
+     Contrast is verified for every pairing actually used; see the notes on
+     individual tokens for the ones that carry restrictions. */
+  --navy: #0b1b31;         /* ink navy, richer than the old near-black */
+  --navy-light: #16304f;
+  --blue: #0055a4;         /* brand anchor — unchanged */
+  --blue-deep: #003f7d;    /* 10.5:1 on white, for links on tinted panels */
   --blue-bright: #0072ce;
-  --blue-accent: #3d9be9;
-  --blue-pale: #e8f2fc;
+  --blue-accent: #3d9be9;  /* decorative only: 2.97:1 on white */
+  --blue-pale: #e9f0f8;
+  --blue-tint: #f3f7fb;    /* faintest blue wash for panels */
   --white: #ffffff;
-  --off-white: #f7f9fc;
-  --gray-50: #f8fafc;
-  --gray-100: #f1f5f9;
-  --gray-200: #e2e8f0;
-  --gray-300: #cbd5e1;
-  --gray-400: #94a3b8;
-  --gray-500: #64748b;
-  --gray-600: #475569;
-  --gray-700: #334155;
-  --gray-800: #1e293b;
-  --gold: #d4a843;
-  --gold-light: #f0e0b0;
+  --off-white: #f8f7f4;    /* warm paper, replaces the cold #f7f9fc */
+
+  /* Warm neutral ramp. Legacy --gray-* names are aliased below so existing
+     rules keep working. */
+  --n-100: #f2f1ed;
+  --n-200: #e6e4de;
+  --n-300: #cfccc4;
+  --n-400: #a5a29a;
+  --n-500: #767269;      /* decorative/placeholder only: 4.5:1 on white, less on tints */
+  --n-600: #565249;
+  --n-border: #8d8a82;     /* 3.4:1 — for form borders, which must be seen */
+
+  --ink: #14212e;          /* body text, 16.3:1 on white */
+  --ink-soft: #3c4854;     /* secondary text, 9.4:1 */
+
+  --brass: #b8924f;        /* decorative only: 2.9:1 on white, 6.0:1 on navy */
+  --brass-text: #8a6a2c;   /* 5.0:1 — when brass must carry text on white */
+  --brass-light: #d8bd86;
+  --gold: #b8924f;         /* alias: the old bright gold, now muted brass */
+  --gold-light: #d8bd86;
+
   --success: #10b981;
   --danger: #ef4444;
 
-  /* Online accent — a teal/cyan to differentiate from main site */
-  --online-teal: #0891b2;
-  --online-teal-light: #e0f7fa;
+  /* Legacy grey aliases mapped onto the warm ramp. */
+  --gray-50: #faf9f7;
+  --gray-100: var(--n-100);
+  --gray-200: var(--n-200);
+  --gray-300: var(--n-300);
+  --gray-400: var(--n-400);
+  --gray-500: #6e6a61;   /* 5.4:1 white, 5.0:1 paper, 4.7:1 blue-pale */
+  --gray-600: #565249;
+  --gray-700: var(--ink-soft);
+  --gray-800: var(--ink);
+
+  /* Text tokens.
+     --gray-400 is a *border/decoration* tone: at 2.56:1 on white it fails
+     WCAG AA for text. Use --text-muted for small supporting copy (roles,
+     labels, abbreviations) — it clears 4.5:1 on white, off-white, gray-100
+     and blue-pale, i.e. every surface it actually sits on. */
+  --text-muted: #5e6a76;   /* 5.5:1 on white, 4.8:1 on blue-pale */
+
+  /* Focus ring */
+  --focus-ring: 0 0 0 3px rgba(0, 114, 206, 0.45);
+  --focus-ring-offset: 2px;
 
   /* Typography */
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Newsreader', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
@@ -91,6 +134,15 @@
   --nav-height: 80px;
 }
 
+
+/* --- TIIS Online: subsite-only tokens ---
+   Declared here rather than in the :root block above, because that block is
+   overwritten wholesale by sync-styles.py. Anything unique to this subsite
+   belongs below the synced region. */
+:root {
+  --online-teal: #0e7490;       /* darkened from #0891b2: white now clears AA on it */
+  --online-teal-light: #e7f4f7;
+}
 
 /* --- Reset & Base --- */
 *,
@@ -268,7 +320,7 @@ p {
 
 .navbar__logo-online {
   font-size: 1.25rem;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0.04em;
   color: var(--white);
   transition: var(--transition-base);
@@ -362,7 +414,7 @@ p {
 .navbar__dropdown-group-title {
   font-size: var(--font-size-xs);
   font-weight: 700;
-  color: var(--gray-400);
+  color: var(--text-muted);
   padding: var(--space-sm) var(--space-md) var(--space-xs);
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -1063,7 +1115,7 @@ p {
 
 .course-card__abbr {
   font-size: var(--font-size-sm);
-  color: var(--gray-400);
+  color: var(--text-muted);
   margin-bottom: var(--space-lg);
 }
 
@@ -1140,7 +1192,7 @@ p {
 
 .footer__brand-online .footer__online-text {
   font-size: 1.1rem;
-  font-weight: 300;
+  font-weight: 400;
   color: rgba(255, 255, 255, 0.8);
   letter-spacing: 0.04em;
 }
@@ -1180,7 +1232,8 @@ p {
 
 .footer__bottom p {
   font-size: var(--font-size-xs);
-  color: rgba(255, 255, 255, 0.35);
+  /* was 0.35 alpha = 3.2:1, below AA */
+  color: rgba(255, 255, 255, 0.62);
 }
 
 .footer__socials {
@@ -1214,7 +1267,8 @@ p {
 
 .footer__accreditations span {
   font-size: var(--font-size-xs);
-  color: rgba(255, 255, 255, 0.3);
+  /* was 0.3 alpha = 2.7:1; these are legal identifiers */
+  color: rgba(255, 255, 255, 0.62);
 }
 
 
@@ -1524,4 +1578,2659 @@ p {
     height: 28px;
     margin: 0 8px;
   }
+}
+
+
+/* ===================================================
+   Accessibility, Robustness & Visual Polish
+   Appended layer — intentionally last so it wins on
+   equal specificity.
+   =================================================== */
+
+/* --- 1. Visible focus for keyboard users ---------------
+   Previously nothing in the sheet styled :focus-visible, so
+   tabbing through the site gave no reliable indication of
+   position. Mouse users are unaffected (:focus-visible only). */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--blue-bright);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-sm);
+}
+
+/* On dark surfaces the blue ring disappears — switch to white. */
+.navbar--transparent .navbar__link:focus-visible,
+.navbar--transparent .navbar__logo:focus-visible,
+.hero :focus-visible,
+.footer :focus-visible,
+.section--blue :focus-visible,
+.section--blue-gradient :focus-visible,
+.cta-banner :focus-visible {
+  outline-color: var(--white);
+}
+
+/* Pill-shaped controls get a matching ring shape. */
+.btn:focus-visible,
+.navbar__cta:focus-visible,
+.carousel-btn:focus-visible,
+.carousel-dot:focus-visible,
+.scroll-top:focus-visible,
+.footer__socials a:focus-visible {
+  border-radius: var(--radius-full);
+}
+
+.form-group input:focus-visible,
+.form-group textarea:focus-visible,
+.form-group select:focus-visible {
+  outline: 2px solid var(--blue-bright);
+  outline-offset: 1px;
+}
+
+
+/* --- 2. Skip link -------------------------------------- */
+.skip-link {
+  position: fixed;
+  top: var(--space-md);
+  left: var(--space-md);
+  z-index: 2000;
+  padding: 12px 20px;
+  background: var(--white);
+  color: var(--blue);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(calc(-100% - var(--space-xl)));
+  transition: transform var(--transition-base);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+
+/* --- 3. Anchor targets clear the fixed navbar -----------
+   Every in-page link (nav dropdowns, footer, hero CTAs) used
+   to land with the target's first ~70px hidden behind the
+   fixed header. */
+:target,
+[id]:not(body):not(html) {
+  scroll-margin-top: calc(var(--nav-height) + var(--space-lg));
+}
+
+
+/* --- 4. Reveal animations degrade safely ---------------
+   .fade-in* start at opacity:0 and are switched on by
+   IntersectionObserver. If JS fails, is blocked, or a fast
+   anchor jump skips an element, the content would stay
+   permanently invisible. Gate the hidden state on a class
+   that JS adds, so the default (no JS) is fully visible. */
+.fade-in,
+.fade-in-left,
+.fade-in-right,
+.scale-in {
+  opacity: 1;
+  transform: none;
+}
+
+.js-reveal .fade-in,
+.js-reveal .fade-in-left,
+.js-reveal .fade-in-right,
+.js-reveal .scale-in {
+  opacity: 0;
+}
+
+.js-reveal .fade-in { transform: translateY(24px); }
+.js-reveal .fade-in-left { transform: translateX(-30px); }
+.js-reveal .fade-in-right { transform: translateX(30px); }
+.js-reveal .scale-in { transform: scale(0.95); }
+
+.js-reveal .fade-in.visible,
+.js-reveal .fade-in-left.visible,
+.js-reveal .fade-in-right.visible,
+.js-reveal .scale-in.visible {
+  opacity: 1;
+  transform: none;
+}
+
+
+/* --- 5. Respect prefers-reduced-motion ----------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Show revealed content outright rather than transitioning it. */
+  .js-reveal .fade-in,
+  .js-reveal .fade-in-left,
+  .js-reveal .fade-in-right,
+  .js-reveal .scale-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* No lift/zoom on hover. */
+  .card:hover,
+  .course-card:hover,
+  .feature-card:hover,
+  .team-card:hover,
+  .value-item:hover,
+  .quick-link:hover,
+  .btn:hover,
+  .navbar__cta:hover,
+  .scroll-top:hover {
+    transform: none;
+  }
+
+  .card:hover .card__image img,
+  .team-card:hover .team-card__photo img {
+    transform: none;
+  }
+}
+
+
+/* --- 6. Larger hit areas for carousel dots -------------
+   The dots were 10x10 CSS px — well under the 24x24 minimum
+   in WCAG 2.2 target-size (AA). Keep the visual dot small but
+   pad the button out to a comfortable target. */
+.carousel-dots {
+  gap: 0;
+  align-items: center;
+}
+
+.carousel-dot {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: none;
+  border-radius: var(--radius-full);
+  display: grid;
+  place-items: center;
+}
+
+.carousel-dot::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: var(--gray-300);
+  transition: width var(--transition-fast), background var(--transition-fast);
+}
+
+.carousel-dot:hover::before {
+  background: var(--gray-400);
+}
+
+.carousel-dot.active {
+  width: 42px;
+  background: none;
+}
+
+.carousel-dot.active::before {
+  width: 26px;
+  background: var(--blue);
+}
+
+
+/* --- 7. Inline "arrow link" hit area -------------------
+   .link-arrow rendered ~21px tall. Give it vertical padding so
+   it clears 24px without shifting the surrounding layout. */
+.link-arrow {
+  padding: 4px 0;
+  min-height: 24px;
+}
+
+
+/* --- 8. Active page indication in the navbar ----------- */
+.navbar__link[aria-current='page'],
+.navbar--solid .navbar__link[aria-current='page'] {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.navbar--transparent .navbar__link[aria-current='page'] {
+  color: var(--white);
+}
+
+.navbar__item {
+  position: relative;
+}
+
+.navbar__link[aria-current='page']::after {
+  content: '';
+  position: absolute;
+  left: var(--space-md);
+  right: var(--space-md);
+  bottom: 2px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.navbar__mobile-link[aria-current='page'] {
+  color: var(--blue);
+  font-weight: 700;
+}
+
+.navbar__dropdown a[aria-current='page'] {
+  background: var(--blue-pale);
+  color: var(--blue);
+  font-weight: 600;
+}
+
+
+/* --- 9. Keyboard-accessible dropdowns -----------------
+   Dropdowns only opened on :hover, so keyboard users could
+   tab into links that were visibility:hidden. */
+.navbar__item:focus-within .navbar__dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+
+/* --- 10. Fluid type scale -----------------------------
+   Fixed rem headings jumped abruptly at the 768px breakpoint.
+   clamp() gives a continuous ramp and removes the need for the
+   per-breakpoint overrides. */
+h1 { font-size: clamp(2.125rem, 1.35rem + 3.1vw, 3rem); }
+h2 { font-size: clamp(1.75rem, 1.19rem + 2.25vw, 2.25rem); }
+h3 { font-size: clamp(1.375rem, 1.16rem + 0.85vw, 1.5rem); }
+h4 { font-size: clamp(1.125rem, 1.03rem + 0.4vw, 1.25rem); }
+
+/* Headings read better with balanced line breaks. */
+h1, h2, h3,
+.hero__title,
+.card__title,
+.course-card__title,
+.step__title {
+  text-wrap: balance;
+}
+
+/* Keep long body paragraphs from ending in an orphan word. */
+.section-subtitle,
+.hero__subtitle,
+.card__desc,
+.step__desc {
+  text-wrap: pretty;
+}
+
+
+/* --- 11. Vertical rhythm ------------------------------
+   --space-5xl (8rem) top+bottom on every section, plus a 4rem
+   section-header margin, left large dead bands — most visibly
+   on thin content like the stats strip. Tighten to a fluid
+   scale that still breathes at desktop width. */
+.section {
+  padding: clamp(3.5rem, 2rem + 5vw, 6rem) 0;
+}
+
+.section-header {
+  margin-bottom: clamp(2rem, 1.25rem + 2.5vw, 3.5rem);
+}
+
+/* Stats bands carry a single short row — they never needed the
+   full section padding on top of their own. */
+.section--blue-gradient > .container > .stats-bar,
+.section--blue > .container > .stats-bar {
+  padding: var(--space-lg) 0;
+}
+
+.section--stats .stats-bar {
+  padding: var(--space-xl) 0;
+}
+
+
+/* --- 12. Hero framing --------------------------------
+   Several heroes use portrait-oriented photos. object-fit:cover
+   in a wide banner crops to the centre of the frame, which on
+   the course pages landed on the subject's mouth. Bias the crop
+   toward the upper third so faces stay intact, and darken the
+   right side so white text keeps its contrast as the subject
+   moves out of the way. */
+.hero__bg img {
+  object-position: center 22%;
+}
+
+.hero__overlay {
+  background:
+    linear-gradient(100deg,
+      rgba(10, 22, 40, 0.9) 0%,
+      rgba(10, 22, 40, 0.78) 42%,
+      rgba(0, 85, 164, 0.55) 100%);
+}
+
+/* Soft fade into the section below so the seam isn't a hard line. */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 96px;
+  z-index: 1;
+  background: linear-gradient(to bottom, transparent, rgba(10, 22, 40, 0.35));
+  pointer-events: none;
+}
+
+.hero__content {
+  padding-block: calc(var(--nav-height) + clamp(2rem, 1rem + 4vw, 5rem))
+                 clamp(2.5rem, 1.5rem + 4vw, 5rem);
+}
+
+
+/* --- 13. Card & surface polish ------------------------ */
+.card,
+.course-card,
+.feature-card,
+.team-card,
+.value-item,
+.quick-link {
+  border: 1px solid var(--gray-200);
+}
+
+.card:hover,
+.course-card:hover,
+.team-card:hover {
+  border-color: var(--gray-300);
+}
+
+/* The 4px blue cap on course cards was clipped oddly by the
+   rounded corner; inset it as a full-bleed bar instead. */
+.course-card {
+  border-top: 1px solid var(--gray-200);
+  position: relative;
+  overflow: hidden;
+}
+
+.course-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--blue), var(--blue-accent));
+}
+
+/* Images inside cards shouldn't flash white before they load. */
+.card__image,
+.team-card__photo,
+.split__image {
+  background: var(--gray-100);
+}
+
+
+/* --- 14. Sparse-section guard -------------------------
+   A section whose only content is a heading + one button read as
+   a layout bug next to the card grids. Constrain and centre it. */
+.section-cta-block {
+  text-align: center;
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+
+/* --- 15. Print ---------------------------------------- */
+@media print {
+  .navbar,
+  .navbar__mobile-menu,
+  .mobile-overlay,
+  .scroll-top,
+  .carousel-controls,
+  .skip-link {
+    display: none !important;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+
+  .hero__bg,
+  .hero__overlay,
+  .hero::after {
+    display: none;
+  }
+
+  .hero__title,
+  .hero__subtitle,
+  .hero__label {
+    color: var(--navy) !important;
+  }
+
+  a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.75em;
+    word-break: break-all;
+  }
+}
+
+
+/* --- 16. Form messaging & helpers --------------------- */
+
+/* Visually hidden but available to screen readers. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.form-intro {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--space-lg);
+}
+
+.form-required {
+  color: var(--danger);
+  font-weight: 700;
+}
+
+/* Native validation styling — only after the field has been interacted with,
+   so an untouched form isn't shown covered in errors. */
+.form-group input:user-invalid,
+.form-group textarea:user-invalid,
+.form-group select:user-invalid {
+  border-color: var(--danger);
+}
+
+.form-group input:user-invalid:focus,
+.form-group textarea:user-invalid:focus {
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15);
+}
+
+.form-status {
+  display: none;
+  margin-top: var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  border-left: 4px solid transparent;
+}
+
+.form-status.is-visible {
+  display: block;
+}
+
+.form-status--info {
+  background: var(--blue-pale);
+  border-left-color: var(--blue);
+  color: #0b3f73;
+}
+
+.form-status--error {
+  background: #fef2f2;
+  border-left-color: var(--danger);
+  color: #991b1b;
+}
+
+.form-fallback {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--gray-200);
+  font-size: var(--font-size-sm);
+  color: var(--gray-600);
+}
+
+.form-fallback a {
+  color: var(--blue);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+
+
+/* --- 17. Heading level vs heading size ----------------
+   Section sub-headings were marked up as <h4>/<h5> directly under an
+   <h2>, skipping a level and breaking the document outline that screen
+   reader users navigate by. The tags are now sequential; these classes
+   keep the original type sizes so nothing moves visually. */
+.h-size-xl {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-md);
+}
+
+.h-size-lg {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-sm);
+}
+
+/* --- 18. Navbar fits before it collapses ---------------
+   The desktop menu needs ~1070px (logo + 9 items + CTA), but the
+   hamburger only took over at 768px. Between those widths the row
+   overflowed and — because .navbar__logo is a shrinkable flex item
+   wrapping an img with max-width:100% — the logo was squeezed to
+   0px wide and vanished entirely. */
+.navbar__logo {
+  flex-shrink: 0;
+}
+
+.navbar__logo img {
+  flex-shrink: 0;
+  width: auto;
+  max-width: none;
+}
+
+.navbar__menu {
+  min-width: 0;
+}
+
+/* Tighten the row before giving up on it, so the full menu survives
+   down to small laptops. */
+@media (max-width: 1200px) {
+  .navbar__menu {
+    gap: 0;
+  }
+
+  .navbar__link {
+    padding: var(--space-sm) 10px;
+  }
+
+  .navbar__cta {
+    padding: var(--space-sm) var(--space-md);
+    margin-left: var(--space-xs);
+  }
+}
+
+/* Below this the menu genuinely cannot fit — switch to the drawer. */
+@media (max-width: 1024px) {
+  .navbar__menu,
+  .navbar__cta-desktop {
+    display: none;
+  }
+
+  .navbar__toggle {
+    display: flex;
+  }
+
+  .navbar__mobile-menu {
+    display: block;
+  }
+}
+
+/* --- 19. TIIS Online banner ---------------------------
+   This block used to be a bare heading + paragraph + button at the tail of
+   a section otherwise made of card grids, so it read as unfinished. Give it
+   the weight of a deliberate cross-sell panel. */
+.online-banner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-2xl);
+  align-items: center;
+  padding: clamp(2rem, 1.25rem + 2.5vw, 3rem);
+  border-radius: var(--radius-2xl);
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 55%, var(--blue) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.online-banner::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(circle, rgba(61, 155, 233, 0.22) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.online-banner__text {
+  position: relative;
+  min-width: 0;
+}
+
+.online-banner h2 {
+  color: var(--white);
+  margin-bottom: var(--space-sm);
+}
+
+.online-banner p {
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 52ch;
+  margin-bottom: var(--space-lg);
+}
+
+.online-banner__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin: 0;
+}
+
+.online-banner__list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 6px 14px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--radius-full);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.online-banner__list a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.online-banner__action {
+  position: relative;
+  flex-shrink: 0;
+}
+
+@media (max-width: 860px) {
+  .online-banner {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .online-banner__action .btn {
+    width: 100%;
+  }
+}
+
+/* --- 20. Courses dropdown as a group control ----------
+   The "Courses" parent was an <a href="#"> that navigated nowhere and could
+   not be opened from the keyboard. It is now a <button> that toggles the
+   dropdown, so mouse, touch and keyboard all work. */
+.navbar__link--group {
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.navbar__item.is-open .navbar__dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.navbar__link--group svg {
+  transition: transform var(--transition-fast);
+}
+
+.navbar__item.is-open .navbar__link--group svg {
+  transform: rotate(180deg);
+}
+
+/* Non-interactive group label in the mobile drawer. */
+.navbar__mobile-heading {
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: default;
+}
+
+/* --- 21. Portal button contrast ------------------------
+   .btn--lms ran white text over --online-teal (#0891b2) at 3.68:1. These
+   are the primary "Access portal" calls to action, so they need to clear
+   AA; the darker teal keeps the same hue. */
+.btn--lms {
+  background: linear-gradient(135deg, #0e7490 0%, var(--blue) 100%);
+}
+
+
+/* ===================================================
+   Density pass
+   Every section carried 96px of padding top AND bottom, so 192px sat
+   between each block — on some pages over 20% of total page height was
+   section padding alone, and a 150px stat row occupied 341px. This
+   tightens the vertical scale by roughly a third while keeping the
+   light/grey banding clear enough to separate sections.
+   =================================================== */
+
+.section {
+  padding: clamp(2.25rem, 1.4rem + 2.6vw, 4rem) 0;
+}
+
+/* Sections whose content is one short row never needed full padding. */
+.section--stats,
+.section--stats .stats-bar,
+.section--blue > .container > .stats-bar,
+.section--blue-gradient > .container > .stats-bar {
+  padding-block: clamp(1.25rem, 0.9rem + 1.2vw, 2rem);
+}
+
+.section--blue-gradient:has(> .container > .stats-bar),
+.section--blue:has(> .container > .stats-bar) {
+  padding-block: clamp(1.5rem, 1rem + 1.6vw, 2.5rem);
+}
+
+.section-header {
+  margin-bottom: clamp(1.5rem, 1rem + 1.6vw, 2.5rem);
+}
+
+.section-subtitle {
+  margin-bottom: 0;
+}
+
+/* Split rows: a 96px column gap plus 32px of block padding on the text
+   column made two-column sections read as mostly gutter. */
+.split {
+  gap: clamp(1.75rem, 1rem + 2.6vw, 4rem);
+}
+
+.split__content {
+  padding: 0;
+}
+
+.card-grid {
+  gap: clamp(1rem, 0.75rem + 0.9vw, 1.5rem);
+}
+
+.steps {
+  gap: clamp(1rem, 0.75rem + 0.9vw, 1.5rem);
+}
+
+.step {
+  padding: var(--space-lg) var(--space-md);
+}
+
+.step:not(:last-child)::after {
+  top: calc(var(--space-lg) + 28px);
+}
+
+.cta-banner {
+  padding: clamp(2rem, 1.4rem + 2.2vw, 3.5rem) clamp(1.5rem, 1rem + 2vw, 3rem);
+}
+
+.cta-banner p {
+  margin-bottom: var(--space-lg);
+}
+
+.testimonial-card {
+  padding: clamp(1.25rem, 1rem + 1.4vw, 2.5rem);
+}
+
+.testimonial-card__avatar {
+  margin-bottom: var(--space-md);
+}
+
+.testimonial-card__quote {
+  margin-bottom: var(--space-md);
+}
+
+.carousel-controls {
+  margin-top: var(--space-md);
+}
+
+.timeline__item {
+  margin-bottom: var(--space-2xl);
+}
+
+.footer {
+  padding: clamp(2.25rem, 1.5rem + 2.4vw, 3.5rem) 0 var(--space-lg);
+}
+
+.footer__grid {
+  gap: var(--space-xl) var(--space-2xl);
+  margin-bottom: var(--space-xl);
+}
+
+/* Hero: the block padding was tuned against the old, looser scale. */
+.hero__content {
+  padding-block: calc(var(--nav-height) + clamp(1.25rem, 0.75rem + 2.4vw, 3rem))
+                 clamp(1.5rem, 1rem + 2.4vw, 3rem);
+}
+
+.hero {
+  min-height: min(78vh, 720px);
+}
+
+.hero--medium {
+  min-height: min(56vh, 540px);
+}
+
+.hero--short {
+  min-height: min(42vh, 400px);
+}
+
+.hero__subtitle {
+  margin-bottom: var(--space-xl);
+}
+
+.hero__trust {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+}
+
+/* Course-page blocks carried the same generous rhythm. */
+.subject-block,
+.detail-grid,
+.course-facts {
+  margin-block: 0;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-2xl) 0;
+  }
+}
+
+/* --- Split images shouldn't dictate the row height -----
+   Some split images are portrait (aspect-ratio 3/4 set inline). In a
+   two-column row that made the image ~750px tall while the text beside it
+   needed ~380px, leaving a tall band of empty space next to the copy.
+   Capping the frame and letting object-fit crop keeps the row balanced. */
+.split__image {
+  max-height: 440px;
+  align-self: stretch;
+}
+
+.split__image img {
+  width: 100%;
+  height: 100%;
+  max-height: 440px;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  /* Stacked, the image is no longer competing with a text column, so let
+     it breathe again — but not to full portrait height. */
+  .split__image,
+  .split__image img {
+    max-height: 320px;
+  }
+}
+
+/* --- Split rows share their height ---------------------
+   The earlier max-height cap fixed tall portrait images, but created the
+   opposite problem: where the text column is taller than 440px the image
+   stopped growing and left a gap beside it. Instead of capping, let the
+   row drive both columns — the image fills whatever height the text needs
+   and crops, so the two sides always line up.
+
+   aspect-ratio needs !important because several of these images set it as
+   an inline style attribute, which otherwise wins over this sheet. */
+.split {
+  align-items: stretch;
+}
+
+.split__image {
+  max-height: none;
+  min-height: 240px;
+  align-self: stretch;
+}
+
+.split__image img {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  aspect-ratio: auto !important;
+  object-fit: cover;
+}
+
+/* Content stays optically centred now that its cell is full height. */
+.split__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  /* Stacked: the image no longer shares a row, so give it a sane height
+     rather than stretching to match a long text block. */
+  .split {
+    align-items: start;
+  }
+
+  .split__image {
+    min-height: 0;
+  }
+
+  .split__image img {
+    max-height: 300px;
+  }
+
+  /* Horizontal reveal transforms push a full-width element past the
+     viewport edge mid-animation, which briefly widens the document.
+     Vertical travel avoids it and reads better on a narrow screen. */
+  .js-reveal .fade-in-left,
+  .js-reveal .fade-in-right {
+    transform: translateY(20px);
+  }
+}
+
+/* --- Divider labels must be allowed to wrap ------------
+   white-space:nowrap on a label like "Specialisation Streams — Choose One
+   Major (8 Units)" forced it to 439px, overflowing a 375px viewport by
+   104px. Long labels wrap; the flanking rules just get shorter. */
+.section-divider {
+  flex-wrap: wrap;
+}
+
+.section-divider__label {
+  white-space: normal;
+  min-width: 0;
+}
+
+@media (max-width: 640px) {
+  /* Below this the rules add nothing — drop them and left-align the label. */
+  .section-divider__line {
+    display: none;
+  }
+
+  .section-divider {
+    margin: var(--space-xl) 0 var(--space-md);
+  }
+}
+
+
+/* ===================================================
+   Editorial redesign
+   The CTA banner, section headers, feature cards and step markers all
+   used the same template vocabulary: centre everything, wrap it in a
+   rounded card with a soft shadow, put a diagonal gradient behind it,
+   add a radial glow, and end in two pill buttons. It's the default look
+   of a generated landing page.
+
+   This layer moves the site to an institutional/editorial register:
+   left-aligned, flat brand colour, hairline rules instead of floating
+   cards, tight corners instead of pills, and icons at text size instead
+   of pastel tiles.
+   =================================================== */
+
+:root {
+  --radius-btn: 4px;
+  --rule: 1px solid var(--gray-200);
+  --rule-dark: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+
+/* --- 1. Buttons: pills -> squared -------------------- */
+.btn,
+.navbar__cta {
+  border-radius: var(--radius-btn);
+}
+
+.btn:focus-visible,
+.navbar__cta:focus-visible {
+  border-radius: var(--radius-btn);
+}
+
+/* Tags read as labels, not lozenges. */
+.card__tag,
+.course-card__level,
+.lecturers-accordion__count,
+.online-banner__list a {
+  border-radius: var(--radius-btn);
+}
+
+/* Lift-on-hover is part of the same template language. Use colour and
+   the border instead of motion. */
+.btn--primary:hover,
+.btn--white:hover,
+.btn--gold:hover,
+.navbar__cta:hover,
+.card:hover,
+.course-card:hover,
+.feature-card:hover,
+.team-card:hover,
+.value-item:hover,
+.quick-link:hover {
+  transform: none;
+}
+
+
+/* --- 2. CTA banner ----------------------------------
+   Was: centred text on a 135deg gradient, 24px radius, radial glow,
+   two pill buttons in the middle. Now a flat navy band with the message
+   on the left and the actions on the right, separated by a rule. */
+.cta-banner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(1.5rem, 1rem + 2.5vw, 3.5rem);
+  background: var(--navy);
+  border-radius: var(--radius-btn);
+  border-top: 3px solid var(--gold);
+  padding: clamp(1.75rem, 1.25rem + 2vw, 2.75rem) clamp(1.5rem, 1rem + 2vw, 3rem);
+  text-align: left;
+}
+
+/* The decorative glow is the most recognisable tell of the lot. */
+.cta-banner::before {
+  display: none;
+}
+
+.cta-banner h2 {
+  color: var(--white);
+  margin-bottom: var(--space-sm);
+  max-width: 22ch;
+}
+
+.cta-banner p {
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 56ch;
+  margin: 0 auto 0 0;
+}
+
+.cta-banner__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  align-items: stretch;
+  flex-shrink: 0;
+  min-width: 220px;
+}
+
+.cta-banner__actions .btn {
+  width: 100%;
+}
+
+@media (max-width: 800px) {
+  .cta-banner {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .cta-banner__actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-width: 0;
+  }
+
+  .cta-banner__actions .btn {
+    width: auto;
+    flex: 1 1 180px;
+  }
+}
+
+
+/* --- 3. Section headers: centred -> left ------------- */
+.section-header {
+  text-align: left;
+  max-width: 68ch;
+  margin: 0 0 clamp(1.5rem, 1rem + 1.6vw, 2.5rem);
+  padding-bottom: var(--space-md);
+  border-bottom: var(--rule);
+}
+
+.section-header .section-label::after {
+  margin-inline: 0;
+}
+
+.section-subtitle {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 62ch;
+}
+
+/* Dark sections need the rule inverted. */
+.section--blue .section-header,
+.section--blue-gradient .section-header {
+  border-bottom: var(--rule-dark);
+}
+
+
+/* --- 4. Feature cards -------------------------------
+   Was: centred text, 64px pastel rounded-square icon tile, soft shadow,
+   16px radius. Now left-aligned with the icon at heading size and a
+   hairline border. */
+.feature-card {
+  text-align: left;
+  padding: var(--space-lg);
+  border: var(--rule);
+  border-radius: var(--radius-btn);
+  box-shadow: none;
+  background: var(--white);
+}
+
+.feature-card:hover {
+  border-color: var(--blue);
+  box-shadow: none;
+}
+
+.feature-card__icon {
+  width: auto;
+  height: auto;
+  margin: 0 0 var(--space-sm);
+  display: block;
+  background: none;
+  border-radius: 0;
+  color: var(--blue);
+}
+
+.feature-card__icon svg,
+.feature-card__icon img {
+  width: 26px;
+  height: 26px;
+  color: var(--blue);
+}
+
+.feature-card__title {
+  font-size: var(--font-size-base);
+  margin-bottom: 4px;
+}
+
+
+/* --- 5. Value items & quick links -------------------
+   Same floating-card treatment; same fix. */
+.value-item,
+.quick-link {
+  border: var(--rule);
+  border-radius: var(--radius-btn);
+  box-shadow: none;
+  padding: var(--space-lg);
+}
+
+.value-item:hover,
+.quick-link:hover {
+  border-color: var(--blue);
+  box-shadow: none;
+}
+
+.value-item__icon {
+  width: 26px;
+  height: 26px;
+  margin-bottom: var(--space-sm);
+}
+
+.quick-link__icon {
+  width: 34px;
+  height: 34px;
+  background: none;
+  border: var(--rule);
+  border-radius: var(--radius-btn);
+}
+
+
+/* --- 6. Cards --------------------------------------- */
+.card,
+.course-card,
+.team-card {
+  border-radius: var(--radius-btn);
+  box-shadow: none;
+  border: var(--rule);
+}
+
+.card:hover,
+.course-card:hover,
+.team-card:hover {
+  box-shadow: none;
+  border-color: var(--blue);
+}
+
+.course-card::before {
+  background: var(--blue);
+  height: 3px;
+}
+
+
+/* --- 7. Step markers -------------------------------
+   Was: a 56px filled circle centred over centred text, joined by a
+   connector line. Now a typographic figure over a rule, left-aligned. */
+.steps {
+  counter-reset: step;
+}
+
+.step {
+  text-align: left;
+  padding: var(--space-md) 0 0;
+  border-top: 2px solid var(--navy);
+}
+
+.step__number {
+  width: auto;
+  height: auto;
+  margin: 0 0 var(--space-sm);
+  background: none;
+  color: var(--navy);
+  border-radius: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  display: block;
+  letter-spacing: -0.02em;
+}
+
+.step__number::after {
+  content: '.';
+}
+
+/* The connector line only made sense with the circles. */
+.step:not(:last-child)::after {
+  display: none;
+}
+
+.step__title {
+  font-size: var(--font-size-base);
+  margin-bottom: 4px;
+}
+
+
+/* --- 8. Remaining decorative glows ------------------ */
+.online-banner::before,
+.hero-badges::before {
+  display: none;
+}
+
+.online-banner {
+  background: var(--navy);
+  border-radius: var(--radius-btn);
+  border-top: 3px solid var(--gold);
+}
+
+.online-banner__list a {
+  border-radius: var(--radius-btn);
+}
+
+
+/* --- 9. Stats: drop the gradient-clipped numerals ---
+   Gradient text on a big numeral is another generated-page signature. */
+.stat__number,
+.course-fact__value {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  color: var(--navy);
+}
+
+.stat__number {
+  font-size: 2.25rem;
+}
+
+.stats-bar .stat {
+  text-align: left;
+}
+
+.stat + .stat::before {
+  background: var(--gray-200);
+  top: 0;
+  height: 100%;
+}
+
+.section--blue .stat__number,
+.section--blue-gradient .stat__number {
+  color: var(--white);
+}
+
+
+/* --- 10. Testimonials ------------------------------
+   Centred avatar over centred italic quote with a giant decorative
+   quote mark is the stock testimonial slide. Left-align it and let the
+   attribution sit under a rule. */
+.testimonial-card {
+  text-align: left;
+  max-width: 62ch;
+  margin-inline: 0;
+}
+
+.testimonial-card__quote {
+  font-style: normal;
+  font-size: var(--font-size-lg);
+  color: var(--gray-700);
+}
+
+.testimonial-card__quote::before {
+  display: none;
+}
+
+.testimonial-card__avatar {
+  margin: 0 var(--space-md) 0 0;
+  width: 44px;
+  height: 44px;
+  border: none;
+  flex-shrink: 0;
+}
+
+.testimonial-card__attribution {
+  display: flex;
+  align-items: center;
+  padding-top: var(--space-md);
+  border-top: var(--rule);
+}
+
+.carousel-controls {
+  justify-content: flex-start;
+}
+
+/* --- 11. Contact detail inside the CTA band ----------
+   A definition list of real numbers does more work than a second
+   abstract button, and it is the kind of thing only a real institution
+   bothers to put here. */
+.cta-banner__details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md) var(--space-2xl);
+  margin: var(--space-lg) 0 0;
+  padding-top: var(--space-md);
+  border-top: var(--rule-dark);
+}
+
+.cta-banner__details dt {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+  margin-bottom: 2px;
+}
+
+.cta-banner__details dd {
+  margin: 0;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--white);
+}
+
+.cta-banner__details a {
+  color: var(--white);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(255, 255, 255, 0.35);
+}
+
+.cta-banner__details a:hover {
+  text-decoration-color: var(--white);
+}
+
+/* --- 12. Testimonials as an editorial two-column ------
+   Left-aligning the quote to a readable 62ch measure left ~590px of dead
+   space to its right inside a 1216px row. Pairing the section heading
+   with the quotes fills the row and reads like a magazine spread rather
+   than a centred testimonial widget. */
+@media (min-width: 900px) {
+  #testimonials > .container {
+    display: grid;
+    grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
+    gap: clamp(2rem, 1rem + 3vw, 4rem);
+    align-items: start;
+  }
+
+  #testimonials .section-header {
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  #testimonials .testimonials-carousel {
+    padding-top: 4px;
+  }
+}
+
+.testimonial-slide {
+  padding: 0;
+}
+
+.testimonial-card {
+  max-width: 58ch;
+  padding: 0;
+}
+
+.testimonial-card__quote {
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  line-height: 1.55;
+}
+
+
+/* --- 13. Card action alignment ----------------------
+   Without shadows the ragged bottoms of the category cards became
+   obvious: the "View Courses" link sat at a different height in each.
+   Pin it to the bottom of the body. */
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card__desc {
+  flex: 1;
+}
+
+.card__body .link-arrow {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+
+/* --- 14. Section-level actions align with the text ---
+   A lone centred button under a left-aligned section reads as leftover
+   template. Align it with everything else. */
+.section .text-center:has(> .btn:only-child) {
+  text-align: left;
+}
+
+/* --- 15. Remaining instances of the same patterns -----
+   .online-feature and .cpd-category (TIIS Online) repeat the centred
+   pastel-tile card; .hero-badge and .spec-tab are more pills. Same
+   treatment so the whole site speaks one language. */
+.online-feature {
+  text-align: left;
+  padding: var(--space-lg);
+  border: var(--rule);
+  border-radius: var(--radius-btn);
+  box-shadow: none;
+  border-bottom: var(--rule);
+}
+
+.online-feature:hover {
+  box-shadow: none;
+  transform: none;
+  border-color: var(--blue);
+}
+
+.online-feature__icon {
+  width: auto;
+  height: auto;
+  margin: 0 0 var(--space-sm);
+  display: block;
+  background: none;
+  border-radius: 0;
+}
+
+.online-feature__icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.online-feature__title {
+  font-size: var(--font-size-base);
+  margin-bottom: 4px;
+}
+
+.cpd-category {
+  padding: var(--space-lg);
+  border: var(--rule);
+  border-left: 3px solid var(--blue);
+  border-radius: var(--radius-btn);
+  box-shadow: none;
+}
+
+.cpd-category:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--gray-300);
+  border-left-color: var(--blue);
+}
+
+/* Frosted-glass pills in the hero -> plain outlined labels. */
+.hero-badge {
+  border-radius: var(--radius-btn);
+  backdrop-filter: none;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.spec-tab {
+  border-radius: var(--radius-btn);
+  border-width: 1px;
+}
+
+/* Icon tiles elsewhere follow the same rule: icon at text size, no tile. */
+.quick-link__icon svg,
+.value-item__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.lecturers-accordion,
+.subject-block,
+.detail-grid,
+.course-facts,
+.map-embed,
+.lecturers-accordion__badge,
+.split__image,
+.card__image,
+.team-card__photo,
+.online-banner {
+  border-radius: var(--radius-btn);
+}
+
+.lecturers-accordion,
+.subject-block,
+.course-facts,
+.map-embed {
+  box-shadow: none;
+  border: var(--rule);
+}
+
+.lecturers-accordion:hover {
+  box-shadow: none;
+}
+
+.lecturers-accordion__badge {
+  background: none;
+  border: var(--rule);
+}
+
+.lecturers-accordion__chevron {
+  background: none;
+  border: var(--rule);
+}
+
+.testimonial-card__avatar,
+.footer__socials a,
+.carousel-btn,
+.scroll-top,
+.lecturer-row__avatar,
+.team-modal__avatar {
+  /* Genuinely circular elements stay circular. */
+  border-radius: var(--radius-full);
+}
+
+.carousel-btn {
+  border-width: 1px;
+}
+
+/* --- 16. Drop the coloured button glows ---------------
+   Soft coloured drop-shadows under buttons are part of the same
+   generated-landing-page look. Flat fills, no glow. */
+.btn--gold,
+.btn--gold:hover,
+.btn--primary:hover,
+.navbar__cta:hover,
+.btn--white:hover {
+  box-shadow: none;
+}
+
+.scroll-top {
+  box-shadow: 0 2px 8px rgba(10, 22, 40, 0.25);
+}
+
+
+/* ===================================================
+   Deep polish
+   The editorial pass removed the template look but overcorrected into
+   austerity: flat fills, hairlines, no elevation, no hover response.
+   This layer puts the craft back — serif display type, warm paper
+   surfaces, restrained depth, and motion that responds rather than
+   performs. High-end reads as precision, not decoration.
+   =================================================== */
+
+/* --- 1. Display typography --------------------------- */
+/* Face and metrics only — colour is left to the context, so headings on
+   dark surfaces keep their own. */
+h1, h2,
+.hero__title,
+.cta-banner h2,
+.online-banner h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-optical-sizing: auto;
+  letter-spacing: -0.015em;
+}
+
+h1, h2 {
+  color: var(--navy);
+}
+
+/* Dark surfaces. */
+.hero__title,
+.cta-banner h2,
+.online-banner h2,
+.section--blue h1, .section--blue h2,
+.section--blue-gradient h1, .section--blue-gradient h2,
+.team-modal__header h2 {
+  color: var(--white);
+}
+
+.hero__title {
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+}
+
+/* Serifs carry more weight optically, so the display sizes can come down
+   a little and still hold the page. */
+h1 { font-size: clamp(2.25rem, 1.4rem + 3.4vw, 3.375rem); }
+h2 { font-size: clamp(1.75rem, 1.15rem + 2.4vw, 2.375rem); }
+
+h3, h4, h5, h6 {
+  font-family: var(--font-family);
+  letter-spacing: -0.008em;
+  color: var(--navy);
+}
+
+/* Body copy: slightly more generous measure and colour with more depth
+   than the old cold slate. */
+body {
+  color: var(--ink-soft);
+  background: var(--white);
+  font-synthesis-weight: none;
+}
+
+p {
+  color: var(--ink-soft);
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: var(--font-size-lg);
+  line-height: 1.6;
+}
+
+/* Uppercase micro-labels need optical tracking to breathe. */
+.section-label,
+.stat__label,
+.course-fact__label,
+.footer__heading,
+.hero__trust li,
+.detail-grid__label,
+.cta-banner__details dt {
+  font-feature-settings: 'ss01';
+  letter-spacing: 0.11em;
+}
+
+/* Figures should align in columns. */
+.stat__number,
+.course-fact__value,
+.step__number,
+.subject-table td,
+.unit-code,
+.cta-banner__details dd {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Quotes read better set in the display face. */
+.testimonial-card__quote {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.625rem);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+}
+
+
+/* --- 2. Surfaces: warm paper instead of cold grey ----- */
+.section--gray {
+  background: var(--off-white);
+}
+
+/* A hairline at the band edge does the separating, so the tone shift can
+   be almost imperceptible — which is what makes it feel expensive. */
+.section--gray {
+  border-top: 1px solid var(--n-200);
+  border-bottom: 1px solid var(--n-200);
+}
+
+.section--gray + .section--gray {
+  border-top: none;
+}
+
+
+/* --- 3. Restrained depth ----------------------------
+   Not the old 30px blurry drop shadows, and not nothing. Two tight,
+   low-opacity layers read as a physical card edge. */
+:root {
+  --lift-1: 0 1px 2px rgba(11, 27, 49, 0.04), 0 1px 3px rgba(11, 27, 49, 0.06);
+  --lift-2: 0 2px 4px rgba(11, 27, 49, 0.05), 0 6px 16px rgba(11, 27, 49, 0.07);
+  --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --radius-btn: 6px;
+  --radius-card: 8px;
+}
+
+.card,
+.course-card,
+.team-card,
+.feature-card,
+.value-item,
+.quick-link,
+.online-feature,
+.cpd-category,
+.lecturers-accordion,
+.subject-block,
+.course-facts,
+.map-embed {
+  border-radius: var(--radius-card);
+  border: 1px solid var(--n-200);
+  box-shadow: var(--lift-1);
+  transition: box-shadow 220ms var(--ease-out),
+              border-color 220ms var(--ease-out),
+              transform 220ms var(--ease-out);
+}
+
+/* Hover: a real but quiet response. 2px, not 6px. */
+.card:hover,
+.course-card:hover,
+.team-card:hover,
+.feature-card:hover,
+.value-item:hover,
+.quick-link:hover,
+.online-feature:hover,
+.cpd-category:hover {
+  box-shadow: var(--lift-2);
+  border-color: var(--n-300);
+  transform: translateY(-2px);
+}
+
+/* Images inside cards drift rather than zoom. */
+.card__image img,
+.team-card__photo img {
+  transition: transform 900ms var(--ease-out);
+}
+
+.card:hover .card__image img,
+.team-card:hover .team-card__photo img {
+  transform: scale(1.03);
+}
+
+
+/* --- 4. Buttons ------------------------------------- */
+.btn {
+  border-radius: var(--radius-btn);
+  border-width: 1px;
+  padding: 13px 26px;
+  letter-spacing: 0.005em;
+  transition: background-color 180ms var(--ease-out),
+              border-color 180ms var(--ease-out),
+              color 180ms var(--ease-out),
+              box-shadow 180ms var(--ease-out);
+}
+
+.btn--lg {
+  padding: 16px 32px;
+}
+
+.btn--sm {
+  padding: 9px 18px;
+}
+
+.btn--primary {
+  background: var(--blue);
+  border-color: var(--blue);
+  box-shadow: var(--lift-1);
+}
+
+.btn--primary:hover {
+  background: var(--blue-deep);
+  border-color: var(--blue-deep);
+  box-shadow: var(--lift-2);
+}
+
+.btn--outline-dark {
+  border-color: var(--n-300);
+  color: var(--blue);
+}
+
+.btn--outline-dark:hover {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--white);
+}
+
+.btn--outline {
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.btn--outline:hover {
+  background: var(--white);
+  border-color: var(--white);
+  color: var(--navy);
+}
+
+.btn--gold {
+  background: var(--brass);
+  border-color: var(--brass);
+  color: var(--navy);
+}
+
+.btn--gold:hover {
+  background: #a37f3f;
+  border-color: #a37f3f;
+  color: var(--navy);
+}
+
+.btn--white:hover {
+  background: var(--off-white);
+}
+
+
+/* --- 5. Links --------------------------------------- */
+.link-arrow {
+  color: var(--blue);
+  letter-spacing: 0.005em;
+}
+
+.link-arrow::after {
+  transition: transform 220ms var(--ease-out);
+}
+
+.link-arrow:hover {
+  color: var(--blue-deep);
+}
+
+/* Prose links get a proper underline, offset off the baseline. */
+.split__content p a:not(.btn):not(.link-arrow),
+.form-fallback a,
+.cta-banner__details a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  transition: text-decoration-color 180ms var(--ease-out);
+}
+
+.split__content p a:not(.btn):not(.link-arrow):hover,
+.form-fallback a:hover {
+  text-decoration-color: currentColor;
+}
+
+
+/* --- 6. Section labels ------------------------------
+   The rule under the eyebrow label now uses brass at a hairline weight —
+   present, but not a highlighter stripe. */
+.section-label {
+  color: var(--blue);
+  font-size: 0.6875rem;
+}
+
+.section-label::after {
+  width: 22px;
+  height: 1px;
+  margin-top: 7px;
+  background: var(--brass);
+}
+
+.section-label--light {
+  color: #a5d8fb;
+}
+
+.section-header {
+  border-bottom-color: var(--n-200);
+}
+
+
+/* --- 7. Nav ----------------------------------------- */
+.navbar--solid {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(1.4) blur(12px);
+  -webkit-backdrop-filter: saturate(1.4) blur(12px);
+  box-shadow: 0 1px 0 var(--n-200), 0 1px 12px rgba(11, 27, 49, 0.04);
+}
+
+.navbar__link {
+  letter-spacing: 0.005em;
+  border-radius: var(--radius-btn);
+}
+
+.navbar--solid .navbar__link {
+  color: var(--ink-soft);
+}
+
+.navbar--solid .navbar__link:hover {
+  background: var(--blue-tint);
+  color: var(--blue);
+}
+
+/* The active marker animates its width rather than appearing abruptly. */
+.navbar__link[aria-current='page']::after {
+  background: var(--brass);
+  height: 2px;
+  bottom: 3px;
+}
+
+.navbar__dropdown {
+  border-radius: var(--radius-card);
+  border: 1px solid var(--n-200);
+  box-shadow: 0 4px 8px rgba(11, 27, 49, 0.06), 0 16px 40px rgba(11, 27, 49, 0.1);
+}
+
+.navbar__dropdown a:hover {
+  background: var(--blue-tint);
+}
+
+.navbar__cta {
+  background: var(--blue);
+  box-shadow: var(--lift-1);
+}
+
+.navbar__cta:hover {
+  background: var(--blue-deep);
+  box-shadow: var(--lift-2);
+}
+
+
+/* --- 8. Hero ---------------------------------------- */
+.hero__overlay {
+  background:
+    linear-gradient(100deg,
+      rgba(11, 27, 49, 0.92) 0%,
+      rgba(11, 27, 49, 0.8) 44%,
+      rgba(11, 27, 49, 0.42) 100%);
+}
+
+.hero__label {
+  color: var(--brass-light);
+  letter-spacing: 0.18em;
+  font-size: 0.6875rem;
+}
+
+.hero__subtitle {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: var(--font-size-lg);
+  line-height: 1.6;
+  max-width: 46ch;
+}
+
+.hero::after {
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, rgba(11, 27, 49, 0.28));
+}
+
+
+/* --- 9. Stats --------------------------------------- */
+.stat__number {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2rem, 1.6rem + 1.4vw, 2.75rem);
+  color: var(--navy);
+  letter-spacing: -0.02em;
+}
+
+.stat__label {
+  color: var(--text-muted);
+  font-size: 0.6875rem;
+}
+
+.section--stats {
+  border-top: 2px solid var(--blue);
+  border-image: none;
+  box-shadow: none;
+  background: var(--white);
+  border-bottom: 1px solid var(--n-200);
+}
+
+.stat + .stat::before {
+  background: var(--n-200);
+  top: 12%;
+  height: 76%;
+}
+
+
+/* --- 10. Tables ------------------------------------- */
+.subject-table thead tr {
+  background: var(--navy);
+}
+
+.subject-table thead th {
+  letter-spacing: 0.1em;
+  font-size: 0.6875rem;
+}
+
+.subject-table tbody tr {
+  border-bottom: 1px solid var(--n-200);
+  transition: background 160ms var(--ease-out);
+}
+
+.subject-table tbody tr:hover {
+  background: var(--blue-tint);
+}
+
+.subject-table tbody td {
+  color: var(--ink-soft);
+}
+
+.unit-code {
+  background: var(--blue-pale);
+  color: var(--blue-deep);
+  border-radius: 3px;
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.7rem;
+}
+
+
+/* --- 11. Forms -------------------------------------- */
+.form-group label {
+  color: var(--navy);
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  border: 1px solid var(--n-border);
+  border-radius: var(--radius-btn);
+  padding: 12px 14px;
+  background: var(--white);
+  color: var(--ink);
+  transition: border-color 180ms var(--ease-out), box-shadow 180ms var(--ease-out);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--n-500);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-pale);
+}
+
+
+/* --- 12. Footer ------------------------------------- */
+.footer {
+  background: var(--navy);
+}
+
+.footer__heading {
+  color: var(--white);
+  font-size: 0.6875rem;
+}
+
+.footer__links a {
+  color: rgba(255, 255, 255, 0.72);
+  transition: color 160ms var(--ease-out);
+}
+
+.footer__links a:hover {
+  color: var(--white);
+}
+
+.footer__brand p {
+  color: rgba(255, 255, 255, 0.66);
+}
+
+.footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+
+/* --- 13. Micro-details ------------------------------ */
+::selection {
+  background: var(--blue-pale);
+  color: var(--navy);
+}
+
+/* Smooth the corner where a card image meets a squared card. */
+.card__image {
+  border-radius: calc(var(--radius-card) - 1px) calc(var(--radius-card) - 1px) 0 0;
+}
+
+.card,
+.team-card {
+  overflow: hidden;
+}
+
+.card__tag,
+.course-card__level {
+  background: var(--blue-pale);
+  color: var(--blue-deep);
+  border: none;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+.course-card::before {
+  background: var(--blue);
+  height: 2px;
+}
+
+.campus-chips li {
+  border-left-color: var(--brass);
+  border-radius: var(--radius-btn);
+  background: var(--white);
+}
+
+.step {
+  border-top-color: var(--navy);
+}
+
+.step__number {
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: var(--blue);
+}
+
+.carousel-btn {
+  border-color: var(--n-300);
+  transition: border-color 180ms var(--ease-out), background 180ms var(--ease-out), color 180ms var(--ease-out);
+}
+
+.carousel-btn:hover {
+  border-color: var(--blue);
+  background: var(--blue-tint);
+  color: var(--blue);
+}
+
+.carousel-dot.active::before {
+  background: var(--blue);
+}
+
+.scroll-top {
+  background: var(--navy);
+  border-radius: var(--radius-btn);
+}
+
+.scroll-top:hover {
+  background: var(--blue);
+}
+
+/* CTA band: paper-thin brass rule, deeper navy, no gradient. */
+.cta-banner {
+  background: var(--navy);
+  border-top: 2px solid var(--brass);
+  border-radius: var(--radius-card);
+}
+
+.cta-banner p {
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.online-banner {
+  background: var(--navy);
+  border-top: 2px solid var(--brass);
+  border-radius: var(--radius-card);
+}
+
+.online-banner p {
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.testimonial-card__attribution {
+  border-top-color: var(--n-200);
+}
+
+.testimonial-card__name {
+  color: var(--navy);
+}
+
+.detail-grid,
+.detail-grid__item {
+  background: var(--white);
+}
+
+.detail-grid {
+  border: 1px solid var(--n-200);
+  border-radius: var(--radius-card);
+  box-shadow: var(--lift-1);
+  gap: 1px;
+  background: var(--n-200);
+}
+
+.detail-grid__item:hover {
+  background: var(--blue-tint);
+}
+
+.detail-grid__value {
+  color: var(--navy);
+}
+
+/* --- 14. Programme structure: one family, four tones ---
+   The stage and subject-block headers were green, teal, blue, purple and
+   rust — five unrelated hues on the same page, which is the single least
+   premium thing on the site and fought the brand palette outright.
+
+   They now step through one tonal ramp inside the brand blue. The stages
+   stay distinguishable, but by depth rather than by hue. White clears AA
+   on every step (17.3 / 13.4 / 10.5 / 7.4). */
+.subject-block__header--tone-1,
+.stage-card__header--tone-1 { background: var(--navy); }
+
+.subject-block__header--tone-2,
+.stage-card__header--tone-2 { background: var(--navy-light); }
+
+.subject-block__header--tone-3,
+.stage-card__header--tone-3 { background: var(--blue-deep); }
+
+.subject-block__header--tone-4,
+.stage-card__header--tone-4 { background: var(--blue); }
+
+/* The stage numeral is the accent instead of the panel colour. */
+.stage-card__num {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: var(--brass-light);
+  font-family: var(--font-display);
+  font-weight: 500;
+}
+
+.subject-block__sub,
+.stage-card__subtitle {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* Unit-code chips read as data, not decoration. */
+.unit-code--gold,
+.unit-code--green {
+  background: var(--blue-pale);
+  color: var(--blue-deep);
+}
+
+
+/* --- 15. Subject tables ------------------------------
+   The centring rule on the last column was written for the 3-column
+   variant (Unit Code / Unit Name / CP). 20 of the 24 tables have only two
+   columns, so it was centring the unit name — which then wrapped into
+   ragged two-line cells. Only centre a genuine third column. */
+.subject-table thead th:last-child,
+.subject-table tbody td:last-child {
+  text-align: left;
+  width: auto;
+}
+
+.subject-table thead th:nth-child(3),
+.subject-table tbody td:nth-child(3) {
+  text-align: center;
+  width: 72px;
+}
+
+.subject-table tbody td:first-child {
+  width: 108px;
+  white-space: nowrap;
+}
+
+.subject-table tbody td {
+  padding: 12px 16px;
+}
+
+
+/* --- 16. Notices ------------------------------------
+   The eligibility/pathway panels used saturated sticky-note yellow. Muted
+   to sit inside the warm palette while still reading as "pay attention". */
+.pathway-banner {
+  background: #fdf8ec !important;
+  border: 1px solid #e6d3a7 !important;
+  border-left: 3px solid var(--brass) !important;
+  border-radius: var(--radius-card);
+}
+
+.pathway-banner__label {
+  color: var(--brass-text) !important;
+}
+
+.pathway-banner p,
+.pathway-banner li {
+  color: #5c4a24;
+}
+
+
+/* ===================================================
+   Programme structure — prospectus curriculum
+   Retoning the panels wasn't enough. The pattern itself was the problem:
+   a saturated filled header slab, a second dark bar under it for the
+   column headings, and a blue chip on every single row. Three heavy
+   devices stacked, which reads like a plugin table however it's coloured.
+
+   Printed prospectuses don't do any of that. They set the curriculum in
+   type: a stage label, a serif title, a hairline, then the units as a
+   clean list. Structure comes from rules and whitespace, colour is used
+   once. That's what this is.
+   =================================================== */
+
+/* One column: unit names were wrapping to two lines in a half-width card. */
+.stages-grid {
+  display: block;
+}
+
+.stage-card,
+.subject-block {
+  border: none;
+  border-top: 2px solid var(--navy);
+  border-radius: 0;
+  box-shadow: none;
+  background: none;
+  overflow: visible;
+  padding-top: var(--space-lg);
+  margin-bottom: clamp(2rem, 1.4rem + 2vw, 3.25rem);
+  transition: none;
+}
+
+.stage-card:hover,
+.subject-block:hover {
+  transform: none;
+  box-shadow: none;
+  border-top-color: var(--navy);
+}
+
+/* --- Stage / block heading ---------------------------- */
+.stage-card__header,
+.subject-block__header {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: baseline;
+  gap: var(--space-md);
+  background: none !important;
+  padding: 0 0 var(--space-md);
+  border-bottom: 1px solid var(--n-200);
+  margin-bottom: 0;
+}
+
+/* The stage number becomes a quiet brass figure, not a filled disc. */
+.stage-card__num {
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: none;
+  border: none;
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.375rem;
+  line-height: 1;
+  color: var(--brass-text);   /* 5.0:1 on white */
+  font-variant-numeric: tabular-nums;
+}
+
+.stage-card__num::after {
+  content: '.';
+}
+
+.subject-block__icon {
+  color: var(--blue);
+  display: block;
+  line-height: 1;
+}
+
+.subject-block__icon .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.stage-card__title,
+.subject-block__heading {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--navy) !important;
+  margin: 0 0 3px;
+}
+
+.stage-card__subtitle,
+.subject-block__sub {
+  color: var(--text-muted) !important;
+  font-size: var(--font-size-sm);
+  margin-top: 0;
+  line-height: 1.5;
+}
+
+/* --- Unit list --------------------------------------- */
+.stage-card__body,
+.subject-block__body {
+  padding: 0;
+}
+
+.subject-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* Column headings become a hairline caption row rather than a dark bar. */
+.subject-table thead tr {
+  background: none;
+}
+
+.subject-table thead th {
+  background: none;
+  color: var(--text-muted);
+  font-family: var(--font-family);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 10px 0 8px;
+  border-bottom: 1px solid var(--n-200);
+  border-radius: 0 !important;
+  text-align: left;
+}
+
+.subject-table thead th:first-child {
+  width: 118px;
+}
+
+.subject-table thead th:nth-child(3) {
+  width: 56px;
+  text-align: right;
+}
+
+.subject-table tbody tr {
+  border-bottom: 1px solid var(--n-100);
+  background: none;
+}
+
+.subject-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.subject-table tbody tr:hover {
+  background: var(--blue-tint);
+}
+
+.subject-table tbody td {
+  padding: 11px 0;
+  color: var(--ink);
+  font-size: var(--font-size-sm);
+  vertical-align: baseline;
+  text-align: left;
+}
+
+.subject-table tbody td:first-child {
+  width: 118px;
+  white-space: nowrap;
+}
+
+.subject-table tbody td:nth-child(3) {
+  width: 56px;
+  text-align: right;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Row hover needs a little inset so the tint doesn't touch the text. */
+.subject-table tbody td:first-child,
+.subject-table thead th:first-child {
+  padding-left: 10px;
+}
+
+.subject-table tbody td:last-child,
+.subject-table thead th:last-child {
+  padding-right: 10px;
+}
+
+/* Unit codes: muted monospace, no chip. Repeating a filled blue pill on
+   every row was most of the visual noise. */
+.unit-code,
+.unit-code--gold,
+.unit-code--green {
+  background: none;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  color: var(--text-muted);
+  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Divider label above a specialisation group. */
+.section-divider {
+  margin: clamp(1.75rem, 1.25rem + 1.6vw, 2.5rem) 0 0;
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--n-200);
+}
+
+.section-divider__line {
+  display: none;
+}
+
+.section-divider__label {
+  color: var(--brass-text);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+}
+
+/* .stage-card__body still carried a white fill, which drew a hard-edged
+   white rectangle behind each unit list on the paper-toned band. The list
+   should sit directly on the page. */
+.stage-card__body,
+.subject-block__body {
+  background: none;
+}
+
+
+/* ===================================================
+   TIIS Online — bring the subsite onto the same palette
+   =================================================== */
+
+/* --- 1. Stat bands ----------------------------------
+   The last remaining diagonal gradient on the site. Flattened to solid
+   navy with the same brass hairline the CTA band uses, so every dark band
+   across both subsites now reads as one device. */
+.section--blue-gradient,
+.section--blue {
+  background: var(--navy);
+  border-top: 2px solid var(--brass);
+}
+
+.section--blue-gradient .stat__number,
+.section--blue .stat__number {
+  font-family: var(--font-display);
+  color: var(--white);
+}
+
+.section--blue-gradient .stat__label,
+.section--blue .stat__label {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.section--blue-gradient .stat + .stat::before,
+.section--blue .stat + .stat::before {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* --- 2. Portal button ------------------------------
+   .btn--lms was a teal-to-blue gradient — the one off-palette colour left
+   on the site. Brass keeps it clearly distinct from "Apply Now" (this is
+   for students who already have an account) while staying in the two-colour
+   system. Navy on brass is 8.2:1. */
+.btn--lms {
+  background: var(--brass);
+  border: 1px solid var(--brass);
+  color: var(--navy);
+  border-radius: var(--radius-btn);
+  font-weight: 700;
+  box-shadow: var(--lift-1);
+  transition: background-color 180ms var(--ease-out),
+              border-color 180ms var(--ease-out),
+              box-shadow 180ms var(--ease-out);
+}
+
+.btn--lms:hover {
+  background: #a37f3f;
+  border-color: #a37f3f;
+  color: var(--navy);
+  transform: none;
+  box-shadow: var(--lift-2);
+}
+
+/* --- 3. The "Online" lockup ------------------------
+   A hairline divider and a lighter weight beside the wordmark, so the
+   sub-brand reads as a modifier rather than a second logo. */
+.navbar__logo-divider,
+.footer__brand-online .footer__online-divider {
+  background: currentColor;
+  opacity: 0.28;
+}
+
+.navbar__logo-online,
+.footer__brand-online .footer__online-text {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* --- 4. CPD category cards ------------------------- */
+.cpd-category__hours {
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: var(--blue);
+  font-variant-numeric: tabular-nums;
+}
+
+.cpd-category__name {
+  font-size: var(--font-size-base);
+  color: var(--navy);
+}
+
+.cpd-category__desc,
+.online-feature__desc {
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+}
+
+/* --- 5. Grid --------------------------------------- */
+.online-features {
+  gap: clamp(1rem, 0.75rem + 0.9vw, 1.5rem);
+}
+
+
+/* ===================================================
+   Nav dropdown hover bridge
+   The open dropdown sits 8px below its nav item, so travelling from the
+   item to the panel crosses a strip that belongs to neither — :hover is
+   lost and the menu closes before you reach it.
+
+   styles.css had a ::before bridge for this. tiis-online/styles.css never
+   did, so the Courses menu there was unusable with a mouse. Defining it
+   here means both sheets get it, at a height that comfortably spans the
+   gap. The bridge is a child of the dropdown, which is a child of
+   .navbar__item, so hovering it keeps the item hovered.
+   =================================================== */
+.navbar__dropdown::before {
+  content: '';
+  position: absolute;
+  /* Overlaps the item by 4px rather than meeting it exactly: an edge-to-edge
+     join leaves one sub-pixel row where hit-testing can resolve either way,
+     and that is enough to drop the hover. */
+  top: -20px;
+  left: 0;
+  right: 0;
+  height: 20px;
+}
+
+/* Keep every way of opening the panel in one place: pointer, keyboard
+   focus, and the click-toggle used for the TIIS Online group button. */
+.navbar__item:hover .navbar__dropdown,
+.navbar__item:focus-within .navbar__dropdown,
+.navbar__item.is-open .navbar__dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* A little downward padding on the item widens the target on the way in,
+   independently of the pseudo-element. */
+.navbar__menu > .navbar__item {
+  padding-bottom: 4px;
+  margin-bottom: -4px;
 }

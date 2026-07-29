@@ -7,19 +7,35 @@
   <meta name="description" content="Explore TIIS courses: Bachelor of Business, Bachelor of IT, MBA, Master of Cyber Security, Professional Accounting, Financial Planning and more.">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/png" href="images/logos/TIIS-Logo-black-and-white-1024x1024.png">
+
+  <!-- Fonts: preconnect so the TLS handshake overlaps HTML parsing -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
+
+  <!-- Social sharing. Add og:url and og:image using your production
+       domain (absolute URLs are required) to get link preview images. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TIIS — The Institute of International Studies">
+  <meta property="og:locale" content="en_AU">
+  <meta property="og:title" content="Courses — TIIS | Undergraduate & Postgraduate Programs">
+  <meta property="og:description" content="Explore TIIS courses: Bachelor of Business, Bachelor of IT, MBA, Master of Cyber Security, Professional Accounting, Financial Planning and more.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Courses — TIIS | Undergraduate & Postgraduate Programs">
+  <meta name="twitter:description" content="Explore TIIS courses: Bachelor of Business, Bachelor of IT, MBA, Master of Cyber Security, Professional Accounting, Financial Planning and more.">
 </head>
 <body>
 
   <!-- Hero -->
   <section class="hero hero--medium">
     <div class="hero__bg">
-      <img src="images/courses/TIIS-Website-Student-Photo.png" alt="TIIS students">
+      <img src="images/courses/TIIS-Website-Student-Photo.png" alt="TIIS students" loading="eager" fetchpriority="high" decoding="sync">
     </div>
     <div class="hero__overlay"></div>
     <div class="hero__content">
       <span class="hero__label">Academic Programs</span>
-      <h1 class="hero__title">Discover Your<br>Path to Success</h1>
-      <p class="hero__subtitle">Industry-relevant undergraduate and postgraduate programs across Business, IT, Accounting, and Finance.</p>
+      <h1 class="hero__title">Our Courses</h1>
+      <p class="hero__subtitle">Nine CRICOS-registered courses in business, accounting, information technology and financial planning.</p>
       <div class="hero__actions">
         <a href="apply.html" class="btn btn--primary btn--lg">Apply Now</a>
         <a href="#programs" class="btn btn--outline btn--lg">Browse Programs</a>
@@ -62,7 +78,7 @@
         <div class="section-header fade-in" style="text-align:left; max-width:none; margin-bottom:32px;">
           <span class="section-label">Business & Management</span>
           <h2>Build Your Business Career</h2>
-          <p style="max-width:640px;">Planning your future in the world of business? TIIS offers undergraduate and postgraduate programs to help you achieve your goals.</p>
+          <p style="max-width:640px;">A three-year bachelor's degree, a graduate certificate you can finish in a semester, and a two-year MBA.</p>
         </div>
         <div class="card-grid card-grid--3">
           <div class="course-card fade-in delay-1" id="bbus">
@@ -133,7 +149,7 @@
         <div class="section-header fade-in" style="text-align:left; max-width:none; margin-bottom:32px;">
           <span class="section-label">Professional Accounting</span>
           <h2>Become a Recognised Accountant</h2>
-          <p style="max-width:640px;">Aspire to become a professional Accountant? Our CPA Australia, CAANZ, and ACCA-accredited pathways will get you there.</p>
+          <p style="max-width:640px;">The Master of Professional Accounting (Advanced) is accredited by CPA Australia, CAANZ and ACCA. The graduate certificate is the entry point if you do not yet meet master's requirements.</p>
         </div>
         <div class="card-grid card-grid--3">
           <div class="course-card fade-in delay-1" id="gcpa">
@@ -149,7 +165,11 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 000-1.5h-3.25V5z" clip-rule="evenodd"/></svg>
                 Duration: 6 months full-time
               </div>
-            </div>
+                          <div class="course-card__meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.274 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clip-rule="evenodd"/></svg>
+                Sydney only
+              </div>
+</div>
             <a href="course-gcpa.html" class="btn btn--outline-dark btn--sm" style="width:100%;justify-content:center;">View Course Details →</a>
           </div>
           <div class="course-card fade-in delay-2" id="mpaa">
@@ -180,7 +200,7 @@
         <div class="section-header fade-in" style="text-align:left; max-width:none; margin-bottom:32px;">
           <span class="section-label">Information Technology</span>
           <h2>Lead the Digital Future</h2>
-          <p style="max-width:640px;">Dreaming of a rewarding career in the IT industry? TIIS offers comprehensive education from undergraduate to master's level.</p>
+          <p style="max-width:640px;">Undergraduate through master's level, including a two-year Master of Cyber Security.</p>
         </div>
         <div class="card-grid card-grid--3">
           <div class="course-card fade-in delay-1" id="bit">
@@ -216,7 +236,11 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 000-1.5h-3.25V5z" clip-rule="evenodd"/></svg>
                 Duration: 6 months full-time
               </div>
-            </div>
+                          <div class="course-card__meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.274 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clip-rule="evenodd"/></svg>
+                Sydney &amp; Melbourne
+              </div>
+</div>
             <a href="course-gcit.html" class="btn btn--outline-dark btn--sm" style="width:100%;justify-content:center;">View Course Details →</a>
           </div>
           <div class="course-card fade-in delay-3" id="mcs">
@@ -243,14 +267,20 @@
       </div>
 
       <!-- TIIS Online Banner -->
-      <div id="finance" style="margin-bottom:40px;">
-        <div class="section-header fade-in" style="text-align:left; max-width:none; margin-bottom:32px;">
-          <span class="section-label">Online Programs</span>
+      <div class="online-banner fade-in" id="finance">
+        <div class="online-banner__text">
+          <span class="section-label section-label--light">Online Programs</span>
           <h2>Study Online with TIIS</h2>
-          <p style="max-width:640px;">Looking for online programs? TIIS Online offers CPD for Financial Advisers, an Online MBA, and the Graduate Diploma of Financial Planning.</p>
+          <p>Three programs with no campus attendance, for people already working: CPD
+             for financial advisers, an MBA, and the Graduate Diploma of Financial Planning.</p>
+          <ul class="online-banner__list">
+            <li><a href="tiis-online/course-cpd.html">CPD for Financial Advisers</a></li>
+            <li><a href="tiis-online/course-mba.html">Online MBA</a></li>
+            <li><a href="tiis-online/course-gdfp.html">Graduate Diploma of Financial Planning</a></li>
+          </ul>
         </div>
-        <div style="margin-top:16px;">
-          <a href="tiis-online/index.html" class="btn btn--primary">Explore TIIS Online →</a>
+        <div class="online-banner__action">
+          <a href="tiis-online/index.html" class="btn btn--white btn--lg">Explore TIIS Online</a>
         </div>
       </div>
 
@@ -262,9 +292,9 @@
   <section class="section section--gray">
     <div class="container">
       <div class="cta-banner fade-in">
-        <h2>Not Sure Which Course Is Right for You?</h2>
-        <p>Talk to our admissions team. We'll help you find the program that aligns with your career goals.</p>
-        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; position:relative;">
+        <h2>Compare Courses with an Adviser</h2>
+        <p>If you are choosing between two courses, or unsure whether your qualifications meet entry requirements, admissions can check before you apply.</p>
+        <div class="cta-banner__actions">
           <a href="contact.html" class="btn btn--white btn--lg">Get Advice</a>
           <a href="apply.html" class="btn btn--outline btn--lg">Start Application</a>
         </div>

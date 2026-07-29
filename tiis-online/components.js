@@ -25,6 +25,22 @@ const ICONS = {
 
 
 // ---- Build Navigation ----
+/* ---- Site configuration ----
+   Social profiles previously rendered as href="#", so all three footer icons
+   were dead links. Fill in the real URLs and the icon appears; leave one empty
+   and it is omitted rather than shipping a link that goes nowhere. Keep these
+   in step with the values in ../components.js. */
+const SOCIAL_LINKS = {
+  facebook: '',
+  instagram: '',
+  linkedin: '',
+};
+
+// Honour the OS "reduce motion" setting for JS-driven motion too.
+const PREFERS_REDUCED_MOTION =
+  window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+
 function buildNavbar(currentPage) {
   const isHome = currentPage === 'home';
   const nav = document.createElement('nav');
@@ -47,7 +63,11 @@ function buildNavbar(currentPage) {
       <ul class="navbar__menu">
         <li class="navbar__item"><a href="index.html" class="navbar__link">Home</a></li>
         <li class="navbar__item">
-          <a href="#" class="navbar__link">Courses ${ICONS.chevronDown}</a>
+          <!-- Was href="#", which navigated nowhere when clicked. There is no
+               online-courses index page, so this is a group label, not a link:
+               a button opens the same dropdown for mouse, touch and keyboard. -->
+          <button type="button" class="navbar__link navbar__link--group"
+                  aria-expanded="false" aria-haspopup="true">Courses ${ICONS.chevronDown}</button>
           <div class="navbar__dropdown">
             <a href="course-cpd.html">CPD for Financial Advisers</a>
             <a href="course-mba.html">Online MBA</a>
@@ -60,7 +80,8 @@ function buildNavbar(currentPage) {
 
       <a href="#enquire" class="navbar__cta navbar__cta-desktop">Enquire Now</a>
 
-      <button class="navbar__toggle" id="navToggle" aria-label="Open menu">
+      <button class="navbar__toggle" id="navToggle" aria-label="Open menu"
+              aria-expanded="false" aria-controls="mobileMenu">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -68,14 +89,25 @@ function buildNavbar(currentPage) {
 
   document.body.prepend(nav);
 
+  // Skip link — first thing in the tab order.
+  const skip = document.createElement('a');
+  skip.className = 'skip-link';
+  skip.href = '#main';
+  skip.textContent = 'Skip to main content';
+  document.body.prepend(skip);
+
   // Mobile menu
   const mobileMenu = document.createElement('div');
   mobileMenu.className = 'navbar__mobile-menu';
   mobileMenu.id = 'mobileMenu';
+  mobileMenu.setAttribute('role', 'dialog');
+  mobileMenu.setAttribute('aria-modal', 'true');
+  mobileMenu.setAttribute('aria-label', 'Site menu');
   mobileMenu.innerHTML = `
     <button class="navbar__mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
     <a href="index.html" class="navbar__mobile-link">Home</a>
-    <a href="#" class="navbar__mobile-link">Online Courses</a>
+    <!-- A heading, not a link: there is no online-courses index page. -->
+    <div class="navbar__mobile-link navbar__mobile-heading">Online Courses</div>
     <div class="navbar__mobile-sub">
       <a href="course-cpd.html">CPD for Financial Advisers</a>
       <a href="course-mba.html">Online MBA</a>
@@ -100,45 +132,126 @@ function buildNavbar(currentPage) {
   const close = document.getElementById('mobileClose');
   const olay = document.getElementById('mobileOverlay');
 
+  const FOCUSABLE = 'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
+  let lastFocused = null;
+
   function openMenu() {
+    lastFocused = document.activeElement;
     mobileMenu.classList.add('active');
     overlay.classList.add('active');
     overlay.style.display = 'block';
     document.body.style.overflow = 'hidden';
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Close menu');
+    (mobileMenu.querySelector(FOCUSABLE) || mobileMenu).focus();
   }
+
   function closeMenu() {
+    if (!mobileMenu.classList.contains('active')) return;
     mobileMenu.classList.remove('active');
     overlay.classList.remove('active');
     document.body.style.overflow = '';
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open menu');
     setTimeout(() => { overlay.style.display = 'none'; }, 300);
+    if (lastFocused && document.contains(lastFocused)) lastFocused.focus();
   }
 
   toggle.addEventListener('click', openMenu);
   close.addEventListener('click', closeMenu);
   olay.addEventListener('click', closeMenu);
 
-  // Scroll effect
+  // Escape closes the drawer; Tab is trapped inside it while open.
+  document.addEventListener('keydown', (e) => {
+    if (!mobileMenu.classList.contains('active')) return;
+    if (e.key === 'Escape') { closeMenu(); return; }
+    if (e.key !== 'Tab') return;
+
+    const items = [...mobileMenu.querySelectorAll(FOCUSABLE)]
+      .filter(el => el.offsetParent !== null);
+    if (!items.length) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault(); first.focus();
+    }
+  });
+
+  // Following a link inside the drawer closes it (matters for #anchor links,
+  // where no navigation happens).
+  mobileMenu.querySelectorAll('a[href]').forEach(a => {
+    a.addEventListener('click', closeMenu);
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 1024) closeMenu();
+  });
+
+  // ---- Courses dropdown: click/keyboard as well as hover ----
+  const groupBtn = nav.querySelector('.navbar__link--group');
+  if (groupBtn) {
+    const item = groupBtn.closest('.navbar__item');
+    groupBtn.addEventListener('click', () => {
+      const open = item.classList.toggle('is-open');
+      groupBtn.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', (e) => {
+      if (item.contains(e.target)) return;
+      item.classList.remove('is-open');
+      groupBtn.setAttribute('aria-expanded', 'false');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      item.classList.remove('is-open');
+      groupBtn.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  // ---- Transparent -> solid on scroll (home only) ----
   if (isHome) {
     const navEl = document.getElementById('navbar');
     const logoEl = document.getElementById('navLogo');
-    const divider = nav.querySelector('.navbar__logo-divider');
-    const onlineText = nav.querySelector('.navbar__logo-online');
     const toggleSpans = toggle.querySelectorAll('span');
 
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 60) {
-        navEl.classList.remove('navbar--transparent');
-        navEl.classList.add('navbar--solid');
-        logoEl.src = logoEl.dataset.color;
-        toggleSpans.forEach(s => s.style.background = 'var(--navy)');
-      } else {
-        navEl.classList.remove('navbar--solid');
-        navEl.classList.add('navbar--transparent');
-        logoEl.src = logoEl.dataset.white;
-        toggleSpans.forEach(s => s.style.background = 'var(--white)');
-      }
-    });
+    function syncNavbar() {
+      const solid = window.scrollY > 60;
+      navEl.classList.toggle('navbar--solid', solid);
+      navEl.classList.toggle('navbar--transparent', !solid);
+      logoEl.src = solid ? logoEl.dataset.color : logoEl.dataset.white;
+      toggleSpans.forEach(s => {
+        s.style.background = solid ? 'var(--navy)' : 'var(--white)';
+      });
+    }
+
+    window.addEventListener('scroll', syncNavbar, { passive: true });
+    // Run once on load: arriving already scrolled (reload with restored scroll,
+    // back-navigation, or a link with a #hash) previously left the navbar
+    // transparent — white links on a white background.
+    syncNavbar();
   }
+
+  markCurrentPage(nav, mobileMenu);
+}
+
+
+/* ---- Mark the current page in the navigation ---- */
+function markCurrentPage(nav, mobileMenu) {
+  const here = window.location.pathname.replace(/\/$/, '/index.html');
+
+  [nav, mobileMenu].forEach(root => {
+    root.querySelectorAll('a[href]').forEach(a => {
+      if (a.classList.contains('navbar__logo')) return;
+      const url = new URL(a.getAttribute('href'), window.location.href);
+      if (url.origin !== window.location.origin) return;
+      const target = url.pathname.replace(/\/$/, '/index.html');
+      if (target !== here) return;
+      if (url.hash && url.hash !== window.location.hash) return;
+      a.setAttribute('aria-current', 'page');
+    });
+  });
 }
 
 
@@ -195,9 +308,12 @@ function buildFooter() {
       <div class="footer__bottom">
         <p>&copy; ${new Date().getFullYear()} The Institute of International Studies (TIIS). All rights reserved.</p>
         <div class="footer__socials">
-          <a href="#" aria-label="Facebook">${ICONS.facebook}</a>
-          <a href="#" aria-label="Instagram">${ICONS.instagram}</a>
-          <a href="#" aria-label="LinkedIn">${ICONS.linkedin}</a>
+          ${Object.entries(SOCIAL_LINKS)
+            .filter(([, url]) => url)
+            .map(([name, url]) => `
+          <a href="${url}" aria-label="TIIS on ${name[0].toUpperCase() + name.slice(1)}"
+             target="_blank" rel="noopener noreferrer">${ICONS[name]}</a>`)
+            .join('')}
         </div>
       </div>
     </div>
@@ -226,6 +342,17 @@ function buildScrollTop() {
 
 // ---- Scroll Animations ----
 function initScrollAnimations() {
+  const targets = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in');
+  if (!targets.length) return;
+
+  // No motion wanted, or no IntersectionObserver: leave content in its default
+  // visible state.
+  if (PREFERS_REDUCED_MOTION || !('IntersectionObserver' in window)) return;
+
+  // Opt in to the hidden starting state only now that we know we can reveal it
+  // again, so a JS failure can never leave the page blank.
+  document.documentElement.classList.add('js-reveal');
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -235,8 +362,17 @@ function initScrollAnimations() {
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in').forEach(el => {
-    observer.observe(el);
+  targets.forEach(el => observer.observe(el));
+
+  // Reveal anything already on screen — or skipped by a #hash jump further
+  // down the page — without waiting for a scroll that may never happen.
+  requestAnimationFrame(() => {
+    targets.forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight) {
+        el.classList.add('visible');
+        observer.unobserve(el);
+      }
+    });
   });
 }
 
@@ -245,6 +381,16 @@ function initScrollAnimations() {
 function initCounters() {
   const counters = document.querySelectorAll('[data-count]');
   if (!counters.length) return;
+
+  const finalValue = el =>
+    (el.dataset.prefix || '') + el.dataset.count + (el.dataset.suffix || '');
+
+  // The markup ships "0" as a placeholder, so a counter that never animates
+  // shows a wrong number. Without motion, write the real value immediately.
+  if (PREFERS_REDUCED_MOTION || !('IntersectionObserver' in window)) {
+    counters.forEach(el => { el.textContent = finalValue(el); });
+    return;
+  }
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -274,11 +420,51 @@ function initCounters() {
 }
 
 
+/* ---- Wrap page content in a <main> landmark ----
+   These pages are a flat list of <section>s with no landmark, so assistive
+   tech had no main region and the skip link had no target. Runs before the
+   navbar and footer are injected, so whatever is in <body> is the page's own
+   content. */
+function wrapMainContent() {
+  if (document.getElementById('main')) return;
+
+  const main = document.createElement('main');
+  main.id = 'main';
+  main.setAttribute('tabindex', '-1');
+
+  const body = document.body;
+  const content = [...body.children].filter(el => {
+    const tag = el.tagName;
+    return tag !== 'SCRIPT' && tag !== 'NOSCRIPT' && tag !== 'TEMPLATE';
+  });
+  if (!content.length) return;
+
+  body.insertBefore(main, content[0]);
+  content.forEach(el => main.appendChild(el));
+}
+
+
+/* ---- Image loading hints for JS-injected images ----
+   Images in the static markup carry loading/decoding attributes directly;
+   setting them from JS would run after the parser started fetching. This only
+   covers images this script creates (nav and footer logos). */
+function improveImageLoading() {
+  document.querySelectorAll('.footer img, .navbar__logo img').forEach(img => {
+    if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+    if (img.closest('.footer') && !img.hasAttribute('loading')) {
+      img.setAttribute('loading', 'lazy');
+    }
+  });
+}
+
+
 // ---- Initialize everything ----
 function initPage(pageName) {
+  wrapMainContent();
   buildNavbar(pageName);
   buildFooter();
   buildScrollTop();
+  improveImageLoading();
 
   // Wait for DOM to be ready
   requestAnimationFrame(() => {
