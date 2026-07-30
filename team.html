@@ -163,13 +163,18 @@
 
   <!-- Bio Modal -->
   <div class="team-modal-overlay" id="teamModal">
-    <div class="team-modal">
+    <div class="team-modal" role="dialog" aria-modal="true" aria-labelledby="modalName">
+      <button class="team-modal__close" id="modalClose" aria-label="Close biography">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"
+             stroke-linecap="round" aria-hidden="true" width="16" height="16">
+          <path d="M5 5l10 10M15 5L5 15"/>
+        </svg>
+      </button>
       <div class="team-modal__header">
-        <button class="team-modal__close" id="modalClose" aria-label="Close">✕</button>
         <div class="team-modal__avatar" id="modalAvatar"></div>
         <div class="team-modal__title-group">
-          <div class="team-modal__name" id="modalName"></div>
-          <div class="team-modal__role" id="modalRole"></div>
+          <h2 class="team-modal__name" id="modalName"></h2>
+          <p class="team-modal__role" id="modalRole"></p>
         </div>
       </div>
       <div class="team-modal__body">
@@ -417,6 +422,7 @@
   const modalAvatar = document.getElementById('modalAvatar');
   const modalBio = document.getElementById('modalBio');
   const modalClose = document.getElementById('modalClose');
+  let lastFocused = null;
 
   function openModal(person) {
     modalName.textContent = person.name;
@@ -447,16 +453,47 @@
 
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
+
+    // Focus management: the dialog previously opened without moving focus, so
+    // keyboard and screen-reader users stayed behind it and Tab walked the
+    // page underneath.
+    lastFocused = document.activeElement;
+    // The overlay is visibility:hidden until the class lands, and focus() on a
+    // hidden element is silently dropped — so wait one frame.
+    requestAnimationFrame(() => modalClose.focus());
   }
 
   function closeModal() {
+    if (!overlay.classList.contains('active')) return;
     overlay.classList.remove('active');
     document.body.style.overflow = '';
+    if (lastFocused && document.contains(lastFocused)) lastFocused.focus();
+    lastFocused = null;
   }
 
   modalClose.addEventListener('click', closeModal);
   overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+  document.addEventListener('keydown', (e) => {
+    if (!overlay.classList.contains('active')) return;
+
+    if (e.key === 'Escape') { closeModal(); return; }
+    if (e.key !== 'Tab') return;
+
+    // Trap Tab inside the dialog.
+    const items = [...overlay.querySelectorAll(
+      'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    )].filter(el => el.offsetParent !== null);
+    if (!items.length) return;
+
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault(); first.focus();
+    }
+  });
 
   initPage('team');
   </script>

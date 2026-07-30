@@ -87,11 +87,21 @@
         <div class="split__content">
           <span class="section-label">Our Campuses</span>
           <h2>Two City Campuses</h2>
-          <p>Classrooms, computer labs, meeting rooms and a learning centre at each site. Sydney sits in Ultimo, minutes from Central Station. Melbourne is on the Docklands waterfront, two minutes from the D11 tram stop.</p>
-          <ul class="campus-chips">
-            <li><strong>Sydney</strong><span>13–15 Smail Street, Ultimo NSW</span></li>
-            <li><strong>Melbourne</strong><span>112 Newquay Promenade, Docklands VIC</span></li>
-          </ul>
+          <p>Classrooms, computer labs, bookable meeting rooms and a learning centre at each site, both in the city and a short walk from public transport.</p>
+          <!-- An address block, not two bordered chips. A definition list is
+               also the correct structure for label/value pairs. -->
+          <dl class="campus-list">
+            <div class="campus-list__item">
+              <dt>Sydney</dt>
+              <dd class="campus-list__address">13–15 Smail Street<br>Ultimo NSW 2007</dd>
+              <dd class="campus-list__note">Walking distance from Central Station</dd>
+            </div>
+            <div class="campus-list__item">
+              <dt>Melbourne</dt>
+              <dd class="campus-list__address">Level 1, 112 Newquay Promenade<br>Docklands VIC 3008</dd>
+              <dd class="campus-list__note">Two minutes from the D11 tram stop</dd>
+            </div>
+          </dl>
           <div style="display:flex; gap:16px; margin-top:28px; flex-wrap:wrap;">
             <a href="campuses.html" class="btn btn--primary">View Campuses</a>
             <a href="contact.html" class="btn btn--outline-dark">Ask a Question</a>
