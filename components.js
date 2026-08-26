@@ -337,7 +337,7 @@ function markCurrentPage(nav, mobileMenu, currentPage) {
     root.querySelectorAll(`[data-nav="${section}"]`).forEach(a => {
       a.classList.add('is-current');
     });
-    if (currentPage === 'students') {
+    if (['students', 'policies'].includes(currentPage)) {
       root.querySelectorAll('[data-utility="students"]').forEach(a => {
         a.classList.add('is-current');
       });
@@ -365,6 +365,8 @@ function buildBreadcrumbs(currentPage) {
     items.push({ label: 'About Us', href: 'about.html' });
   } else if (['campuses', 'apply', 'life'].includes(currentPage)) {
     items.push({ label: 'Study with Us', href: 'apply.html' });
+  } else if (currentPage === 'policies') {
+    items.push({ label: 'Current Students', href: 'students.html' });
   }
 
   items.push({ label: heading.textContent.trim(), href: '' });
@@ -417,6 +419,7 @@ function buildSiteSearch() {
     ['How to Apply', 'Entry requirements, key dates and fees.', 'apply.html', 'apply admissions entry requirements dates fees'],
     ['Key Dates', 'Six intakes throughout the year.', 'apply.html#dates', 'january march may july september november intakes'],
     ['Current Students', 'Student resources, support and policies.', 'students.html', 'portal support resources policies'],
+    ['Policies & Procedures', 'Search, view and download TIIS academic and management policies.', 'policies.html', 'policies procedures academic management privacy integrity complaints fees'],
     ['Contact Us', 'Ask a question or speak with admissions.', 'contact.html', 'contact enquiry adviser admissions phone email'],
   ].map(([title, description, href, keywords]) => ({ title, description, href, keywords }));
 
@@ -681,6 +684,7 @@ function buildFooter() {
           <ul class="footer__links">
             <li><a href="students.html">Student Portal</a></li>
             <li><a href="students.html#support">Student Support</a></li>
+            <li><a href="policies.html">Policies & Procedures</a></li>
             <li><a href="apply.html">How to Apply</a></li>
             <li><a href="apply.html#fees">Fees & Charges</a></li>
             <li><a href="apply.html#dates">Key Dates</a></li>

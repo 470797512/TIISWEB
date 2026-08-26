@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Policies &amp; Procedures — TIIS</title>
+  <meta name="description" content="Search, view and download current TIIS academic and management policies and procedures.">
+  <link rel="stylesheet" href="styles.css?v=20260826-5">
+  <link rel="icon" type="image/png" href="images/logos/TIIS-Logo-black-and-white-1024x1024.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&amp;display=swap">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TIIS — The Institute of International Studies">
+  <meta property="og:locale" content="en_AU">
+  <meta property="og:title" content="Policies &amp; Procedures — TIIS">
+  <meta property="og:description" content="Search, view and download current TIIS academic and management policies and procedures.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Policies &amp; Procedures — TIIS">
+  <meta name="twitter:description" content="Search, view and download current TIIS academic and management policies and procedures.">
+</head>
+<body>
+
+  <section class="hero policy-hero">
+    <div class="hero__content">
+      <h1 class="hero__title">Policies &amp; Procedures</h1>
+      <p class="hero__subtitle">Search, view and download current TIIS academic and management policies.</p>
+    </div>
+  </section>
+
+  <section class="policy-library" aria-labelledby="policyLibraryTitle">
+    <div class="container">
+      <h2 class="sr-only" id="policyLibraryTitle">TIIS policy library</h2>
+
+      <div class="policy-library__controls">
+        <label class="policy-search" for="policySearch">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m20 20-4-4"></path>
+          </svg>
+          <span class="sr-only">Search policies</span>
+          <input id="policySearch" type="search" autocomplete="off" placeholder="Search policies...">
+        </label>
+
+        <div class="policy-toolbar">
+          <div class="policy-filters" aria-label="Filter policies by category">
+            <button type="button" class="policy-filter is-active" data-policy-filter="All" aria-pressed="true">All policies</button>
+            <button type="button" class="policy-filter" data-policy-filter="Academic" aria-pressed="false">Academic</button>
+            <button type="button" class="policy-filter" data-policy-filter="Management" aria-pressed="false">Management</button>
+          </div>
+          <p class="policy-result-count" id="policyResultCount" aria-live="polite"></p>
+        </div>
+      </div>
+
+      <div class="policy-list__header" aria-hidden="true">
+        <span>Document</span>
+        <span>Category</span>
+        <span>Actions</span>
+      </div>
+      <ul class="policy-list" id="policyList"></ul>
+      <div class="policy-empty" id="policyEmpty" hidden>
+        <h3>No matching policies</h3>
+        <p>Try a different search term or choose another category.</p>
+        <button type="button" class="btn btn--primary" id="policyReset">Show all policies</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="components.js?v=20260826-4"></script>
+  <script src="policies.js?v=20260826-1"></script>
+</body>
+</html>
