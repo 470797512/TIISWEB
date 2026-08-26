@@ -6185,6 +6185,427 @@ p {
 }
 
 
+/* ================================================================
+   VISUAL AUTHENTICITY PASS — 2026-08-26
+   Replaces repeated landing-page card walls with quieter, institutional
+   information patterns and favours real TIIS photography over stock art.
+   ================================================================ */
+
+/* Real campus photographs need page-specific crops rather than one generic
+   centre crop. Keep people in frame at both wide and narrow aspect ratios. */
+.page-about .hero__bg img {
+  object-position: center 48%;
+}
+
+.page-students .hero__bg img {
+  object-position: center 34%;
+}
+
+.page-team .hero__bg img {
+  object-position: center 64%;
+}
+
+.page-contact .hero__bg img {
+  object-position: center 54%;
+}
+
+/* Vision and mission are institutional statements, not promotional cards. */
+.purpose-grid {
+  gap: 0;
+  align-items: stretch;
+  margin-bottom: clamp(48px, 6vw, 72px);
+  border-top: 1px solid var(--n-300);
+  border-bottom: 1px solid var(--n-300);
+}
+
+.purpose-note {
+  padding: clamp(24px, 3vw, 38px) clamp(24px, 4vw, 48px);
+  background: transparent;
+}
+
+.purpose-note + .purpose-note {
+  border-left: 1px solid var(--n-300);
+}
+
+.purpose-note h3 {
+  margin: 0 0 12px;
+  color: var(--navy);
+  font-size: clamp(1.35rem, 1.15rem + 0.7vw, 1.75rem);
+}
+
+.purpose-note h3::before {
+  display: inline-block;
+  width: 22px;
+  height: 2px;
+  margin-right: 11px;
+  vertical-align: 0.28em;
+  background: var(--blue);
+  content: '';
+}
+
+.purpose-note--mission h3::before {
+  background: var(--gold-dark);
+}
+
+.purpose-note p {
+  max-width: 52ch;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* Values, facilities and governance read as ruled registers. This creates
+   clearer hierarchy than repeating the same bordered tile six times. */
+.page-about .values-grid,
+.facility-list,
+.governance-list {
+  gap: 0 clamp(28px, 3.5vw, 46px);
+  border-top: 1px solid var(--n-300);
+}
+
+.page-about .values-grid {
+  counter-reset: value-item;
+}
+
+.page-about .value-item,
+.facility-list .feature-card,
+.governance-list .feature-card {
+  min-height: 0;
+  padding: 24px 0 26px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--n-300);
+  border-radius: 0;
+  box-shadow: none;
+  transform: none;
+}
+
+.page-about .value-item {
+  position: relative;
+  padding-left: 42px;
+  counter-increment: value-item;
+}
+
+.page-about .value-item::before {
+  position: absolute;
+  top: 27px;
+  left: 0;
+  color: var(--blue);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  content: counter(value-item, decimal-leading-zero);
+}
+
+.page-about .value-item:hover,
+.facility-list .feature-card:hover,
+.governance-list .feature-card:hover {
+  border-color: var(--blue);
+  box-shadow: none;
+  transform: none;
+}
+
+.facility-list .feature-card__icon,
+.governance-list .feature-card__icon {
+  width: 24px;
+  height: 24px;
+  margin: 0 0 12px;
+  color: var(--blue);
+  background: transparent;
+}
+
+.page-about .value-item__icon {
+  display: none;
+}
+
+.facility-list .feature-card__icon svg,
+.governance-list .feature-card__icon svg {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.page-about .value-item__title,
+.facility-list .feature-card__title,
+.governance-list .feature-card__title {
+  color: var(--navy);
+  font-family: var(--font-display);
+  font-size: 1.18rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* Intakes are dates in an academic register, so they use a compact ruled
+   layout instead of six floating cards. */
+.intake-list {
+  max-width: 960px;
+  margin: 0;
+  gap: 0 clamp(28px, 4vw, 52px);
+  border-top: 2px solid var(--navy);
+}
+
+.intake-list .feature-card {
+  padding: 21px 0 23px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--n-300);
+  border-radius: 0;
+  box-shadow: none;
+  transform: none;
+}
+
+.intake-list .feature-card:hover {
+  border-color: var(--blue);
+  box-shadow: none;
+  transform: none;
+}
+
+.intake-list .feature-card__title {
+  margin: 0 0 3px;
+  color: var(--navy);
+  font-family: var(--font-display);
+  font-size: 1.32rem;
+  font-weight: 500;
+}
+
+.intake-list .feature-card__desc {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
+/* Fee information becomes one continuous two-column information block. */
+.fees-layout {
+  gap: 0;
+  align-items: stretch;
+  border-top: 2px solid var(--navy);
+  border-bottom: 1px solid var(--n-300);
+}
+
+.fee-panel {
+  padding: clamp(28px, 3.5vw, 44px);
+  background: transparent;
+}
+
+.fee-panel:first-child {
+  padding-left: 0;
+}
+
+.fee-panel + .fee-panel {
+  padding-right: 0;
+  border-left: 1px solid var(--n-300);
+}
+
+.fee-panel h3 {
+  color: var(--navy);
+  font-size: clamp(1.35rem, 1.2rem + 0.5vw, 1.65rem);
+}
+
+/* Student shortcuts behave like a service directory. */
+.resource-links {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(30px, 5vw, 64px);
+  border-top: 2px solid var(--navy);
+}
+
+.resource-links .quick-link {
+  min-height: 70px;
+  padding: 17px 4px 17px 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--n-300);
+  border-radius: 0;
+  box-shadow: none;
+  transform: none;
+}
+
+.resource-links .quick-link::after {
+  margin-left: auto;
+  color: var(--blue);
+  font-size: 0.9rem;
+  content: '\2197';
+}
+
+.resource-links .quick-link:hover {
+  border-color: var(--blue);
+  box-shadow: none;
+  transform: none;
+}
+
+.resource-links .quick-link__icon {
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.resource-links .quick-link__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Contact details and the form share the same ruled, document-like language. */
+.contact-layout {
+  grid-template-columns: minmax(260px, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(48px, 7vw, 92px);
+  align-items: start;
+}
+
+.contact-details {
+  margin-top: 30px;
+  border-top: 2px solid var(--navy);
+}
+
+.contact-detail {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--n-300);
+}
+
+.contact-detail__icon {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  color: var(--blue);
+  background: transparent;
+}
+
+.contact-detail__icon svg {
+  width: 19px;
+  height: 19px;
+}
+
+.contact-form-panel {
+  padding: clamp(28px, 4vw, 44px);
+  background: var(--off-white);
+  border-top: 3px solid var(--blue);
+  border-bottom: 1px solid var(--n-300);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.contact-form-panel input,
+.contact-form-panel select,
+.contact-form-panel textarea {
+  border-radius: 4px;
+  box-shadow: none;
+}
+
+/* Shorter, quieter reveals keep the page responsive without announcing the
+   animation system. Six-item grids no longer make visitors wait 600ms. */
+.fade-in,
+.fade-in-left,
+.fade-in-right,
+.scale-in {
+  transition-duration: 300ms;
+  transition-timing-function: var(--ease-out);
+}
+
+.js-reveal .fade-in {
+  transform: translateY(12px);
+}
+
+.js-reveal .fade-in-left {
+  transform: translateX(-16px);
+}
+
+.js-reveal .fade-in-right {
+  transform: translateX(16px);
+}
+
+.js-reveal .scale-in {
+  transform: scale(0.98);
+}
+
+.delay-1,
+.delay-4 { transition-delay: 40ms; }
+.delay-2,
+.delay-5 { transition-delay: 80ms; }
+.delay-3,
+.delay-6 { transition-delay: 120ms; }
+
+@media (hover: none), (pointer: coarse) {
+  .card:hover,
+  .course-card:hover,
+  .team-card:hover,
+  .feature-card:hover,
+  .value-item:hover,
+  .quick-link:hover,
+  .online-feature:hover,
+  .cpd-category:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .purpose-grid,
+  .fees-layout,
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .purpose-note {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .purpose-note + .purpose-note {
+    border-top: 1px solid var(--n-300);
+    border-left: 0;
+  }
+
+  .page-about .values-grid,
+  .facility-list,
+  .governance-list,
+  .resource-links {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .intake-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 24px;
+  }
+
+  .fee-panel,
+  .fee-panel:first-child,
+  .fee-panel + .fee-panel {
+    padding: 28px 0;
+  }
+
+  .fee-panel + .fee-panel {
+    border-top: 1px solid var(--n-300);
+    border-left: 0;
+  }
+
+  .contact-layout {
+    gap: 48px;
+  }
+
+  .contact-form-panel {
+    padding: 26px 22px 30px;
+  }
+}
+
+@media (max-width: 520px) {
+  .page-team .hero__bg img {
+    object-position: center 52%;
+  }
+
+  .intake-list {
+    gap: 0 18px;
+  }
+}
+
+
 /* ===================================================
    Policies & Procedures
    A searchable document directory that uses open rows rather than a card
