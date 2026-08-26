@@ -4,92 +4,182 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TIIS — The Institute of International Studies | Higher Education in Australia</title>
-  <meta name="description" content="TIIS is an accredited Australian higher education provider offering undergraduate and postgraduate programs in Business, IT, Accounting, Cyber Security and Financial Planning.">
-  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Explore undergraduate, postgraduate and online study at TIIS in business, accounting, information technology, cyber security and financial planning.">
+  <link rel="stylesheet" href="styles.css?v=20260826-3">
   <link rel="icon" type="image/png" href="images/logos/TIIS-Logo-black-and-white-1024x1024.png">
 
-  <!-- Fonts: preconnect so the TLS handshake overlaps HTML parsing -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
 
-  <!-- Social sharing. Add og:url and og:image using your production
-       domain (absolute URLs are required) to get link preview images. -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="TIIS — The Institute of International Studies">
   <meta property="og:locale" content="en_AU">
   <meta property="og:title" content="TIIS — The Institute of International Studies | Higher Education in Australia">
-  <meta property="og:description" content="TIIS is an accredited Australian higher education provider offering undergraduate and postgraduate programs in Business, IT, Accounting, Cyber Security and Financial Planning.">
+  <meta property="og:description" content="Explore undergraduate, postgraduate and online study at TIIS in business, accounting, information technology, cyber security and financial planning.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="TIIS — The Institute of International Studies | Higher Education in Australia">
-  <meta name="twitter:description" content="TIIS is an accredited Australian higher education provider offering undergraduate and postgraduate programs in Business, IT, Accounting, Cyber Security and Financial Planning.">
+  <meta name="twitter:description" content="Explore undergraduate, postgraduate and online study at TIIS in business, accounting, information technology, cyber security and financial planning.">
 </head>
 <body>
 
-  <!-- Hero -->
-  <section class="hero" id="hero">
-    <div class="hero__bg">
-      <img src="images/hero/sydney-harbour.jpg" alt="Sydney Harbour skyline at sunset" loading="eager" fetchpriority="high" decoding="sync">
+  <!-- One focused campaign per slide; controls pause once a visitor takes over. -->
+  <section class="hero home-hero" id="homeHero" aria-label="TIIS highlights">
+    <div class="home-hero__slides">
+      <article class="home-hero__slide is-active">
+        <div class="hero__bg">
+          <img src="images/hero/sydney-harbour.jpg" alt="Sydney Harbour skyline at sunset" loading="eager" fetchpriority="high" decoding="sync">
+        </div>
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+          <span class="home-hero__brandline">For Today. For Tomorrow.</span>
+          <h1 class="hero__title">Build Your Future at TIIS</h1>
+          <p class="hero__subtitle">Explore undergraduate, postgraduate and online study options in business, accounting, information technology and cyber security. Study in Sydney or Melbourne, with six intakes available throughout the year.</p>
+          <div class="hero__actions">
+            <a href="courses.html" class="btn btn--primary btn--lg">Explore Courses</a>
+            <a href="contact.html?subject=Course%20Advice" class="btn btn--outline btn--lg">Ask a Question</a>
+            <a href="apply.html" class="btn btn--gold btn--lg">Apply Now</a>
+          </div>
+          <ul class="hero__trust home-hero__trust">
+            <li>CRICOS 03705J</li>
+            <li>Provider PRV14085</li>
+            <li>CPA Australia &middot; CAANZ &middot; ACCA recognised</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="home-hero__slide">
+        <div class="hero__bg">
+          <img src="images/people/multiethnic-group-young-concentrated-students-683x1024.jpg" alt="TIIS students studying together" loading="lazy" decoding="async">
+        </div>
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+          <span class="home-hero__brandline">Admissions</span>
+          <h2 class="hero__title">Six Intakes Throughout the Year</h2>
+          <p class="hero__subtitle">Start in January, March, May, July, September or November. Review the dates and plan the intake that works for you.</p>
+          <div class="hero__actions">
+            <a href="apply.html#dates" class="btn btn--primary btn--lg">View Key Dates</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="home-hero__slide">
+        <div class="hero__bg">
+          <img src="images/courses/3-scaled.jpg" alt="Two TIIS students on campus" loading="lazy" decoding="async">
+        </div>
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+          <span class="home-hero__brandline">Sydney & Melbourne</span>
+          <h2 class="hero__title">Study in the Centre of Two Global Cities</h2>
+          <p class="hero__subtitle">Choose between TIIS campuses in Ultimo, Sydney and Docklands, Melbourne, both close to public transport and city amenities.</p>
+          <div class="hero__actions">
+            <a href="campuses.html" class="btn btn--primary btn--lg">Explore Our Campuses</a>
+          </div>
+        </div>
+      </article>
     </div>
-    <div class="hero__overlay"></div>
-    <div class="hero__content">
-      <span class="hero__label">The Institute of International Studies</span>
-      <h1 class="hero__title">For Today.<br>For Tomorrow.</h1>
-      <p class="hero__subtitle">Bachelor's degrees, graduate certificates and master's programs in business, accounting and IT. Two campuses in Sydney and Melbourne, six intakes a year.</p>
-      <div class="hero__actions">
-        <a href="courses.html" class="btn btn--primary btn--lg">Explore Courses</a>
-        <a href="apply.html" class="btn btn--gold btn--lg">Apply Now</a>
-        <a href="contact.html" class="btn btn--outline btn--lg">Ask a Question</a>
-      </div>
-      <ul class="hero__trust">
-        <li>CRICOS 03705J</li>
-        <li>Provider PRV14085</li>
-        <li>CPA Australia &middot; CAANZ &middot; ACCA recognised</li>
-      </ul>
+
+    <div class="home-hero__controls" aria-label="Highlight controls">
+      <button type="button" class="home-hero__control" data-hero-prev aria-label="Previous highlight">←</button>
+      <div class="home-hero__dots" data-hero-dots></div>
+      <button type="button" class="home-hero__control" data-hero-next aria-label="Next highlight">→</button>
+      <button type="button" class="home-hero__control" data-hero-pause>Pause</button>
     </div>
   </section>
 
-
-  <!-- Stats -->
-  <section class="section section--stats">
+  <section class="section section--stats" aria-label="TIIS at a glance">
     <div class="container">
       <div class="stats-bar fade-in">
-        <div class="stat">
-          <div class="stat__number" data-count="9" data-suffix="+">0</div>
+        <a class="stat" href="courses.html" aria-label="Explore more than nine academic courses">
+          <div class="stat__number" data-count="9" data-suffix="+">9+</div>
           <div class="stat__label">Academic Courses</div>
-        </div>
-        <div class="stat">
-          <div class="stat__number" data-count="2">0</div>
+        </a>
+        <a class="stat" href="campuses.html" aria-label="Explore two campus locations">
+          <div class="stat__number" data-count="2">2</div>
           <div class="stat__label">Campus Locations</div>
-        </div>
-        <div class="stat">
-          <div class="stat__number" data-count="6">0</div>
+        </a>
+        <a class="stat" href="apply.html#dates" aria-label="View six intakes per year">
+          <div class="stat__number" data-count="6">6</div>
           <div class="stat__label">Intakes Per Year</div>
-        </div>
-        <div class="stat">
-          <div class="stat__number" data-count="2015">0</div>
+        </a>
+        <a class="stat" href="about.html#story" aria-label="Read the TIIS story since 2015">
+          <div class="stat__number" data-count="2015">2015</div>
           <div class="stat__label">Established</div>
-        </div>
+        </a>
       </div>
     </div>
   </section>
 
+  <section class="section section--gray" id="courses">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Course Options</span>
+        <h2>Choose How You Want to Study</h2>
+        <p class="section-subtitle">Start with a study pathway, then narrow your options by discipline.</p>
+      </div>
 
-  <!-- Campus Preview -->
-  <section class="section section--gray">
+      <div class="pathway-grid">
+        <a class="pathway-card fade-in delay-1" href="courses.html?level=undergraduate#programs">
+          <div class="pathway-card__image">
+            <img src="images/hero/alexis-brown-Xv7k95vOFA-unsplash.jpg" alt="Undergraduate students working together" loading="lazy" decoding="async">
+          </div>
+          <div class="pathway-card__body">
+            <span class="pathway-card__meta">Bachelor degrees</span>
+            <h3>Undergraduate</h3>
+            <p>Build a broad foundation in business or information technology through a three-year bachelor degree.</p>
+            <span class="pathway-card__link">View undergraduate courses →</span>
+          </div>
+        </a>
+
+        <a class="pathway-card fade-in delay-2" href="courses.html?level=postgraduate#programs">
+          <div class="pathway-card__image">
+            <img src="images/hero/ryan-jacobson-cXUOQWdRV4I-unsplash.jpg" alt="Tree-lined university building" loading="lazy" decoding="async">
+          </div>
+          <div class="pathway-card__body">
+            <span class="pathway-card__meta">Certificates & master degrees</span>
+            <h3>Postgraduate</h3>
+            <p>Develop specialist knowledge in management, professional accounting, information technology or cyber security.</p>
+            <span class="pathway-card__link">View postgraduate courses →</span>
+          </div>
+        </a>
+
+        <a class="pathway-card fade-in delay-3" href="tiis-online/index.html">
+          <div class="pathway-card__image">
+            <img src="images/hero/icons8-team-FcLyt7lW5wg-unsplash.jpg" alt="Student participating in online study" loading="lazy" decoding="async">
+          </div>
+          <div class="pathway-card__body">
+            <span class="pathway-card__meta">Flexible delivery</span>
+            <h3>TIIS Online</h3>
+            <p>Study financial planning, professional development or an MBA online, without regular campus attendance.</p>
+            <span class="pathway-card__link">Explore online study →</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="discipline-links fade-in" aria-label="Browse courses by discipline">
+        <strong>Browse by discipline</strong>
+        <a href="courses.html#business">Business & Management</a>
+        <a href="courses.html#accounting">Professional Accounting</a>
+        <a href="courses.html#it">IT & Cyber Security</a>
+        <a href="tiis-online/course-gdfp.html">Financial Planning</a>
+      </div>
+
+      <div class="text-center" style="margin-top:32px;">
+        <a href="courses.html" class="btn btn--primary">Explore All Courses</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container">
       <div class="split fade-in">
         <div class="split__image">
-          <img src="images/courses/3-scaled.jpg"
-               alt="TIIS campus facilities"
-               style="aspect-ratio: 16/10; object-fit: cover;" loading="lazy" decoding="async">
+          <img src="images/courses/3-scaled.jpg" alt="Two TIIS students on campus" style="aspect-ratio:16/10;object-fit:cover;" loading="lazy" decoding="async">
         </div>
         <div class="split__content">
           <span class="section-label">Our Campuses</span>
-          <h2>Two City Campuses</h2>
-          <p>Classrooms, computer labs, bookable meeting rooms and a learning centre at each site, both in the city and a short walk from public transport.</p>
-          <!-- An address block, not two bordered chips. A definition list is
-               also the correct structure for label/value pairs. -->
+          <h2>Study in Sydney or Melbourne</h2>
+          <p>Choose between TIIS campuses in Ultimo, Sydney and Docklands, Melbourne. Both locations provide learning facilities, student services and convenient access to public transport and surrounding city amenities.</p>
           <dl class="campus-list">
             <div class="campus-list__item">
               <dt>Sydney</dt>
@@ -102,317 +192,99 @@
               <dd class="campus-list__note">Two minutes from the D11 tram stop</dd>
             </div>
           </dl>
-          <div style="display:flex; gap:16px; margin-top:28px; flex-wrap:wrap;">
-            <a href="campuses.html" class="btn btn--primary">View Campuses</a>
-            <a href="contact.html" class="btn btn--outline-dark">Ask a Question</a>
-          </div>
+          <a href="campuses.html" class="btn btn--primary" style="margin-top:28px;">Explore Our Campuses</a>
         </div>
       </div>
     </div>
   </section>
 
-
-  <!-- Welcome -->
-  <section class="section">
+  <section class="section section--gray" id="why-tiis">
     <div class="container">
-      <!-- Reversed so its image doesn't sit on the same side as the campus
-           split directly above it. -->
-      <div class="split split--reverse">
-        <div class="split__image fade-in-left">
-          <img src="images/people/multiethnic-group-young-concentrated-students-683x1024.jpg"
-               alt="Diverse group of TIIS students studying"
-               style="aspect-ratio: 3/4; object-fit: cover;" loading="lazy" decoding="async">
+      <div class="why-layout">
+        <div class="why-intro fade-in-left">
+          <span class="section-label">Why Study at TIIS</span>
+          <h2>Why Students Choose TIIS</h2>
+          <p>Practical courses, recognised qualifications and support that remains accessible throughout your studies.</p>
+          <a href="about.html" class="link-arrow">Learn more about TIIS</a>
         </div>
-        <div class="split__content fade-in-right">
-          <span class="section-label">About TIIS</span>
-          <h2>A Small Provider,<br>Accredited Since 2015</h2>
-          <p>The Institute of International Studies is an Australian higher education provider registered with TEQSA. We teach business, accounting and information technology to domestic and international students at two city campuses.</p>
-          <p>Our Master of Professional Accounting is accredited by CPA Australia, Chartered Accountants Australia and New Zealand, and ACCA. Class sizes are small, and the people who teach you are the people you see on campus.</p>
-          <div style="display:flex; gap:16px; margin-top:24px; flex-wrap:wrap;">
-            <a href="about.html" class="btn btn--primary">More About Us</a>
-            <a href="team.html" class="link-arrow" style="align-self:center;">Meet the teaching staff</a>
-          </div>
-        </div>
+        <ol class="why-list fade-in-right">
+          <li>Career-Relevant Programs</li>
+          <li>Accredited and Recognised Courses</li>
+          <li>Experienced Academic Staff</li>
+          <li>Prime Campus Locations</li>
+          <li>Global and Diverse Community</li>
+          <li>Flexible Study and Payment Options</li>
+          <li>Strong Student Support</li>
+        </ol>
       </div>
     </div>
   </section>
 
-
-  <!-- Course Categories -->
-  <section class="section section--gray" id="courses">
+  <section class="section" id="life-at-tiis">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-label">Our Programs</span>
-        <h2>Nine Courses, Four Disciplines</h2>
-        <p class="section-subtitle">Undergraduate through master's level, plus three programs delivered entirely online. Every course is CRICOS-registered and open to international students.</p>
+        <span class="section-label">Life at TIIS</span>
+        <h2>Study, Support and Community</h2>
+        <p class="section-subtitle">Campus life extends beyond class through student services, activities and a community drawn from different cultures and professional backgrounds.</p>
       </div>
 
-      <div class="card-grid card-grid--4">
-        <!-- Business -->
-        <div class="card fade-in delay-1">
-          <div class="card__image">
-            <img src="images/hero/alexis-brown-Xv7k95vOFA-unsplash.jpg" alt="Business students in discussion" loading="lazy" decoding="async">
+      <div class="life-grid fade-in">
+        <a class="life-card" href="life-at-tiis.html#community">
+          <img src="images/people/teenagers-using-laptop-reading.jpg" alt="Students collaborating during their studies" loading="lazy" decoding="async">
+          <div class="life-card__content">
+            <h3>Campus Community</h3>
+            <p>Meet classmates, share ideas and build connections in Sydney or Melbourne.</p>
           </div>
-          <div class="card__body">
-            <span class="card__tag">Business</span>
-            <h3 class="card__title">Business & Management</h3>
-            <p class="card__desc">Bachelor of Business (3 years), Graduate Certificate (16&ndash;26 weeks) and MBA (2 years).</p>
-            <a href="courses.html#business" class="link-arrow">View Courses</a>
+        </a>
+        <a class="life-card" href="life-at-tiis.html#support">
+          <img src="images/courses/IMG_6635-scaled-e1748867724686.jpg" alt="Students receiving support at TIIS" loading="lazy" decoding="async">
+          <div class="life-card__content">
+            <h3>Student Support</h3>
+            <p>Academic, wellbeing and practical support throughout your course.</p>
           </div>
-        </div>
+        </a>
+        <a class="life-card" href="life-at-tiis.html#activities">
+          <img src="images/courses/IMG_6649--scaled-e1748867895725.jpg" alt="TIIS students taking part in a campus activity" loading="lazy" decoding="async">
+          <div class="life-card__content">
+            <h3>Events & Activities</h3>
+            <p>Take part in orientation, workshops and community activities.</p>
+          </div>
+        </a>
+      </div>
 
-        <!-- Accounting -->
-        <div class="card fade-in delay-2">
-          <div class="card__image">
-            <img src="images/hero/ryan-jacobson-cXUOQWdRV4I-unsplash.jpg" alt="Accounting professionals" loading="lazy" decoding="async">
-          </div>
-          <div class="card__body">
-            <span class="card__tag">Accounting</span>
-            <h3 class="card__title">Professional Accounting</h3>
-            <p class="card__desc">Graduate Certificate into the Master of Professional Accounting, which carries CPA Australia, CAANZ and ACCA accreditation.</p>
-            <a href="courses.html#accounting" class="link-arrow">View Courses</a>
-          </div>
+      <figure class="student-quote fade-in">
+        <img src="images/people/Apsara-1.png" alt="Apsara Chettri" loading="lazy" decoding="async">
+        <div>
+          <blockquote>“Since there are many international students at TIIS, it has made my journey more comfortable. Discovering new things and learning from different cultures every day has been wonderful.”</blockquote>
+          <figcaption><cite>Apsara Chettri · TIIS MBA Alumna · Sydney Campus</cite></figcaption>
         </div>
+      </figure>
 
-        <!-- IT -->
-        <div class="card fade-in delay-3">
-          <div class="card__image">
-            <img src="images/hero/mika-korhonen-mKi1rfSQwVY-unsplash.jpg" alt="Information Technology" loading="lazy" decoding="async">
-          </div>
-          <div class="card__body">
-            <span class="card__tag">Technology</span>
-            <h3 class="card__title">Information Technology</h3>
-            <p class="card__desc">Bachelor of IT, Graduate Certificate, and a two-year Master of Cyber Security.</p>
-            <a href="courses.html#it" class="link-arrow">View Courses</a>
-          </div>
-        </div>
-
-        <!-- TIIS Online -->
-        <div class="card fade-in delay-4">
-          <div class="card__image">
-            <img src="images/hero/icons8-team-FcLyt7lW5wg-unsplash.jpg" alt="TIIS Online learning" loading="lazy" decoding="async">
-          </div>
-          <div class="card__body">
-            <span class="card__tag">Online</span>
-            <h3 class="card__title">TIIS Online</h3>
-            <p class="card__desc">CPD for financial advisers, an online MBA, and the Graduate Diploma of Financial Planning. No campus attendance required.</p>
-            <a href="tiis-online/index.html" class="link-arrow">Explore Online Programs</a>
-          </div>
-        </div>
+      <div class="text-center" style="margin-top:34px;">
+        <a href="life-at-tiis.html" class="btn btn--primary">Discover Life at TIIS</a>
       </div>
     </div>
   </section>
 
-
-  <!-- Why TIIS -->
-  <section class="section">
-    <div class="container">
-      <div class="split split--reverse">
-        <div class="split__content fade-in-left">
-          <span class="section-label">Practical Details</span>
-          <h2>What You Should Know<br>Before Applying</h2>
-          <p>The things prospective students ask us about most often, in one place.</p>
-
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:32px;">
-            <div>
-              <h3 class="h-size-lg" style="color:var(--navy); margin-bottom:6px;">Accreditation</h3>
-              <p class="text-sm" style="margin:0;">Registered with TEQSA as provider PRV14085. The Master of Professional Accounting is accredited by CPA Australia, CAANZ and ACCA.</p>
-            </div>
-            <div>
-              <h3 class="h-size-lg" style="color:var(--navy); margin-bottom:6px;">Six intakes a year</h3>
-              <p class="text-sm" style="margin:0;">January, March, May, July, September and November, so you rarely wait more than two months to start.</p>
-            </div>
-            <div>
-              <h3 class="h-size-lg" style="color:var(--navy); margin-bottom:6px;">How you study</h3>
-              <p class="text-sm" style="margin:0;">Most courses run face-to-face, online or blended. Delivery depends on the course and your visa conditions.</p>
-            </div>
-            <div>
-              <h3 class="h-size-lg" style="color:var(--navy); margin-bottom:6px;">Where you study</h3>
-              <p class="text-sm" style="margin:0;">Sydney and Melbourne, except the Graduate Certificate in Professional Accounting, which runs in Sydney only.</p>
-            </div>
-          </div>
-        </div>
-        <div class="split__image fade-in-right">
-          <img src="images/people/teenagers-using-laptop-reading.jpg"
-               alt="Students studying at TIIS"
-               style="aspect-ratio: 4/3; object-fit: cover;" loading="lazy" decoding="async">
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- Testimonials -->
-  <section class="section section--gray" id="testimonials">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">In Their Words</span>
-        <h2>Five Students on Studying Here</h2>
-      </div>
-
-      <div class="testimonials-carousel fade-in">
-        <div class="testimonials-track" id="testimonialsTrack">
-          <div class="testimonial-slide">
-            <div class="testimonial-card">
-              <p class="testimonial-card__quote">I received a lot of encouragement from the staff. There were excellent tutors who consistently motivated me. As a result, I gained valuable experience and acquired great skills.</p>
-              <div class="testimonial-card__attribution">
-                <div class="testimonial-card__avatar">
-                <img src="images/courses/Gurwinder.png" alt="Gurwinder" loading="lazy" decoding="async">
-              </div>
-                <div>
-                  <div class="testimonial-card__name">Gurwinder</div>
-                  <div class="testimonial-card__role">TIIS Student</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-slide">
-            <div class="testimonial-card">
-              <p class="testimonial-card__quote">I completed my Master's in Accounting at TIIS. My teachers helped me, which resulted in me earning a distinction. I am really happy to be a part of the TIIS team.</p>
-              <div class="testimonial-card__attribution">
-                <div class="testimonial-card__avatar">
-                <img src="images/people/Shobha-1.png" alt="Shobha" loading="lazy" decoding="async">
-              </div>
-                <div>
-                  <div class="testimonial-card__name">Shobha</div>
-                  <div class="testimonial-card__role">Master of Accounting Graduate</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-slide">
-            <div class="testimonial-card">
-              <p class="testimonial-card__quote">The teachers are friendly. They help with our assignment problems. The team management is very approachable — they listen to students' concerns and find solutions.</p>
-              <div class="testimonial-card__attribution">
-                <div class="testimonial-card__avatar">
-                <img src="images/people/Guna-1.png" alt="Guna" loading="lazy" decoding="async">
-              </div>
-                <div>
-                  <div class="testimonial-card__name">Guna</div>
-                  <div class="testimonial-card__role">TIIS Student</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-slide">
-            <div class="testimonial-card">
-              <p class="testimonial-card__quote">It's not book-based; it's practical-based. I appreciate the interactive sessions with the lecturers. I also love the diverse community at TIIS, with different cultures and languages.</p>
-              <div class="testimonial-card__attribution">
-                <div class="testimonial-card__avatar">
-                <img src="images/people/Anne-1.png" alt="Anne" loading="lazy" decoding="async">
-              </div>
-                <div>
-                  <div class="testimonial-card__name">Anne</div>
-                  <div class="testimonial-card__role">TIIS Student</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-slide">
-            <div class="testimonial-card">
-              <p class="testimonial-card__quote">Since there are many international students at TIIS, it has made my journey more comfortable. Discovering new things and learning from different cultures every day has been wonderful.</p>
-              <div class="testimonial-card__attribution">
-                <div class="testimonial-card__avatar">
-                <img src="images/people/Apsara-1.png" alt="Apsara" loading="lazy" decoding="async">
-              </div>
-                <div>
-                  <div class="testimonial-card__name">Apsara</div>
-                  <div class="testimonial-card__role">TIIS Student</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="carousel-controls">
-          <button class="carousel-btn carousel-btn--prev" aria-label="Previous testimonial">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd"/></svg>
-          </button>
-          <div class="carousel-dots"></div>
-          <button class="carousel-btn carousel-btn--next" aria-label="Next testimonial">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"/></svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- How to Apply -->
-  <section class="section" id="apply">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">Admissions</span>
-        <h2>How to Apply</h2>
-        <p class="section-subtitle">Applications go to admissions by email. There is no online portal and no application fee.</p>
-      </div>
-
-      <div class="steps">
-        <div class="step fade-in delay-1">
-          <div class="step__number">1</div>
-          <h3 class="step__title">Gather Documents</h3>
-          <p class="step__desc">Academic transcripts, ID, and evidence of English proficiency. Requirements differ by course level.</p>
-        </div>
-        <div class="step fade-in delay-2">
-          <div class="step__number">2</div>
-          <h3 class="step__title">Submit Application</h3>
-          <p class="step__desc">Email the completed form and your documents to info@tiis.edu.au.</p>
-        </div>
-        <div class="step fade-in delay-3">
-          <div class="step__number">3</div>
-          <h3 class="step__title">Receive Offer</h3>
-          <p class="step__desc">If you meet the entry criteria, we issue a Letter of Offer for your course.</p>
-        </div>
-        <div class="step fade-in delay-4">
-          <div class="step__number">4</div>
-          <h3 class="step__title">Pay & Enrol</h3>
-          <p class="step__desc">Pay the fees in your offer. We then issue a Confirmation of Enrolment, which international students need for a visa.</p>
-        </div>
-      </div>
-
-      <div class="text-center" style="margin-top:48px;">
-        <a href="apply.html" class="btn btn--primary">Start Your Application</a>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- CTA -->
-  <section class="section">
+  <section class="section section--gray">
     <div class="container">
       <div class="cta-banner fade-in">
         <div>
-          <h2>Talk to Admissions</h2>
-          <p>Questions about entry requirements, credit for prior study, or which intake to aim for? Ask us before you apply; it is quicker than guessing.</p>
-          <!-- Real contact detail rather than two abstract buttons. -->
-          <dl class="cta-banner__details">
-            <div>
-              <dt>Within Australia</dt>
-              <dd><a href="tel:1300164600">1300 164 600</a></dd>
-            </div>
-            <div>
-              <dt>International</dt>
-              <dd><a href="tel:+61280980702">+61 2 8098 0702</a></dd>
-            </div>
-            <div>
-              <dt>Email</dt>
-              <dd><a href="mailto:info@tiis.edu.au">info@tiis.edu.au</a></dd>
-            </div>
-          </dl>
+          <h2>Ready to Discuss Your Study Options?</h2>
+          <p>Speak with the admissions team about courses, entry requirements, credit for prior study and upcoming intakes.</p>
         </div>
         <div class="cta-banner__actions">
+          <a href="contact.html?subject=Course%20Advice" class="btn btn--white btn--lg">Speak to a Course Adviser</a>
           <a href="apply.html" class="btn btn--gold btn--lg">Apply Now</a>
-          <a href="contact.html" class="btn btn--outline btn--lg">Send an Enquiry</a>
         </div>
       </div>
     </div>
   </section>
 
-
-  <script src="components.js"></script>
+  <script src="components.js?v=20260826-3"></script>
   <script>
     initPage('home');
-    initCarousel('testimonialsTrack');
+    initHeroCarousel('homeHero');
   </script>
 </body>
 </html>

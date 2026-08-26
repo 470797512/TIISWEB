@@ -39,6 +39,7 @@ const ICONS = {
   certificate: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path fill-rule="evenodd" d="M10 2a.75.75 0 01.75.75v.258a33.64 33.64 0 016.226.814.75.75 0 01-.272 1.476 32.14 32.14 0 00-5.569-.746.75.75 0 00-.135 0 32.14 32.14 0 00-5.569.746.75.75 0 01-.272-1.476 33.64 33.64 0 016.226-.814V2.75A.75.75 0 0110 2zM7 7a.75.75 0 01.75-.75h4.5a.75.75 0 010 1.5h-4.5A.75.75 0 017 7zm.75 2.25a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5zM7 12a.75.75 0 01.75-.75h4.5a.75.75 0 010 1.5h-4.5A.75.75 0 017 12zm-2 4h10v-1.5a.75.75 0 011.5 0v2.25a.75.75 0 01-.75.75h-11.5a.75.75 0 01-.75-.75v-2.25a.75.75 0 011.5 0V16z" clip-rule="evenodd"/></svg>',
   users: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path d="M7 8a3 3 0 100-6 3 3 0 000 6zM14.5 9a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM1.615 16.428a1.224 1.224 0 01-.569-1.175 6.002 6.002 0 0111.908 0c.058.467-.172.92-.57 1.174A9.953 9.953 0 017 18a9.953 9.953 0 01-5.385-1.572zM14.5 16h-.106c.07-.297.088-.611.048-.933a7.47 7.47 0 00-1.588-3.755 4.502 4.502 0 015.874 2.636.818.818 0 01-.36.98A7.465 7.465 0 0114.5 16z"/></svg>',
   support: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z" clip-rule="evenodd"/></svg>',
+  search: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.75"/><path d="m13 13 4 4"/></svg>',
 };
 
 
@@ -54,56 +55,79 @@ function buildNavbar(currentPage) {
     ? 'images/logos/TIIS-white.png'
     : 'images/logos/TIIS-Logo-PNG-1024x468.png';
 
-  const logoSrcAlt = isHome
-    ? 'images/logos/TIIS-Logo-PNG-1024x468.png'
-    : logoSrc;
-
   nav.innerHTML = `
+    <div class="navbar__utility" aria-label="Community links">
+      <div class="navbar__utility-inner">
+        <a href="students.html" data-utility="students">Current Students</a>
+        <a href="contact.html?subject=Alumni">Alumni</a>
+        <a href="contact.html?subject=Agent%20Partnership">Agents</a>
+        <a href="team.html#careers">Careers</a>
+      </div>
+    </div>
     <div class="navbar__inner">
       <a href="index.html" class="navbar__logo" aria-label="TIIS Home">
         <img src="${logoSrc}" alt="TIIS Logo" id="navLogo" data-white="images/logos/TIIS-white.png" data-color="images/logos/TIIS-Logo-PNG-1024x468.png">
       </a>
 
       <ul class="navbar__menu">
-        <li class="navbar__item"><a href="index.html" class="navbar__link">Home</a></li>
+        <li class="navbar__item"><a href="index.html" class="navbar__link" data-nav="home">Home</a></li>
         <li class="navbar__item">
-          <a href="about.html" class="navbar__link">About ${ICONS.chevronDown}</a>
+          <a href="about.html" class="navbar__link" data-nav="about">About Us ${ICONS.chevronDown}</a>
           <div class="navbar__dropdown">
             <a href="about.html">About Us</a>
-            <a href="about.html#story">Our Story</a>
             <a href="about.html#values">Mission & Values</a>
+            <a href="about.html#story">Our Story</a>
             <a href="team.html">Our Team</a>
-            <a href="campuses.html">Campuses</a>
           </div>
         </li>
         <li class="navbar__item">
-          <a href="courses.html" class="navbar__link">Courses ${ICONS.chevronDown}</a>
-          <div class="navbar__dropdown">
-            <div class="navbar__dropdown-group-title">Undergraduate</div>
-            <a href="courses.html#bbus">Bachelor of Business</a>
-            <a href="courses.html#bit">Bachelor of Information Technology</a>
-            <div class="navbar__dropdown-group-title" style="margin-top:8px">Postgraduate</div>
-            <a href="courses.html#mcs">Master of Cyber Security</a>
-            <a href="courses.html#mba">Master of Business Administration</a>
-            <a href="courses.html#mpaa">Master of Professional Accounting</a>
-            <a href="courses.html#gcit">Graduate Certificate in Information Technology</a>
+          <a href="courses.html" class="navbar__link" data-nav="courses">Courses ${ICONS.chevronDown}</a>
+          <div class="navbar__dropdown navbar__dropdown--wide">
+            <a href="courses.html" class="navbar__dropdown-all">Explore All Courses <span aria-hidden="true">→</span></a>
+            <div class="navbar__dropdown-grid">
+              <div>
+                <div class="navbar__dropdown-group-title">Business & Management</div>
+                <a href="course-bbus.html">Bachelor of Business</a>
+                <a href="course-gcba.html">Graduate Certificate in Business Administration</a>
+                <a href="course-mba.html">Master of Business Administration</a>
+              </div>
+              <div>
+                <div class="navbar__dropdown-group-title">Professional Accounting</div>
+                <a href="course-gcpa.html">Graduate Certificate in Professional Accounting</a>
+                <a href="course-mpaa.html">Master of Professional Accounting (Advanced)</a>
+              </div>
+              <div>
+                <div class="navbar__dropdown-group-title">IT & Cyber Security</div>
+                <a href="course-bit.html">Bachelor of Information Technology</a>
+                <a href="course-gcit.html">Graduate Certificate in Information Technology</a>
+                <a href="course-mcs.html">Master of Cyber Security</a>
+              </div>
+              <div>
+                <div class="navbar__dropdown-group-title">Online Study</div>
+                <a href="tiis-online/index.html">TIIS Online</a>
+                <a href="tiis-online/course-gdfp.html">Graduate Diploma of Financial Planning</a>
+              </div>
+            </div>
           </div>
         </li>
-        <li class="navbar__item"><a href="campuses.html" class="navbar__link">Campuses</a></li>
-        <li class="navbar__item"><a href="tiis-online/index.html" class="navbar__link">TIIS Online</a></li>
         <li class="navbar__item">
-          <a href="apply.html" class="navbar__link">Apply ${ICONS.chevronDown}</a>
+          <a href="apply.html" class="navbar__link" data-nav="study">Study with Us ${ICONS.chevronDown}</a>
           <div class="navbar__dropdown">
+            <a href="index.html#why-tiis">Why Study at TIIS</a>
+            <a href="life-at-tiis.html">Life at TIIS</a>
+            <a href="campuses.html">Our Campuses</a>
             <a href="apply.html">How to Apply</a>
             <a href="apply.html#criteria">Entry Requirements</a>
             <a href="apply.html#dates">Key Dates</a>
             <a href="apply.html#fees">Fees & Charges</a>
           </div>
         </li>
-        <li class="navbar__item"><a href="students.html" class="navbar__link">Students</a></li>
-        <li class="navbar__item"><a href="contact.html" class="navbar__link">Contact</a></li>
+        <li class="navbar__item"><a href="contact.html" class="navbar__link" data-nav="contact">Contact Us</a></li>
       </ul>
 
+      <button class="navbar__search" type="button" data-search-open aria-label="Search the TIIS website">
+        ${ICONS.search}<span>Search</span>
+      </button>
       <a href="apply.html" class="navbar__cta navbar__cta-desktop">Apply Now</a>
 
       <button class="navbar__toggle" id="navToggle" aria-label="Open menu"
@@ -131,26 +155,38 @@ function buildNavbar(currentPage) {
   mobileMenu.setAttribute('aria-label', 'Site menu');
   mobileMenu.innerHTML = `
     <button class="navbar__mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
-    <a href="index.html" class="navbar__mobile-link">Home</a>
-    <a href="about.html" class="navbar__mobile-link">About Us</a>
+    <a href="index.html" class="navbar__mobile-link" data-nav="home">Home</a>
+    <a href="about.html" class="navbar__mobile-link" data-nav="about">About Us</a>
     <div class="navbar__mobile-sub">
-      <a href="about.html#story">Our Story</a>
       <a href="about.html#values">Mission & Values</a>
+      <a href="about.html#story">Our Story</a>
       <a href="team.html">Our Team</a>
     </div>
-    <a href="courses.html" class="navbar__mobile-link">Courses</a>
+    <a href="courses.html" class="navbar__mobile-link" data-nav="courses">Courses</a>
     <div class="navbar__mobile-sub">
-      <a href="courses.html#bbus">Bachelor of Business</a>
-      <a href="courses.html#bit">Bachelor of Information Technology</a>
-      <a href="courses.html#mcs">Master of Cyber Security</a>
-      <a href="courses.html#mba">Master of Business Administration</a>
-      <a href="courses.html#mpaa">Master of Professional Accounting</a>
+      <a href="course-bbus.html">Bachelor of Business</a>
+      <a href="course-bit.html">Bachelor of Information Technology</a>
+      <a href="course-mba.html">Master of Business Administration</a>
+      <a href="course-mpaa.html">Master of Professional Accounting</a>
+      <a href="course-mcs.html">Master of Cyber Security</a>
+      <a href="courses.html">Explore All Courses</a>
     </div>
-    <a href="tiis-online/index.html" class="navbar__mobile-link">TIIS Online</a>
-    <a href="campuses.html" class="navbar__mobile-link">Campuses</a>
-    <a href="apply.html" class="navbar__mobile-link">How to Apply</a>
-    <a href="students.html" class="navbar__mobile-link">Current Students</a>
-    <a href="contact.html" class="navbar__mobile-link">Contact Us</a>
+    <a href="apply.html" class="navbar__mobile-link" data-nav="study">Study with Us</a>
+    <div class="navbar__mobile-sub">
+      <a href="index.html#why-tiis">Why Study at TIIS</a>
+      <a href="life-at-tiis.html">Life at TIIS</a>
+      <a href="campuses.html">Our Campuses</a>
+      <a href="apply.html">How to Apply</a>
+      <a href="apply.html#dates">Key Dates</a>
+    </div>
+    <a href="contact.html" class="navbar__mobile-link" data-nav="contact">Contact Us</a>
+    <button class="navbar__mobile-search" type="button" data-search-open>${ICONS.search} Search</button>
+    <div class="navbar__mobile-utility">
+      <a href="students.html" data-utility="students">Current Students</a>
+      <a href="contact.html?subject=Alumni">Alumni</a>
+      <a href="contact.html?subject=Agent%20Partnership">Agents</a>
+      <a href="team.html#careers">Careers</a>
+    </div>
     <div style="margin-top:24px">
       <a href="apply.html" class="btn btn--primary" style="width:100%;justify-content:center">Apply Now</a>
     </div>
@@ -264,13 +300,13 @@ function buildNavbar(currentPage) {
     syncNavbar();
   }
 
-  markCurrentPage(nav, mobileMenu);
+  markCurrentPage(nav, mobileMenu, currentPage);
 }
 
 
 /* ---- Mark the current page in the navigation ----
    Nothing indicated which page you were on. */
-function markCurrentPage(nav, mobileMenu) {
+function markCurrentPage(nav, mobileMenu, currentPage) {
   const here = window.location.pathname.replace(/\/$/, '/index.html');
 
   [nav, mobileMenu].forEach(root => {
@@ -289,6 +325,314 @@ function markCurrentPage(nav, mobileMenu) {
       a.setAttribute('aria-current', 'page');
     });
   });
+
+  const section = {
+    team: 'about',
+    campuses: 'study',
+    apply: 'study',
+    life: 'study',
+  }[currentPage] || currentPage;
+
+  [nav, mobileMenu].forEach(root => {
+    root.querySelectorAll(`[data-nav="${section}"]`).forEach(a => {
+      a.classList.add('is-current');
+    });
+    if (currentPage === 'students') {
+      root.querySelectorAll('[data-utility="students"]').forEach(a => {
+        a.classList.add('is-current');
+      });
+    }
+  });
+}
+
+
+/* ---- Breadcrumbs --------------------------------------------------------
+   Breadcrumbs live inside the page hero so direct arrivals get context
+   without adding another bar below the fixed global navigation. */
+function buildBreadcrumbs(currentPage) {
+  if (currentPage === 'home') return;
+
+  const heroContent = document.querySelector('.hero__content');
+  const heading = heroContent?.querySelector('h1');
+  if (!heroContent || !heading) return;
+
+  const file = window.location.pathname.split('/').pop() || 'index.html';
+  const items = [{ label: 'Home', href: 'index.html' }];
+
+  if (/^course-/.test(file)) {
+    items.push({ label: 'Courses', href: 'courses.html' });
+  } else if (currentPage === 'team') {
+    items.push({ label: 'About Us', href: 'about.html' });
+  } else if (['campuses', 'apply', 'life'].includes(currentPage)) {
+    items.push({ label: 'Study with Us', href: 'apply.html' });
+  }
+
+  items.push({ label: heading.textContent.trim(), href: '' });
+
+  const breadcrumb = document.createElement('nav');
+  breadcrumb.className = 'hero-breadcrumb';
+  breadcrumb.setAttribute('aria-label', 'Breadcrumb');
+  const list = document.createElement('ol');
+
+  items.forEach((item, index) => {
+    const li = document.createElement('li');
+    if (item.href && index < items.length - 1) {
+      const link = document.createElement('a');
+      link.href = item.href;
+      link.textContent = item.label;
+      li.appendChild(link);
+    } else {
+      const current = document.createElement('span');
+      current.textContent = item.label;
+      current.setAttribute('aria-current', 'page');
+      li.appendChild(current);
+    }
+    list.appendChild(li);
+  });
+
+  breadcrumb.appendChild(list);
+  heroContent.prepend(breadcrumb);
+}
+
+
+/* ---- Site search --------------------------------------------------------
+   This static site has no search service, so the modal indexes its small,
+   known set of pages locally. Results always lead to a real page. */
+function buildSiteSearch() {
+  const pages = [
+    ['Courses', 'Explore all undergraduate, postgraduate and online courses.', 'courses.html', 'courses study programs'],
+    ['Bachelor of Business', 'Undergraduate business degree.', 'course-bbus.html', 'business undergraduate bachelor'],
+    ['Bachelor of Information Technology', 'Undergraduate IT degree.', 'course-bit.html', 'technology cyber undergraduate bachelor'],
+    ['Graduate Certificate in Business Administration', 'Postgraduate pathway into the MBA.', 'course-gcba.html', 'business postgraduate certificate'],
+    ['Master of Business Administration', 'Postgraduate management program.', 'course-mba.html', 'business management mba postgraduate'],
+    ['Graduate Certificate in Professional Accounting', 'Postgraduate accounting pathway.', 'course-gcpa.html', 'accounting postgraduate certificate'],
+    ['Master of Professional Accounting (Advanced)', 'Professionally accredited accounting program.', 'course-mpaa.html', 'accounting postgraduate cpa caanz acca'],
+    ['Graduate Certificate in Information Technology', 'Postgraduate IT pathway.', 'course-gcit.html', 'technology cyber postgraduate certificate'],
+    ['Master of Cyber Security', 'Postgraduate cyber security program.', 'course-mcs.html', 'technology cyber postgraduate master'],
+    ['TIIS Online', 'Flexible online study options.', 'tiis-online/index.html', 'online remote financial planning mba cpd'],
+    ['About TIIS', 'Mission, values and story.', 'about.html', 'about mission values story'],
+    ['Our Team', 'Academic, professional and governance teams.', 'team.html', 'staff lecturers board careers'],
+    ['Our Campuses', 'Sydney Ultimo and Melbourne Docklands.', 'campuses.html', 'campus locations sydney melbourne directions tour'],
+    ['Life at TIIS', 'Community, support and student experience.', 'life-at-tiis.html', 'student life community events support'],
+    ['How to Apply', 'Entry requirements, key dates and fees.', 'apply.html', 'apply admissions entry requirements dates fees'],
+    ['Key Dates', 'Six intakes throughout the year.', 'apply.html#dates', 'january march may july september november intakes'],
+    ['Current Students', 'Student resources, support and policies.', 'students.html', 'portal support resources policies'],
+    ['Contact Us', 'Ask a question or speak with admissions.', 'contact.html', 'contact enquiry adviser admissions phone email'],
+  ].map(([title, description, href, keywords]) => ({ title, description, href, keywords }));
+
+  const modal = document.createElement('div');
+  modal.className = 'site-search';
+  modal.id = 'siteSearch';
+  modal.setAttribute('aria-hidden', 'true');
+  modal.innerHTML = `
+    <div class="site-search__backdrop" data-search-close></div>
+    <div class="site-search__dialog" role="dialog" aria-modal="true" aria-labelledby="siteSearchTitle">
+      <div class="site-search__header">
+        <div>
+          <span class="site-search__eyebrow">TIIS website</span>
+          <h2 id="siteSearchTitle">What are you looking for?</h2>
+        </div>
+        <button type="button" class="site-search__close" data-search-close aria-label="Close search">&times;</button>
+      </div>
+      <label class="site-search__field">
+        <span class="sr-only">Search courses and pages</span>
+        ${ICONS.search}
+        <input id="siteSearchInput" type="search" autocomplete="off" placeholder="Search courses, campuses, fees…">
+        <kbd>Esc</kbd>
+      </label>
+      <p class="site-search__summary" id="siteSearchSummary" aria-live="polite"></p>
+      <div class="site-search__results" id="siteSearchResults"></div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  const input = modal.querySelector('#siteSearchInput');
+  const results = modal.querySelector('#siteSearchResults');
+  const summary = modal.querySelector('#siteSearchSummary');
+  let returnFocus = null;
+
+  function render() {
+    const query = input.value.trim().toLowerCase();
+    const terms = query.split(/\s+/).filter(Boolean);
+    const matches = pages.filter(page => {
+      const haystack = `${page.title} ${page.description} ${page.keywords}`.toLowerCase();
+      return terms.every(term => haystack.includes(term));
+    });
+    const visible = query ? matches : pages.slice(0, 6);
+
+    results.replaceChildren();
+    summary.textContent = query
+      ? `${matches.length} result${matches.length === 1 ? '' : 's'} for “${input.value.trim()}”`
+      : 'Popular destinations';
+
+    if (!visible.length) {
+      const empty = document.createElement('p');
+      empty.className = 'site-search__empty';
+      empty.textContent = 'No exact match. Try “courses”, “fees”, “campus” or “support”.';
+      results.appendChild(empty);
+      return;
+    }
+
+    visible.forEach(page => {
+      const link = document.createElement('a');
+      link.className = 'site-search__result';
+      link.href = page.href;
+      const title = document.createElement('strong');
+      title.textContent = page.title;
+      const description = document.createElement('span');
+      description.textContent = page.description;
+      const arrow = document.createElement('span');
+      arrow.className = 'site-search__arrow';
+      arrow.textContent = '→';
+      arrow.setAttribute('aria-hidden', 'true');
+      link.append(title, description, arrow);
+      results.appendChild(link);
+    });
+  }
+
+  function openSearch(trigger) {
+    returnFocus = trigger || document.activeElement;
+    document.getElementById('mobileClose')?.click();
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    input.value = '';
+    render();
+    requestAnimationFrame(() => input.focus());
+  }
+
+  function closeSearch() {
+    if (!modal.classList.contains('is-open')) return;
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (returnFocus && document.contains(returnFocus)) returnFocus.focus();
+  }
+
+  document.querySelectorAll('[data-search-open]').forEach(button => {
+    button.addEventListener('click', () => openSearch(button));
+  });
+  modal.querySelectorAll('[data-search-close]').forEach(button => {
+    button.addEventListener('click', closeSearch);
+  });
+  input.addEventListener('input', render);
+
+  document.addEventListener('keydown', event => {
+    if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+      event.preventDefault();
+      if (modal.classList.contains('is-open')) closeSearch();
+      else openSearch(document.querySelector('[data-search-open]'));
+      return;
+    }
+    if (!modal.classList.contains('is-open')) return;
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeSearch();
+      return;
+    }
+    if (event.key !== 'Tab') return;
+    const focusable = [...modal.querySelectorAll('a[href], button, input')]
+      .filter(element => element.offsetParent !== null);
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+}
+
+
+/* ---- Course-page navigation -------------------------------------------- */
+function buildCoursePageNav() {
+  const file = window.location.pathname.split('/').pop() || '';
+  if (!/^course-/.test(file)) return;
+
+  const candidates = [
+    ['overview', 'Overview'],
+    ['details', 'Course Details'],
+    ['structure', 'Course Structure'],
+    ['entry', 'Entry Requirements'],
+    ['careers', 'Career Outcomes'],
+  ].filter(([id]) => document.getElementById(id));
+  if (candidates.length < 3) return;
+
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+  const nav = document.createElement('nav');
+  nav.className = 'course-page-nav';
+  nav.setAttribute('aria-label', 'On this course page');
+  const inner = document.createElement('div');
+  inner.className = 'container course-page-nav__inner';
+
+  candidates.forEach(([id, label], index) => {
+    const link = document.createElement('a');
+    link.href = `#${id}`;
+    link.textContent = label;
+    if (index === 0) link.classList.add('is-active');
+    inner.appendChild(link);
+  });
+  nav.appendChild(inner);
+  hero.insertAdjacentElement('afterend', nav);
+
+  if (!('IntersectionObserver' in window)) return;
+  const links = [...inner.querySelectorAll('a')];
+  const observer = new IntersectionObserver(entries => {
+    const visible = entries
+      .filter(entry => entry.isIntersecting)
+      .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+    if (!visible) return;
+    links.forEach(link => {
+      const active = link.hash === `#${visible.target.id}`;
+      link.classList.toggle('is-active', active);
+      if (active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  }, { rootMargin: '-150px 0px -65% 0px', threshold: 0 });
+  candidates.forEach(([id]) => observer.observe(document.getElementById(id)));
+}
+
+
+/* ---- Course overview level filter -------------------------------------- */
+function initCourseFilters() {
+  const filter = document.querySelector('[data-course-filter-bar]');
+  if (!filter) return;
+  const cards = [...document.querySelectorAll('.course-card[data-level]')];
+  const groups = [...document.querySelectorAll('[data-course-group]')];
+  const status = filter.querySelector('[data-course-filter-status]');
+  const buttons = [...filter.querySelectorAll('button[data-course-filter]')];
+
+  function applyFilter(value, updateUrl = false) {
+    let shown = 0;
+    document.getElementById('programs')?.classList.toggle('is-filtered', value !== 'all');
+    cards.forEach(card => {
+      const visible = value === 'all' || card.dataset.level === value;
+      card.hidden = !visible;
+      if (visible) shown += 1;
+    });
+    groups.forEach(group => {
+      group.hidden = !group.querySelector('.course-card[data-level]:not([hidden])');
+    });
+    buttons.forEach(button => {
+      button.setAttribute('aria-pressed', String(button.dataset.courseFilter === value));
+    });
+    if (status) status.textContent = `${shown} course${shown === 1 ? '' : 's'} shown`;
+    if (updateUrl) {
+      const url = new URL(window.location.href);
+      if (value === 'all') url.searchParams.delete('level');
+      else url.searchParams.set('level', value);
+      history.replaceState({}, '', `${url.pathname}${url.search}#programs`);
+    }
+  }
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => applyFilter(button.dataset.courseFilter, true));
+  });
+  const requested = new URLSearchParams(window.location.search).get('level');
+  applyFilter(['undergraduate', 'postgraduate'].includes(requested) ? requested : 'all');
 }
 
 
@@ -323,11 +667,11 @@ function buildFooter() {
         <div>
           <div class="footer__heading">Courses</div>
           <ul class="footer__links">
-            <li><a href="courses.html#bbus">Bachelor of Business</a></li>
-            <li><a href="courses.html#bit">Bachelor of IT</a></li>
-            <li><a href="courses.html#mba">MBA</a></li>
-            <li><a href="courses.html#mcs">Master of Cyber Security</a></li>
-            <li><a href="courses.html#mpaa">Master of Accounting</a></li>
+            <li><a href="course-bbus.html">Bachelor of Business</a></li>
+            <li><a href="course-bit.html">Bachelor of IT</a></li>
+            <li><a href="course-mba.html">MBA</a></li>
+            <li><a href="course-mcs.html">Master of Cyber Security</a></li>
+            <li><a href="course-mpaa.html">Master of Accounting</a></li>
             <li><a href="tiis-online/index.html">TIIS Online →</a></li>
           </ul>
         </div>
@@ -537,47 +881,114 @@ function initCarousel(trackId) {
 }
 
 
-// ---- Counter Animation ----
-function initCounters() {
-  const counters = document.querySelectorAll('[data-count]');
-  if (!counters.length) return;
+/* ---- Homepage campaign carousel --------------------------------------- */
+function initHeroCarousel(carouselId) {
+  const carousel = document.getElementById(carouselId);
+  if (!carousel) return;
+  const slides = [...carousel.querySelectorAll('.home-hero__slide')];
+  if (slides.length < 2) return;
 
-  const finalValue = el =>
-    (el.dataset.prefix || '') + el.dataset.count + (el.dataset.suffix || '');
+  const previous = carousel.querySelector('[data-hero-prev]');
+  const next = carousel.querySelector('[data-hero-next]');
+  const pauseButton = carousel.querySelector('[data-hero-pause]');
+  const dots = carousel.querySelector('[data-hero-dots]');
+  let current = 0;
+  let timer = null;
+  let manuallyPaused = PREFERS_REDUCED_MOTION;
 
-  // The markup ships "0" as the placeholder, so a counter that never animates
-  // displays a wrong number. Without motion (or without IntersectionObserver)
-  // write the real value straight away.
-  if (PREFERS_REDUCED_MOTION || !('IntersectionObserver' in window)) {
-    counters.forEach(el => { el.textContent = finalValue(el); });
-    return;
+  carousel.setAttribute('role', 'region');
+  carousel.setAttribute('aria-roledescription', 'carousel');
+  carousel.setAttribute('aria-label', 'TIIS highlights');
+
+  slides.forEach((slide, index) => {
+    slide.setAttribute('role', 'group');
+    slide.setAttribute('aria-roledescription', 'slide');
+    slide.setAttribute('aria-label', `${index + 1} of ${slides.length}`);
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'home-hero__dot';
+    dot.setAttribute('aria-label', `Show highlight ${index + 1}`);
+    dot.addEventListener('click', () => {
+      manuallyPaused = true;
+      stop();
+      goTo(index);
+      syncPauseButton();
+    });
+    dots?.appendChild(dot);
+  });
+
+  function goTo(index) {
+    current = ((index % slides.length) + slides.length) % slides.length;
+    slides.forEach((slide, slideIndex) => {
+      const active = slideIndex === current;
+      slide.classList.toggle('is-active', active);
+      slide.setAttribute('aria-hidden', String(!active));
+      slide.querySelectorAll('a, button').forEach(element => {
+        if (active) element.removeAttribute('tabindex');
+        else element.setAttribute('tabindex', '-1');
+      });
+    });
+    dots?.querySelectorAll('.home-hero__dot').forEach((dot, dotIndex) => {
+      dot.classList.toggle('is-active', dotIndex === current);
+      dot.setAttribute('aria-current', dotIndex === current ? 'true' : 'false');
+    });
   }
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        const target = parseInt(el.dataset.count);
-        const suffix = el.dataset.suffix || '';
-        const prefix = el.dataset.prefix || '';
-        const duration = 2000;
-        const start = performance.now();
+  function start() {
+    if (timer || manuallyPaused || document.hidden) return;
+    timer = window.setInterval(() => goTo(current + 1), 6500);
+  }
 
-        function update(now) {
-          const elapsed = now - start;
-          const progress = Math.min(elapsed / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          el.textContent = prefix + Math.floor(target * eased) + suffix;
-          if (progress < 1) requestAnimationFrame(update);
-        }
+  function stop() {
+    if (timer) window.clearInterval(timer);
+    timer = null;
+  }
 
-        requestAnimationFrame(update);
-        observer.unobserve(el);
-      }
-    });
-  }, { threshold: 0.5 });
+  function syncPauseButton() {
+    if (!pauseButton) return;
+    pauseButton.textContent = manuallyPaused ? 'Play' : 'Pause';
+    pauseButton.setAttribute('aria-label', manuallyPaused ? 'Play rotating highlights' : 'Pause rotating highlights');
+  }
 
-  counters.forEach(c => observer.observe(c));
+  function takeControl(offset) {
+    manuallyPaused = true;
+    stop();
+    goTo(current + offset);
+    syncPauseButton();
+  }
+
+  previous?.addEventListener('click', () => takeControl(-1));
+  next?.addEventListener('click', () => takeControl(1));
+  pauseButton?.addEventListener('click', () => {
+    manuallyPaused = !manuallyPaused;
+    if (manuallyPaused) stop();
+    else start();
+    syncPauseButton();
+  });
+  carousel.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft') takeControl(-1);
+    if (event.key === 'ArrowRight') takeControl(1);
+  });
+  carousel.addEventListener('mouseenter', stop);
+  carousel.addEventListener('mouseleave', start);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stop();
+    else start();
+  });
+
+  goTo(0);
+  syncPauseButton();
+  start();
+}
+
+
+// ---- Key figures ----
+function initCounters() {
+  const counters = document.querySelectorAll('[data-count]');
+  counters.forEach(el => {
+    el.textContent =
+      (el.dataset.prefix || '') + el.dataset.count + (el.dataset.suffix || '');
+  });
 }
 
 
@@ -598,6 +1009,17 @@ function initEnquiryForm(formId, statusId) {
   const mailto = form.dataset.mailto;
   // A real endpoint takes precedence over the mailto fallback.
   if (!mailto || form.getAttribute('action')) return;
+
+  // CTA and utility links can preselect a genuine topic without duplicating
+  // separate enquiry pages for advisers, alumni and education agents.
+  const requestedSubject = new URLSearchParams(window.location.search).get('subject');
+  const subjectSelect = form.elements.subject;
+  if (requestedSubject && subjectSelect) {
+    const option = [...subjectSelect.options].find(item =>
+      item.value.toLowerCase() === requestedSubject.toLowerCase()
+    );
+    if (option) subjectSelect.value = option.value;
+  }
 
   function setStatus(message, kind) {
     status.textContent = message;
@@ -719,6 +1141,10 @@ function initPage(pageName) {
   wrapMainContent();
   injectIconSprite();
   buildNavbar(pageName);
+  buildBreadcrumbs(pageName);
+  buildSiteSearch();
+  buildCoursePageNav();
+  initCourseFilters();
   buildFooter();
   buildScrollTop();
   improveImageLoading();

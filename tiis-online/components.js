@@ -377,46 +377,13 @@ function initScrollAnimations() {
 }
 
 
-// ---- Counter Animation ----
+// ---- Key figures ----
 function initCounters() {
   const counters = document.querySelectorAll('[data-count]');
-  if (!counters.length) return;
-
-  const finalValue = el =>
-    (el.dataset.prefix || '') + el.dataset.count + (el.dataset.suffix || '');
-
-  // The markup ships "0" as a placeholder, so a counter that never animates
-  // shows a wrong number. Without motion, write the real value immediately.
-  if (PREFERS_REDUCED_MOTION || !('IntersectionObserver' in window)) {
-    counters.forEach(el => { el.textContent = finalValue(el); });
-    return;
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        const target = parseInt(el.dataset.count);
-        const suffix = el.dataset.suffix || '';
-        const prefix = el.dataset.prefix || '';
-        const duration = 2000;
-        const start = performance.now();
-
-        function update(now) {
-          const elapsed = now - start;
-          const progress = Math.min(elapsed / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          el.textContent = prefix + Math.floor(target * eased) + suffix;
-          if (progress < 1) requestAnimationFrame(update);
-        }
-
-        requestAnimationFrame(update);
-        observer.unobserve(el);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  counters.forEach(c => observer.observe(c));
+  counters.forEach(el => {
+    el.textContent =
+      (el.dataset.prefix || '') + el.dataset.count + (el.dataset.suffix || '');
+  });
 }
 
 

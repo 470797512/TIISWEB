@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Courses — TIIS | Undergraduate & Postgraduate Programs</title>
   <meta name="description" content="Explore TIIS courses: Bachelor of Business, Bachelor of IT, MBA, Master of Cyber Security, Professional Accounting, Financial Planning and more.">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20260826-3">
   <link rel="icon" type="image/png" href="images/logos/TIIS-Logo-black-and-white-1024x1024.png">
 
   <!-- Fonts: preconnect so the TLS handshake overlaps HTML parsing -->
@@ -49,19 +49,19 @@
     <div class="container">
       <div class="stats-bar fade-in">
         <div class="stat">
-          <div class="stat__number" data-count="4">0</div>
+          <div class="stat__number" data-count="4">4</div>
           <div class="stat__label">Discipline Areas</div>
         </div>
         <div class="stat">
-          <div class="stat__number" data-count="9" data-suffix="+">0</div>
+          <div class="stat__number" data-count="9" data-suffix="+">9+</div>
           <div class="stat__label">Academic Courses</div>
         </div>
         <div class="stat">
-          <div class="stat__number" data-count="6">0</div>
+          <div class="stat__number" data-count="6">6</div>
           <div class="stat__label">Intakes Per Year</div>
         </div>
         <div class="stat">
-          <div class="stat__number" data-count="3">0</div>
+          <div class="stat__number" data-count="3">3</div>
           <div class="stat__label">Industry Accreditations</div>
         </div>
       </div>
@@ -73,15 +73,25 @@
   <section class="section" id="programs">
     <div class="container">
 
+      <div class="course-filter" data-course-filter-bar aria-label="Filter courses by study level">
+        <div class="course-filter__options">
+          <button type="button" data-course-filter="all" aria-pressed="true">All Courses</button>
+          <button type="button" data-course-filter="undergraduate" aria-pressed="false">Undergraduate</button>
+          <button type="button" data-course-filter="postgraduate" aria-pressed="false">Postgraduate</button>
+          <a href="tiis-online/index.html">TIIS Online</a>
+        </div>
+        <span class="course-filter__status" data-course-filter-status aria-live="polite"></span>
+      </div>
+
       <!-- Business -->
-      <div id="business" style="margin-bottom:80px;">
+      <div id="business" data-course-group style="margin-bottom:80px;">
         <div class="section-header fade-in" style="text-align:left; max-width:none; margin-bottom:32px;">
           <span class="section-label">Business & Management</span>
-          <h2>Build Your Business Career</h2>
+          <h2>Business and Management Courses</h2>
           <p style="max-width:640px;">A three-year bachelor's degree, a graduate certificate you can finish in a semester, and a two-year MBA.</p>
         </div>
         <div class="card-grid card-grid--3">
-          <div class="course-card fade-in delay-1" id="bbus">
+          <div class="course-card fade-in delay-1" id="bbus" data-level="undergraduate">
             <span class="course-card__level">Undergraduate</span>
             <h3 class="course-card__title">Bachelor of Business</h3>
             <span class="course-card__abbr">BBus</span>
@@ -101,7 +111,7 @@
             </div>
             <a href="course-bbus.html" class="btn btn--outline-dark btn--sm" style="width:100%;justify-content:center;">View Course Details →</a>
           </div>
-          <div class="course-card fade-in delay-2" id="gcba">
+          <div class="course-card fade-in delay-2" id="gcba" data-level="postgraduate">
             <span class="course-card__level">Postgraduate</span>
             <h3 class="course-card__title">Graduate Certificate in Business Administration</h3>
             <span class="course-card__abbr">GCBA</span>
@@ -121,7 +131,7 @@
             </div>
             <a href="course-gcba.html" class="btn btn--outline-dark btn--sm" style="width:100%;justify-content:center;">View Course Details →</a>
           </div>
-          <div class="course-card fade-in delay-3" id="mba">
+          <div class="course-card fade-in delay-3" id="mba" data-level="postgraduate">
             <span class="course-card__level">Postgraduate</span>
             <h3 class="course-card__title">Master of Business Administration</h3>
             <span class="course-card__abbr">MBA</span>
@@ -145,14 +155,14 @@
       </div>
 
       <!-- Accounting -->
-      <div id="accounting" style="margin-bottom:80px;">
+      <div id="accounting" data-course-group style="margin-bottom:80px;">
         <div class="section-header fade-in" style="text-align:left; max-width:none; margin-bottom:32px;">
           <span class="section-label">Professional Accounting</span>
-          <h2>Become a Recognised Accountant</h2>
+          <h2>Accounting Courses</h2>
           <p style="max-width:640px;">The Master of Professional Accounting (Advanced) is accredited by CPA Australia, CAANZ and ACCA. The graduate certificate is the entry point if you do not yet meet master's requirements.</p>
         </div>
         <div class="card-grid card-grid--3">
-          <div class="course-card fade-in delay-1" id="gcpa">
+          <div class="course-card fade-in delay-1" id="gcpa" data-level="postgraduate">
             <span class="course-card__level">Postgraduate</span>
             <h3 class="course-card__title">Graduate Certificate in Professional Accounting</h3>
             <span class="course-card__abbr">GCPA</span>
@@ -172,7 +182,7 @@
 </div>
             <a href="course-gcpa.html" class="btn btn--outline-dark btn--sm" style="width:100%;justify-content:center;">View Course Details →</a>
           </div>
-          <div class="course-card fade-in delay-2" id="mpaa">
+          <div class="course-card fade-in delay-2" id="mpaa" data-level="postgraduate">
             <span class="course-card__level">Postgraduate</span>
             <h3 class="course-card__title">Master of Professional Accounting (Advanced)</h3>
             <span class="course-card__abbr">MPAA</span>
@@ -196,14 +206,14 @@
       </div>
 
       <!-- Information Technology -->
-      <div id="it" style="margin-bottom:80px;">
+      <div id="it" data-course-group style="margin-bottom:80px;">
         <div class="section-header fade-in" style="text-align:left; max-width:none; margin-bottom:32px;">
           <span class="section-label">Information Technology</span>
-          <h2>Lead the Digital Future</h2>
+          <h2>Information Technology Courses</h2>
           <p style="max-width:640px;">Undergraduate through master's level, including a two-year Master of Cyber Security.</p>
         </div>
         <div class="card-grid card-grid--3">
-          <div class="course-card fade-in delay-1" id="bit">
+          <div class="course-card fade-in delay-1" id="bit" data-level="undergraduate">
             <span class="course-card__level">Undergraduate</span>
             <h3 class="course-card__title">Bachelor of Information Technology</h3>
             <span class="course-card__abbr">BIT</span>
@@ -223,7 +233,7 @@
             </div>
             <a href="course-bit.html" class="btn btn--outline-dark btn--sm" style="width:100%;justify-content:center;">View Course Details →</a>
           </div>
-          <div class="course-card fade-in delay-2" id="gcit">
+          <div class="course-card fade-in delay-2" id="gcit" data-level="postgraduate">
             <span class="course-card__level">Postgraduate</span>
             <h3 class="course-card__title">Graduate Certificate in Information Technology</h3>
             <span class="course-card__abbr">GCIT</span>
@@ -243,7 +253,7 @@
 </div>
             <a href="course-gcit.html" class="btn btn--outline-dark btn--sm" style="width:100%;justify-content:center;">View Course Details →</a>
           </div>
-          <div class="course-card fade-in delay-3" id="mcs">
+          <div class="course-card fade-in delay-3" id="mcs" data-level="postgraduate">
             <span class="course-card__level">Postgraduate</span>
             <h3 class="course-card__title">Master of Cyber Security</h3>
             <span class="course-card__abbr">MCS</span>
@@ -295,14 +305,14 @@
         <h2>Compare Courses with an Adviser</h2>
         <p>If you are choosing between two courses, or unsure whether your qualifications meet entry requirements, admissions can check before you apply.</p>
         <div class="cta-banner__actions">
-          <a href="contact.html" class="btn btn--white btn--lg">Get Advice</a>
-          <a href="apply.html" class="btn btn--outline btn--lg">Start Application</a>
+          <a href="contact.html?subject=Course%20Advice" class="btn btn--white btn--lg">Speak to a Course Adviser</a>
+          <a href="apply.html" class="btn btn--outline btn--lg">Apply Now</a>
         </div>
       </div>
     </div>
   </section>
 
-  <script src="components.js"></script>
+  <script src="components.js?v=20260826-3"></script>
   <script>initPage('courses');</script>
 </body>
 </html>
