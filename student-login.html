@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My TIIS Login — Student Systems</title>
+  <meta name="description" content="Access TIIS Moodle, Microsoft 365, the Learning Centre and the Student Hub from one page.">
+  <link rel="stylesheet" href="styles.css?v=20260826-11">
+  <link rel="icon" type="image/png" href="images/logos/TIIS-Logo-black-and-white-1024x1024.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&amp;display=swap">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TIIS — The Institute of International Studies">
+  <meta property="og:locale" content="en_AU">
+  <meta property="og:title" content="My TIIS Login — Student Systems">
+  <meta property="og:description" content="Direct links to the online systems used by TIIS students.">
+  <meta name="twitter:card" content="summary">
+</head>
+<body class="page-students">
+
+  <section class="hero hero--short resource-hero">
+    <div class="hero__bg">
+      <img src="images/people/teenagers-using-laptop-reading.jpg" alt="Students using a laptop together" loading="eager" fetchpriority="high" decoding="sync">
+    </div>
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <span class="hero__label">Student Hub</span>
+      <h1 class="hero__title">My TIIS Login</h1>
+      <p class="hero__subtitle">Direct access to learning, email, library and course-planning systems.</p>
+    </div>
+  </section>
+
+  <nav class="resource-nav" aria-label="Student resources">
+    <div class="container resource-nav__inner">
+      <a href="students.html">Current Students</a>
+      <a href="student-login.html" aria-current="page">My TIIS Login</a>
+      <a href="student-support.html">Student Support</a>
+      <a href="student-handbook.html">Student Handbook</a>
+      <a href="student-ambassadors.html">Ambassador Program</a>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container resource-intro">
+      <div>
+        <p class="resource-lede">Choose the service you need and continue directly to its secure sign-in page.</p>
+        <p>The four links below open genuine TIIS or approved learning systems in a new tab. Use your TIIS account details where a login is required.</p>
+      </div>
+      <aside class="resource-aside">
+        <div class="resource-aside__label">Login trouble?</div>
+        <h2>IT Support</h2>
+        <p>Check that you are using your TIIS email address and the correct password. If access still fails, contact Student Services and describe the system and error shown.</p>
+        <a href="contact.html?subject=Other" class="link-arrow">Request assistance</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--gray" aria-labelledby="systemsTitle">
+    <div class="container">
+      <div class="resource-heading">
+        <div>
+          <span class="section-label">Student systems</span>
+          <h2 id="systemsTitle">Where Do You Need to Go?</h2>
+        </div>
+        <p>External services are labelled and open in a new browser tab, so this page remains available.</p>
+      </div>
+
+      <ol class="portal-directory">
+        <li class="portal-row">
+          <span class="portal-row__mark">M</span>
+          <div>
+            <h3>Moodle</h3>
+            <p>Course sites, learning materials, assessment activities and class announcements.</p>
+            <span class="external-note">Secure external system · moodle.tiis.edu.au</span>
+          </div>
+          <a href="https://moodle.tiis.edu.au/login/index.php" class="btn btn--primary" target="_blank" rel="noopener noreferrer">Open Moodle ↗</a>
+        </li>
+        <li class="portal-row">
+          <span class="portal-row__mark">L</span>
+          <div>
+            <h3>Learning Centre</h3>
+            <p>Library catalogue, research resources and academic learning support materials.</p>
+            <span class="external-note">Approved external service · accessit.online</span>
+          </div>
+          <a href="https://au.accessit.online/THN02/#!landingPage" class="btn btn--primary" target="_blank" rel="noopener noreferrer">Open Library ↗</a>
+        </li>
+        <li class="portal-row">
+          <span class="portal-row__mark">365</span>
+          <div>
+            <h3>Microsoft 365</h3>
+            <p>TIIS student email and the Microsoft productivity tools connected to your account.</p>
+            <span class="external-note">Secure external system · Microsoft</span>
+          </div>
+          <a href="https://login.microsoftonline.com/?whr=tiis.edu.au" class="btn btn--primary" target="_blank" rel="noopener noreferrer">Sign in to 365 ↗</a>
+        </li>
+        <li class="portal-row">
+          <span class="portal-row__mark">S</span>
+          <div>
+            <h3>Student Hub</h3>
+            <p>TIIS course plans and student information hosted in the institute’s SharePoint workspace.</p>
+            <span class="external-note">Secure external system · TIIS SharePoint</span>
+          </div>
+          <a href="https://tiis.sharepoint.com/sites/StudentCoursePlans?e=1%3A8e6fb11a977043c2a8901d984249160d" class="btn btn--primary" target="_blank" rel="noopener noreferrer">Open Student Hub ↗</a>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner fade-in">
+        <h2>Looking for a Student Service?</h2>
+        <p>Support, policies, the handbook and key dates are available directly on this website.</p>
+        <div class="cta-banner__actions">
+          <a href="student-support.html" class="btn btn--white btn--lg">Student Support</a>
+          <a href="students.html" class="btn btn--outline btn--lg">Student Hub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="components.js?v=20260826-7"></script>
+  <script>initPage('students');</script>
+</body>
+</html>

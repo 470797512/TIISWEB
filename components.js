@@ -117,9 +117,10 @@ function buildNavbar(currentPage) {
             <a href="life-at-tiis.html">Life at TIIS</a>
             <a href="campuses.html">Our Campuses</a>
             <a href="apply.html">How to Apply</a>
-            <a href="apply.html#criteria">Entry Requirements</a>
-            <a href="apply.html#dates">Key Dates</a>
-            <a href="apply.html#fees">Fees & Charges</a>
+            <a href="application-forms.html">Application Forms</a>
+            <a href="admission-criteria.html">Entry Requirements</a>
+            <a href="key-dates.html">Key Dates</a>
+            <a href="fees-and-charges.html">Fees & Charges</a>
           </div>
         </li>
         <li class="navbar__item"><a href="contact.html" class="navbar__link" data-nav="contact">Contact Us</a></li>
@@ -177,7 +178,10 @@ function buildNavbar(currentPage) {
       <a href="life-at-tiis.html">Life at TIIS</a>
       <a href="campuses.html">Our Campuses</a>
       <a href="apply.html">How to Apply</a>
-      <a href="apply.html#dates">Key Dates</a>
+      <a href="application-forms.html">Application Forms</a>
+      <a href="admission-criteria.html">Entry Requirements</a>
+      <a href="key-dates.html">Key Dates</a>
+      <a href="fees-and-charges.html">Fees & Charges</a>
     </div>
     <a href="contact.html" class="navbar__mobile-link" data-nav="contact">Contact Us</a>
     <button class="navbar__mobile-search" type="button" data-search-open>${ICONS.search} Search</button>
@@ -365,7 +369,7 @@ function buildBreadcrumbs(currentPage) {
     items.push({ label: 'About Us', href: 'about.html' });
   } else if (['campuses', 'apply', 'life'].includes(currentPage)) {
     items.push({ label: 'Study with Us', href: 'apply.html' });
-  } else if (currentPage === 'policies') {
+  } else if (currentPage === 'policies' || (currentPage === 'students' && file !== 'students.html')) {
     items.push({ label: 'Current Students', href: 'students.html' });
   }
 
@@ -397,6 +401,18 @@ function buildBreadcrumbs(currentPage) {
 }
 
 
+/* Keep the current item visible in the horizontally scrolling resource nav
+   on small screens without moving the page vertically. */
+function alignCurrentResourceNav() {
+  const scroller = document.querySelector('.resource-nav__inner');
+  const current = scroller?.querySelector('[aria-current="page"]');
+  if (!scroller || !current || window.innerWidth > 720) return;
+
+  const centred = current.offsetLeft - ((scroller.clientWidth - current.offsetWidth) / 2);
+  scroller.scrollLeft = Math.max(0, centred);
+}
+
+
 /* ---- Site search --------------------------------------------------------
    This static site has no search service, so the modal indexes its small,
    known set of pages locally. Results always lead to a real page. */
@@ -416,9 +432,16 @@ function buildSiteSearch() {
     ['Our Team', 'Academic, professional and governance teams.', 'team.html', 'staff lecturers board careers'],
     ['Our Campuses', 'Sydney Ultimo and Melbourne Docklands.', 'campuses.html', 'campus locations sydney melbourne directions tour'],
     ['Life at TIIS', 'Community, support and student experience.', 'life-at-tiis.html', 'student life community events support'],
-    ['How to Apply', 'Entry requirements, key dates and fees.', 'apply.html', 'apply admissions entry requirements dates fees'],
-    ['Key Dates', 'Six intakes throughout the year.', 'apply.html#dates', 'january march may july september november intakes'],
+    ['How to Apply', 'Application process and document checklist.', 'apply.html', 'apply admissions process documents offer enrolment'],
+    ['Application Forms', 'Download domestic, international, GS and credit forms.', 'application-forms.html', 'apply admissions forms domestic international genuine student gs cpl agent'],
+    ['Admission Criteria', 'Academic and English entry requirements.', 'admission-criteria.html', 'requirements entry ielts pte undergraduate postgraduate alternative admission'],
+    ['Key Dates', '2026 orientation, teaching, census and assessment dates.', 'key-dates.html', 'calendar january march may july september november intakes census exams'],
+    ['Fees & Charges', 'Current fee schedule and refund information.', 'fees-and-charges.html', 'fees charges tuition cost refund payment schedule'],
     ['Current Students', 'Student resources, support and policies.', 'students.html', 'portal support resources policies'],
+    ['My TIIS Login', 'Direct links to Moodle, Microsoft 365, the Learning Centre and Student Hub.', 'student-login.html', 'login portal moodle office microsoft library sharepoint'],
+    ['Student Support', 'Academic, wellbeing, safety and practical support.', 'student-support.html', 'support wellbeing counselling academic safety accommodation careers'],
+    ['Student Handbook', 'View or download the current student handbook.', 'student-handbook.html', 'handbook guide rights responsibilities download'],
+    ['Student Ambassador Program', 'Represent TIIS and support the student community.', 'student-ambassadors.html', 'ambassador sap leadership orientation community'],
     ['Policies & Procedures', 'Search, view and download TIIS academic and management policies.', 'policies.html', 'policies procedures academic management privacy integrity complaints fees'],
     ['Contact Us', 'Ask a question or speak with admissions.', 'contact.html', 'contact enquiry adviser admissions phone email'],
   ].map(([title, description, href, keywords]) => ({ title, description, href, keywords }));
@@ -682,12 +705,13 @@ function buildFooter() {
         <div>
           <div class="footer__heading">Students</div>
           <ul class="footer__links">
-            <li><a href="students.html">Student Portal</a></li>
-            <li><a href="students.html#support">Student Support</a></li>
+            <li><a href="students.html">Current Students</a></li>
+            <li><a href="student-login.html">My TIIS Login</a></li>
+            <li><a href="student-support.html">Student Support</a></li>
+            <li><a href="student-handbook.html">Student Handbook</a></li>
             <li><a href="policies.html">Policies & Procedures</a></li>
-            <li><a href="apply.html">How to Apply</a></li>
-            <li><a href="apply.html#fees">Fees & Charges</a></li>
-            <li><a href="apply.html#dates">Key Dates</a></li>
+            <li><a href="fees-and-charges.html">Fees & Charges</a></li>
+            <li><a href="key-dates.html">Key Dates</a></li>
           </ul>
         </div>
 
@@ -1146,6 +1170,7 @@ function initPage(pageName) {
   injectIconSprite();
   buildNavbar(pageName);
   buildBreadcrumbs(pageName);
+  alignCurrentResourceNav();
   buildSiteSearch();
   buildCoursePageNav();
   initCourseFilters();
