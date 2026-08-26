@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Our Team — TIIS | Leadership & Academic Staff</title>
   <meta name="description" content="Meet the TIIS team — our Board of Directors, Academic Board, academic staff, and professional team dedicated to your educational success.">
-  <link rel="stylesheet" href="styles.css?v=20260826-3">
+  <link rel="stylesheet" href="styles.css?v=20260826-4">
   <link rel="icon" type="image/png" href="images/logos/TIIS-Logo-black-and-white-1024x1024.png">
 
   <!-- Fonts: preconnect so the TLS handshake overlaps HTML parsing -->
@@ -35,7 +35,7 @@
     <div class="hero__content">
       <span class="hero__label">Our People</span>
       <h1 class="hero__title">Meet the TIIS Team</h1>
-      <p class="hero__subtitle">Meet the lecturers, professional staff and governing boards behind TIIS.</p>
+      <p class="hero__subtitle">Meet the leadership, professional staff, lecturers and governing boards behind TIIS.</p>
     </div>
   </section>
 
@@ -64,28 +64,15 @@
   </section>
 
 
-  <!-- Academic & Management Team (every member here has a photo) -->
-  <section class="section" id="academic">
+  <!-- Current staff directory -->
+  <section class="section section--gray" id="staff">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-label">Academic Leadership</span>
-        <h2>Academic &amp; Management Team</h2>
-        <p class="section-subtitle">The people who lead our teaching, quality and student support. Select anyone to read their background.</p>
+        <span class="section-label">Our Staff</span>
+        <h2>Leadership, Academic &amp; Professional Staff</h2>
+        <p class="section-subtitle">The people who lead our teaching, quality, operations and student services across Sydney and Melbourne.</p>
       </div>
-      <ul class="people people--2" id="leaders-grid"></ul>
-    </div>
-  </section>
-
-
-  <!-- Professional Team (every member here has a photo) -->
-  <section class="section section--gray" id="professional">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">Support &amp; Services</span>
-        <h2>Professional Team</h2>
-        <p class="section-subtitle">Admissions, student services and administration.</p>
-      </div>
-      <ul class="people people--3" id="professional-grid"></ul>
+      <div class="staff-directory fade-in" id="staff-directory"></div>
     </div>
   </section>
 
@@ -116,7 +103,7 @@
   </section>
 
 
-  <!-- Teaching staff -->
+  <!-- Teaching staff: names and disciplines only -->
   <section class="section section--gray" id="lecturers">
     <div class="container">
       <div class="lecturers-accordion fade-in" id="lecturers-section">
@@ -124,8 +111,8 @@
           <div class="lecturers-accordion__header">
             <div class="lecturers-accordion__icon-group">
               <div class="lecturers-accordion__title-group">
-                <span class="section-label" style="margin-bottom:4px;">Teaching Staff</span>
-                <h2 style="margin-bottom:0;">Our Lecturers</h2>
+                <span class="section-label" style="margin-bottom:4px;">Teaching Team</span>
+                <h2 style="margin-bottom:0;">Lecturers by Discipline</h2>
               </div>
             </div>
             <div class="lecturers-accordion__meta">
@@ -139,7 +126,7 @@
           </div>
         </button>
         <div class="lecturers-accordion__panel" id="lecturersPanel">
-          <ul class="roster roster--3" id="lecturers-roster"></ul>
+          <div class="lecturer-groups" id="lecturers-roster"></div>
         </div>
       </div>
     </div>
@@ -159,30 +146,6 @@
       </div>
     </div>
   </section>
-
-
-  <!-- Bio Modal -->
-  <div class="team-modal-overlay" id="teamModal">
-    <div class="team-modal" role="dialog" aria-modal="true" aria-labelledby="modalName">
-      <button class="team-modal__close" id="modalClose" aria-label="Close biography">
-        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"
-             stroke-linecap="round" aria-hidden="true" width="16" height="16">
-          <path d="M5 5l10 10M15 5L5 15"/>
-        </svg>
-      </button>
-      <div class="team-modal__header">
-        <div class="team-modal__avatar" id="modalAvatar"></div>
-        <div class="team-modal__title-group">
-          <h2 class="team-modal__name" id="modalName"></h2>
-          <p class="team-modal__role" id="modalRole"></p>
-        </div>
-      </div>
-      <div class="team-modal__body">
-        <div class="team-modal__bio" id="modalBio"></div>
-      </div>
-    </div>
-  </div>
-
 
   <script src="components.js?v=20260826-3"></script>
   <script>
@@ -204,170 +167,161 @@
       {name:"Dr Ananda Wickramasinghe", role:"Academic Board Member"},
       {name:"Dr Trevor Clark", role:"Academic Board Member", photo:"images/team/trevor-clark.jpg"}
     ],
-    leaders: [
-      {name:"Dr Trevor Clark", role:"Academic Dean", photo:"images/team/trevor-clark.jpg",
-       bio:"Originally from the Waikato in New Zealand, Dr. Trevor Clark is a seasoned academic and mentor who blends curiosity with a deep commitment to people. Over three decades, he has balanced rigorous research with teaching, coaching, and leadership, guided by the belief that progress happens when people feel seen and supported.\n\nA storyteller at heart, as an ex-rugby league professional Trevor draws on experiences in elite sport, higher education, and coaching to illuminate how humans develop, learn, and lead. He has served as Dean at the International College of Management Sydney, Head of Department at the Australian College of Physical Education, and Head of Performance for the NZ Warriors and North Harbour Rugby.\n\nTrevor prioritises student wellbeing and long-term development, designing evidence-based curricula that foster curiosity, resilience, and inclusive thinking. He mentors staff, builds trusting teams, and turns ideas into practical outcomes."},
-      {name:"Dr Wajeeha Khalil", role:"Associate Dean (Research & Scholarship)", photo:"images/team/wajeeha-khalil.jpg",
-       bio:"Wajeeha has a PhD in Business Management from RMIT University (Melbourne, Australia) and MBA (Management) and Bachelors in Psychology from Pakistan. She has almost 15 years' experience in teaching and research.\n\nShe is an experienced educator, having taught several business courses and performed academic and leadership roles within universities and higher education institutes including Head Tutor, Lecturer and Unit and Program Coordinator.\n\nWajeeha derives much passion in her teaching by focusing on identifying student needs and strengths, helping students recognize their abilities and talents."},
-      {name:"Dr Emad Alasadi", role:"Associate Dean (Innovation & Enterprise)", photo:"images/team/emad-alasadi.png",
-       bio:"With over 20 years of combined industry and academic experience, Emad bridges the gap between cutting-edge ICT solutions and transformative education. Holding a Ph.D. in Software Engineering and Networking from Brunel University, UK, he has delivered enterprise-grade networking, cloud, and secure infrastructure projects while leading academic programs across multiple universities.\n\nA member of the Australian Computer Society (ACS), he has proven success in curriculum design, TEQSA compliance, program coordination, and delivering impactful education initiatives.\n\nCurrently driving AI and cybersecurity initiatives over cloud platforms in collaboration with industry partners, he integrates research in software-defined networking, IoT-cloud convergence, and next-generation network security into both commercial applications and academic curricula."},
-      {name:"Dr Alexander Roper", role:"Program Coordinator – Business", photo:"images/team/alexander-roper.png",
-       bio:"Dr Alexander Roper is an experienced higher education leader, with a distinguished career spanning academic management, course development, and regulatory compliance across Australia's university and private higher education sectors.\n\nHolding PhD, Master, Graduate Diploma and Bachelor degrees from his studies in the UK and Australia, Dr Roper has led the successful registration and accreditation of new institutions, developed innovative undergraduate and postgraduate programs, and established strong governance frameworks to ensure academic excellence.\n\nHe has been instrumental in elevating teaching standards and student outcomes, achieving national recognition, including guiding a postgraduate school to the No.1 ranking in NSW and No.2 in Australia for Management and Commerce courses (QILT)."},
-      {name:"Dr Patrick Shearman", role:"Program Coordinator – IT & Cyber Security", photo:"images/team/patrick-shearman.png",
-       bio:"Dr Patrick Shearman is Discipline Lead for Information Technology at TIIS, providing academic leadership across undergraduate and postgraduate programs. With extensive industry experience—including senior roles such as CIO at HCF and technology leadership at BT Financial Group and TAB—he brings a strong practical perspective to teaching.\n\nDr Shearman began his career as a systems analyst at the London Stock Exchange before moving into software development with one of the UK's largest financial markets technology consulting firms. There, he specialised in building investment management and analytics systems.\n\nHis research focuses on digital transformation, particularly in the aged care and disability sectors."},
-      {name:"Dr Roger March", role:"Quality and Compliance Manager", photo:"images/team/roger-march.png",
-       bio:"Dr March's career in higher education spans 36 years. He has a PhD, MComm (Hons) and BA from UNSW and a Grad Dip from AICD.\n\nRoger's senior management roles include Director Accreditation and Associate Professor in Marketing at UNSW Business School; Dean of the Management & Marketing School at CQUniversity Australia; and Executive Dean at Kent Institute.\n\nBefore entering academia, Roger lived, studied, & worked in Japan for 12 years, starting as language student and ending as professional translator."},
-      {name:"Dr Nicole Datos", role:"Academic Support Librarian", photo:"images/team/nicole-dados.png",
-       bio:"Nicole Datos holds a PhD (2011) and brings over 20 years of experience in academic teaching and research, with a strong publication record and subject expertise in social history and the social sciences.\n\nShe has held roles in academic and public libraries and completed an internship with NSW State Archives. Nicole holds a CELTA in English Language Teaching and a Master of Arts in Applied Linguistics.\n\nShe is currently undertaking further study in libraries, archives and information management, and is a member of the Australian Library and Information Association (ALIA) and the Australian Society of Archivists (ASA)."},
-      {name:"Megan Lavender", role:"Governance Executive", photo:"images/team/megan-lavender.jpg",
-       bio:"Megan brings a wealth of corporate governance and education expertise to the role. Having commenced her career as a teacher then moving into education operations and transitioning to corporate governance, Megan is a recognised leader in organisational transparency, accountability and risk management with a focus on people, purpose, process and performance.\n\nHer background extends across corporate affairs, finance, C-suite roles, company secretary and Board directorships within Government, the not for profit and private sectors."},
-      {name:"Ms Jenny Yang", role:"Deputy CEO (Operations)", photo:"images/people/Jenny.png",
-       bio:"Ms Jenny Yang is overseeing TIIS institutional operations, student administration, and regulatory compliance. She plays a key role in ensuring efficient service delivery, supporting student experience, and aligning operations with HESF and ESOS requirements."}
+    staffGroups: [
+      {
+        name:"Executive Leadership",
+        people: [
+          {name:"Mr Anand Karuppiah", role:"CEO", campus:"Sydney"},
+          {name:"Mr Marshall Wei", role:"Deputy CEO", campus:"Melbourne"},
+          {name:"Ms Jenny Yang", role:"Deputy CEO", campus:"Sydney"}
+        ]
+      },
+      {
+        name:"Academic, Quality & Governance",
+        people: [
+          {name:"Dr Roger March", role:"Quality and Compliance Manager", campus:"Sydney"},
+          {name:"Ms Cate Murray", role:"Governance Support", campus:"Sydney"},
+          {name:"Dr Trevor Clark", role:"Academic Dean", campus:"Sydney"},
+          {name:"Dr Emad Alasadi", role:"Associate Dean (Innovation & Enterprise)", campus:"Melbourne"},
+          {name:"Dr Wajeeha Khalil", role:"Associate Dean (Scholarship & Research)", campus:"Melbourne"},
+          {name:"Dr Alexander Roper", role:"Program Coordinator (Business)", campus:"Sydney"},
+          {name:"Dr Patrick Shearman", role:"Program Coordinator (IT)", campus:"Sydney"},
+          {name:"Mr Shibly Abdullah", role:"Program Coordinator (Accounting)", campus:"Sydney"},
+          {name:"Mr Iswan Mastro", role:"Lecturer (Business)", campus:"Sydney"},
+          {name:"Ms Samina Ansari", role:"Academic Support Librarian", campus:"Sydney"}
+        ]
+      },
+      {
+        name:"Engagement & Student Services",
+        people: [
+          {name:"Mr Brasish Suwal", role:"Business Development Manager", campus:"Sydney"},
+          {name:"Ms Chandni Thakkar", role:"Marketing Manager", campus:"Melbourne"},
+          {name:"Ms Ellie Wei", role:"Digital & Social Media Manager", campus:"Sydney"},
+          {name:"Ms Danica Tamayo", role:"Marketing & Student Service Officer", campus:"Sydney"},
+          {name:"Ms Naqsheema Ali", role:"Student Service & Admission Officer", campus:"Sydney"},
+          {name:"Mr Jackie Lu", role:"Student Service & Admission Officer", campus:"Melbourne"},
+          {name:"Mr Brendan Walsh", role:"Student Service & Support Officer", campus:"Sydney"},
+          {name:"Mr Vincent Fan", role:"Student Service & Support Officer", campus:"Melbourne"},
+          {name:"Ms Apsara Chhetri", role:"Student Support & Wellbeing Officer", campus:"Sydney"}
+        ]
+      },
+      {
+        name:"Operations & Support",
+        people: [
+          {name:"Mr Siddhant Tandukar", role:"IT Support & Service Desk", campus:"Sydney"},
+          {name:"Mr Yousaf Khan", role:"Accountant", campus:"Sydney"}
+        ]
+      }
     ],
     lecturers: [
-      {name:"Dr Philip Booth", role:"Senior Lecturer"},
-      {name:"Dr Annamaria Kurtovic", role:"Lecturer"},
-      {name:"Mr Shibly Abdullah", role:"Lecturer"},
-      {name:"Mr Senthilananthan Suntharalingam", role:"Lecturer"},
-      {name:"Dr Donna Gill", role:"Lecturer"},
-      {name:"Mr Iswan Mastro", role:"Lecturer"},
-      {name:"Dr Rochelle Wilson", role:"Lecturer"},
-      {name:"Dr Charles Thevathayan", role:"Lecturer"},
-      {name:"Dr Santiago Gomez", role:"Lecturer"},
-      {name:"Mr Michael Lehner", role:"Lecturer"},
-      {name:"Dr Munazza Zaib", role:"Lecturer"},
-      {name:"Mr Patrick Riakos", role:"Lecturer"},
-      {name:"Ms Brenda McCormick", role:"Lecturer"},
-      {name:"Dr Aruni Niroshika", role:"Lecturer"},
-      {name:"Dr Seyed Lajevardi", role:"Lecturer"},
-      {name:"Ms Luciana Uhlemann", role:"Lecturer"},
-      {name:"Dr Mohammad Momeni", role:"Lecturer"},
-      {name:"Mr Jude Gibson", role:"Lecturer"},
-      {name:"Ms Margaret Redestowicz", role:"Lecturer"},
-      {name:"Ms Donna Mack", role:"Lecturer"},
-      {name:"Dr Kanwal Javed", role:"Lecturer"},
-      {name:"Dr Nectar Costadoupoulos", role:"Lecturer"},
-      {name:"Dr Bijan Jamshid-Nejad", role:"Lecturer"},
-      {name:"Dr Maruf Mostafa", role:"Lecturer"},
-      {name:"Dr Muhammad Umair Manzoor", role:"Lecturer"},
-      {name:"Dr Ramtin Ranji", role:"Lecturer"},
-      {name:"Dr Fazal E Amin", role:"Lecturer"},
-      {name:"Dr Niousha Nazemi", role:"Lecturer"},
-      {name:"Dr Javed Mahmood", role:"Lecturer"},
-      {name:"Dr Sommala Sisombat", role:"Lecturer"}
-    ],
-    professional: [
-      {name:"Amy Zeng", role:"Student Services Officer", photo:"images/team/amy-zeng.jpg",
-       bio:"With more than 24 years of background in the migration industry as an Administration Officer. Here at TIIS, specialising in providing appropriate services to the students. The first point of contact for them. Always here to help and advise."},
-      {name:"Brasish Suwal", role:"Business Development Manager", photo:"images/team/brasish-suwal.png",
-       bio:"An experienced professional in the international education sector with over 7 years of expertise in student recruitment, business development, team management, and strategic engagement across multiple sectors — ELICOS, VET, and Higher Education.\n\nHaving begun his journey as an international student in Australia, Brasish brings both personal insight and professional expertise to support students in achieving their educational goals. He has recruited thousands of international students and contributed to significant revenue growth for leading Australian institutions.\n\nAs an Accredited Mental Health First Aider, he is committed to student wellbeing and fostering inclusive learning environments."},
-      {name:"Benhan Shi", role:"Marketing Manager", photo:"images/team/benhan-shi.jpg",
-       bio:"With a Master's degree in Marketing from the University of Melbourne, Ben brings over three years of industry experience. Renowned for his prowess in navigating the complexities of the China-Australia market, he excels in crafting and executing strategic marketing campaigns.\n\nCurrently holding the position of Marketing Officer at TIIS Melbourne, Ben spearheads enrolment endeavours across the East Asia region with precision and dedication."},
-      {name:"Jackie Lu", role:"Student Administration Officer", photo:"images/team/jackie-lu.jpg",
-       bio:"Jackie is fluent in both English and Mandarin and holds a Master's degree in Cross-cultural Communication from the University of Sydney. Currently a member of the Student Services team, Jackie brings strong attention to detail, developed through prior experience in a logistics environment.\n\nHis skills support effective communication and dedicated service within diverse student communities."},
-      {name:"Chandni Thakkar", role:"Marketing Manager", photo:"images/team/chandni-thakkar.jpg",
-       bio:"Chandni has been driving marketing initiatives for Vocational Education and Training (VET) programs at a Registered Training Organisation (RTO) since 2019. Now extending her focus to the Higher Education sector, she continues to expand her capabilities across a broad spectrum of marketing strategies.\n\nWith a degree in marketing and a culturally rich background rooted in India, Chandni brings a global perspective to her work. Her diverse expertise — spanning traditional outreach and a strong digital marketing presence — enables her to develop impactful, inclusive campaigns."},
-      {name:"Nica Tamayo", role:"Marketing & Student Services", photo:"images/team/nica-tamayo.png",
-       bio:"Nica holds a degree in Marketing and Advertising and brings over 8 years of experience in marketing roles across diverse industries. Her background includes event coordination, content development, and campaign strategy, with a passion for creating meaningful brand experiences.\n\nAt TIIS, she supports both marketing and student services, contributing to the institute's visibility and student engagement through creative and strategic initiatives."}
+      {name:"Dr Philip Booth", discipline:"Business"},
+      {name:"Dr Bijan Jamshid-Nejad", discipline:"Business"},
+      {name:"Dr Rochelle Wilson", discipline:"Business"},
+      {name:"Dr Sommala Sisombat", discipline:"Business"},
+      {name:"Dr Abdul Salam", discipline:"Business"},
+      {name:"Dr Arslan Zafar", discipline:"Business"},
+      {name:"Dr Chrys Gunasekara", discipline:"Business"},
+      {name:"Dr Kaushik Sridhar", discipline:"Business"},
+      {name:"Dr Kuntal Goswami", discipline:"Business"},
+      {name:"Dr Maruf Mostafa", discipline:"Business"},
+      {name:"Dr Nabeel Maqsood", discipline:"Business"},
+      {name:"Dr Shaila Akhter", discipline:"Business"},
+      {name:"Dr Syed Hassan", discipline:"Business"},
+      {name:"Dr Apurva Sharma", discipline:"Business"},
+      {name:"Mr Alli Abdurahman", discipline:"Business"},
+      {name:"Mr Craig Stewart", discipline:"Business"},
+      {name:"Mr Behrang Keshavarzi", discipline:"Business"},
+      {name:"Ms Luciana Uhlemann", discipline:"Business"},
+      {name:"Ms Margaret Redestowicz", discipline:"Business"},
+      {name:"Dr Annamaria Kurtovic", discipline:"Accounting"},
+      {name:"Dr Kanwal Javed", discipline:"Accounting"},
+      {name:"Dr Majd Shamayleh", discipline:"Accounting"},
+      {name:"Mr John Nicols", discipline:"Accounting"},
+      {name:"Mr Patrick Riakos", discipline:"Accounting"},
+      {name:"Mr Senthi Suntharalingam", discipline:"Accounting"},
+      {name:"Mr Shibly Abdullah", discipline:"Accounting"},
+      {name:"Mr Tharwat Andrawis", discipline:"Accounting"},
+      {name:"Ms Shanika Pallegedara", discipline:"Accounting"},
+      {name:"Dr Gerald Khoury", discipline:"ICT"},
+      {name:"Dr Gordhan Das Menghwar", discipline:"ICT"},
+      {name:"Dr John Pirozmand", discipline:"ICT"},
+      {name:"Dr Khimji Vaghjiani", discipline:"ICT"},
+      {name:"Dr Munazza Zaib", discipline:"ICT"},
+      {name:"Dr Navjeet Kaur", discipline:"ICT"},
+      {name:"Dr Niousha Nazemi", discipline:"ICT"},
+      {name:"Dr Ramtin Ranji", discipline:"ICT"},
+      {name:"Dr Santiago Gomez", discipline:"ICT"},
+      {name:"Dr Seyed Lajevardi", discipline:"ICT"},
+      {name:"Dr Sheeraz Memon", discipline:"ICT"},
+      {name:"Dr Teena Arora", discipline:"ICT"},
+      {name:"Dr Aruni Niroshika", discipline:"ICT"},
+      {name:"Dr Charles Thevathayan", discipline:"ICT"},
+      {name:"Dr Suganya Eliot", discipline:"ICT"},
+      {name:"Dr Farshid Hajati", discipline:"ICT"},
+      {name:"Dr Fakhra Jabeen", discipline:"ICT"},
+      {name:"Dr Fazal E Amin", discipline:"ICT"},
+      {name:"Dr Fazl Ullah", discipline:"ICT"},
+      {name:"Mr Deshao Liu", discipline:"ICT"},
+      {name:"Mr John le Mesurier", discipline:"ICT"}
     ]
   };
 
-  /* ── Helpers ── */
-
-  /* Photo handling.
-     There is no initials-placeholder path any more. A grid where half the
-     tiles are generated monograms looks broken, and it draws attention to
-     exactly the thing that is missing. Instead the page picks its layout per
-     group: groups where everyone has a photograph are rendered as photo
-     cards, and groups without a full set are rendered as name-and-role
-     rosters, which need no image at all.
-
-     buildPhotoHTML still guards against a missing file so that a card group
-     degrades to a plain tinted panel rather than a broken image. */
-  function buildPhotoHTML(person) {
-    if (!person.photo) return '';
-    return `<img src="${person.photo}" alt="${person.name}" style="width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async">`;
-  }
-
-  function buildPhotoStyle(person) {
-    return person.photo
-      ? 'overflow:hidden;'
-      : 'background:var(--blue-pale);';
-  }
-
-  /* ── People rows (photo groups) ──
-     Not a large photo grid: 7 of the 15 team photographs are under 400px on
-     their long edge (several are 200px), so a full-bleed tile upscaled them
-     2x or more and they looked soft. A portrait at 88px displays every one of
-     them at or below its native resolution, stays crisp on retina, and suits
-     the editorial layout used elsewhere on the site. */
-  function buildPersonRow(person, delayClass, opts = {}) {
-    const snippet = opts.withBio && person.bio
-      ? `<p class="person__bio">${person.bio.split('\n')[0].substring(0, 130)}…</p>`
-      : '';
-    const interactive = person.bio;
-    const inner = `
-        <div class="person__portrait">
-          <img src="${person.photo}" alt="${person.name}" width="88" height="88"
-               loading="lazy" decoding="async">
-        </div>
-        <div class="person__text">
-          <span class="person__name">${person.name}</span>
-          <span class="person__role">${person.role}</span>
-          ${snippet}
-        </div>`;
-
-    if (!interactive) {
-      return `<li class="person fade-in ${delayClass}">${inner}</li>`;
-    }
-    return `<li class="person person--linked fade-in ${delayClass}">
-        <button type="button" class="person__button"
-                onclick="openModal(${JSON.stringify(person).replace(/"/g,'&quot;')})">
-          ${inner}
-          <span class="person__more">Read background</span>
-        </button>
-      </li>`;
-  }
-
-  /* ── Roster builder (groups without a full set of photos) ── */
+  /* ── Roster builders ── */
   function renderRoster(containerId, people) {
     const el = document.getElementById(containerId);
     if (!el) return;
-    el.innerHTML = people.map(person => {
-      // Only the entries that actually have a biography are interactive;
-      // the rest are plain text rather than dead-looking buttons.
-      const inner = `<span class="roster__name">${person.name}</span>` +
-                    `<span class="roster__role">${person.role}</span>`;
-      if (!person.bio) {
-        return `<li class="roster__item">${inner}</li>`;
-      }
-      return `<li class="roster__item roster__item--linked">
-          <button type="button" class="roster__button"
-                  onclick="openModal(${JSON.stringify(person).replace(/"/g,'&quot;')})">
-            ${inner}
-          </button>
-        </li>`;
+    el.innerHTML = people.map(person => `
+      <li class="roster__item">
+        <span class="roster__name">${person.name}</span>
+        <span class="roster__role">${person.role}</span>
+      </li>`).join('');
+  }
+
+  function renderStaffDirectory(containerId, groups) {
+    const el = document.getElementById(containerId);
+    if (!el) return;
+    el.innerHTML = groups.map((group, groupIndex) => `
+      <section class="staff-group" aria-labelledby="staff-group-${groupIndex}">
+        <h3 class="staff-group__title" id="staff-group-${groupIndex}">${group.name}</h3>
+        <ul class="staff-group__list">
+          ${group.people.map(person => `
+            <li class="staff-member">
+              <div class="staff-member__details">
+                <span class="staff-member__name">${person.name}</span>
+                <span class="staff-member__role">${person.role}</span>
+              </div>
+              <span class="staff-member__campus" aria-label="Campus: ${person.campus}">${person.campus}</span>
+            </li>`).join('')}
+        </ul>
+      </section>`).join('');
+  }
+
+  function renderLecturerGroups(containerId, people) {
+    const el = document.getElementById(containerId);
+    if (!el) return;
+    const disciplines = [...new Set(people.map(person => person.discipline))];
+    el.innerHTML = disciplines.map((discipline, groupIndex) => {
+      const lecturers = people.filter(person => person.discipline === discipline);
+      return `
+        <section class="lecturer-group" aria-labelledby="lecturer-discipline-${groupIndex}">
+          <div class="lecturer-group__header">
+            <h3 id="lecturer-discipline-${groupIndex}">${discipline}</h3>
+            <span>${lecturers.length} lecturers</span>
+          </div>
+          <ul class="roster roster--3">
+            ${lecturers.map(person => `
+              <li class="roster__item">
+                <span class="roster__name">${person.name}</span>
+              </li>`).join('')}
+          </ul>
+        </section>`;
     }).join('');
   }
 
-  /* ── Render ──
-     Photo cards for the two groups with a complete set of photographs;
-     rosters for the three that do not have one. If you add the missing
-     photographs later, move that group from renderRoster to renderPeople. */
-  function renderPeople(containerId, people, opts) {
-    const el = document.getElementById(containerId);
-    if (!el) return;
-    const delays = ['delay-1','delay-2','delay-3','delay-4'];
-    el.innerHTML = people
-      .map((p, i) => buildPersonRow(p, delays[i % delays.length], opts))
-      .join('');
-  }
-
-  renderPeople('leaders-grid', teamData.leaders, { withBio: true });  // 9 of 9 have photos
-  renderPeople('professional-grid', teamData.professional);            // 6 of 6 have photos
-  renderRoster('board-roster', teamData.board);                  // 0 of 7
-  renderRoster('academic-board-roster', teamData.academicBoard);  // 3 of 5
-  renderRoster('lecturers-roster', teamData.lecturers);          // 0 of 30
+  renderStaffDirectory('staff-directory', teamData.staffGroups);
+  renderRoster('board-roster', teamData.board);
+  renderRoster('academic-board-roster', teamData.academicBoard);
+  renderLecturerGroups('lecturers-roster', teamData.lecturers);
 
   /* ── Lecturers Accordion ── */
   (function() {
@@ -376,9 +330,9 @@
     const panel = document.getElementById('lecturersPanel');
     if (!count || !toggle || !panel) return;
 
-    // The roster itself is filled by renderRoster above; this only handles
+    // The roster itself is filled above; this only handles
     // the count and the open/close behaviour.
-    count.textContent = teamData.lecturers.length + ' lecturers';
+    count.textContent = teamData.lecturers.length + ' lecturers · 3 disciplines';
 
     /* The panel is collapsed with max-height:0 + overflow:hidden, which hides
        it visually but leaves every row in the accessibility tree and tab
@@ -414,86 +368,6 @@
     });
   })();
 
-
-  /* ── Modal Logic ── */
-  const overlay = document.getElementById('teamModal');
-  const modalName = document.getElementById('modalName');
-  const modalRole = document.getElementById('modalRole');
-  const modalAvatar = document.getElementById('modalAvatar');
-  const modalBio = document.getElementById('modalBio');
-  const modalClose = document.getElementById('modalClose');
-  let lastFocused = null;
-
-  function openModal(person) {
-    modalName.textContent = person.name;
-    modalRole.textContent = person.role;
-
-    // No photograph means no avatar frame at all — the name and role carry
-    // the header. An initials monogram here just restates the name.
-    if (person.photo) {
-      modalAvatar.innerHTML = `<img src="${person.photo}" alt="${person.name}" loading="lazy" decoding="async">`;
-      modalAvatar.hidden = false;
-    } else {
-      modalAvatar.innerHTML = '';
-      modalAvatar.hidden = true;
-    }
-
-    if (person.bio) {
-      const paragraphs = person.bio.split('\n').filter(p => p.trim()).map(p => `<p>${p}</p>`).join('');
-      modalBio.innerHTML = paragraphs;
-    } else {
-      modalBio.innerHTML = `
-        <div class="team-modal__no-bio">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
-          </svg>
-          <p>Full biography coming soon.</p>
-        </div>`;
-    }
-
-    overlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-
-    // Focus management: the dialog previously opened without moving focus, so
-    // keyboard and screen-reader users stayed behind it and Tab walked the
-    // page underneath.
-    lastFocused = document.activeElement;
-    // The overlay is visibility:hidden until the class lands, and focus() on a
-    // hidden element is silently dropped — so wait one frame.
-    requestAnimationFrame(() => modalClose.focus());
-  }
-
-  function closeModal() {
-    if (!overlay.classList.contains('active')) return;
-    overlay.classList.remove('active');
-    document.body.style.overflow = '';
-    if (lastFocused && document.contains(lastFocused)) lastFocused.focus();
-    lastFocused = null;
-  }
-
-  modalClose.addEventListener('click', closeModal);
-  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
-
-  document.addEventListener('keydown', (e) => {
-    if (!overlay.classList.contains('active')) return;
-
-    if (e.key === 'Escape') { closeModal(); return; }
-    if (e.key !== 'Tab') return;
-
-    // Trap Tab inside the dialog.
-    const items = [...overlay.querySelectorAll(
-      'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])'
-    )].filter(el => el.offsetParent !== null);
-    if (!items.length) return;
-
-    const first = items[0];
-    const last = items[items.length - 1];
-    if (e.shiftKey && document.activeElement === first) {
-      e.preventDefault(); last.focus();
-    } else if (!e.shiftKey && document.activeElement === last) {
-      e.preventDefault(); first.focus();
-    }
-  });
 
   initPage('team');
   </script>
