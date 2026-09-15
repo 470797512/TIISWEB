@@ -1,0 +1,247 @@
+/* School photography review, September 2026.
+   Keep the complete scene in frame; copy never sits over people's faces. */
+.home-hero {
+  display: grid;
+}
+
+/* Stack the slides in one grid cell so the tallest slide sets the height.
+   The carousel can crossfade without clipping content on narrow screens. */
+.home-hero__slides {
+  position: relative;
+  inset: auto;
+  display: grid;
+  min-width: 0;
+}
+
+.home-hero__slide {
+  position: relative;
+  inset: auto;
+  grid-area: 1 / 1;
+  min-width: 0;
+}
+
+.hero--photo,
+.home-hero__slide--photo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(28px, 4vw, 64px);
+  min-height: 0;
+  padding: 140px max(32px, calc((100vw - 1216px) / 2)) 56px;
+  background: var(--navy);
+}
+
+.hero--photo > .hero__content,
+.home-hero__slide--photo > .hero__content {
+  grid-area: 1 / 1;
+  min-width: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.hero--photo > .hero__bg,
+.home-hero__slide--photo > .hero__bg {
+  position: relative;
+  inset: auto;
+  grid-area: 1 / 2;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.hero--photo .hero__bg img,
+.home-hero__slide--photo .hero__bg img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+.hero--photo > .hero__overlay,
+.hero--photo::after,
+.home-hero__slide--photo > .hero__overlay {
+  display: none;
+}
+
+.hero--photo .hero__title,
+.home-hero__slide--photo .hero__title {
+  font-size: clamp(2.3rem, 3.8vw, 3.5rem);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.hero--photo .hero__subtitle,
+.home-hero__slide--photo .hero__subtitle {
+  max-width: 48ch;
+  font-size: 1rem;
+}
+
+.hero--photo .hero__subtitle:last-child {
+  margin-bottom: 0;
+}
+
+.hero--photo .hero-breadcrumb {
+  margin-bottom: 24px;
+}
+
+.hero--photo .hero-badges {
+  flex-wrap: wrap;
+}
+
+.home-hero__slide--photo {
+  padding-bottom: 92px;
+}
+
+.home-hero__slide--campus .hero__bg img {
+  object-position: center 64%;
+}
+
+/* Disable the background zoom for photographs with a deliberate full frame.
+   The existing short text entrance and carousel crossfade remain intact. */
+.js-page-enter:not(.page-entered) main > .hero--photo:first-child .hero__bg img,
+.js-page-enter:not(.page-entered) .home-hero__slide--photo .hero__bg img {
+  transform: none;
+}
+
+.pathway-card__image {
+  aspect-ratio: 3 / 2;
+  height: auto;
+}
+
+.pathway-card__image img {
+  object-position: center;
+}
+
+.split__image.photo--natural {
+  align-self: center;
+  min-height: 0;
+  max-height: none;
+}
+
+.split__image.photo--natural img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+}
+
+.life-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: auto;
+  gap: 28px;
+}
+
+.life-card,
+.life-card:first-child {
+  grid-row: auto;
+  min-height: 0;
+  background: transparent;
+  border-bottom: 1px solid var(--n-300);
+}
+
+.life-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 1;
+}
+
+.life-card::after {
+  display: none;
+}
+
+.life-card__content {
+  position: static;
+  padding: 22px 0 26px;
+}
+
+.life-card h3 {
+  color: var(--navy);
+}
+
+.life-card p {
+  color: var(--text-muted);
+}
+
+.life-card:hover img {
+  opacity: 1;
+  transform: none;
+}
+
+.life-card:hover h3 {
+  color: var(--blue);
+}
+
+.story-photos {
+  display: grid;
+  align-content: center;
+  gap: 28px;
+}
+
+.story-photos figure {
+  margin: 0;
+}
+
+.story-photos img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.story-photos figcaption {
+  padding-top: 10px;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
+@media (max-width: 800px) {
+  .hero--photo,
+  .home-hero__slide--photo {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    padding: 112px 24px 32px;
+  }
+
+  .hero--photo > .hero__bg,
+  .home-hero__slide--photo > .hero__bg {
+    grid-area: 2 / 1;
+  }
+
+  .hero--photo .hero__title,
+  .home-hero__slide--photo .hero__title {
+    font-size: clamp(2.25rem, 7vw, 3.25rem);
+    text-wrap: initial;
+  }
+
+  .home-hero__slide--photo {
+    align-content: center;
+    padding-top: 96px;
+    padding-bottom: 88px;
+  }
+
+  .home-hero__slide--photo .hero__bg {
+    width: min(100%, 480px);
+    justify-self: center;
+  }
+
+  .life-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .life-card__content {
+    padding-top: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero--photo {
+    padding: 100px 20px 28px;
+  }
+
+  .home-hero__slide--photo {
+    padding-inline: 20px;
+  }
+}

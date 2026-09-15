@@ -40,6 +40,15 @@ const SOCIAL_LINKS = {
 const PREFERS_REDUCED_MOTION =
   window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// Prepare a brief first-view entrance before the page can paint. The timeout
+// is a safety release if page-specific code fails before initPage() runs.
+if (!PREFERS_REDUCED_MOTION) {
+  document.documentElement.classList.add('js-page-enter');
+  window.setTimeout(() => {
+    document.documentElement.classList.add('page-entered');
+  }, 1600);
+}
+
 
 function buildNavbar(currentPage) {
   const isHome = currentPage === 'home';
@@ -425,6 +434,69 @@ function improveImageLoading() {
 }
 
 
+function completePageEntrance() {
+  if (PREFERS_REDUCED_MOTION) {
+    document.documentElement.classList.add('page-entered');
+    return;
+  }
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.documentElement.classList.add('page-entered');
+    });
+  });
+}
+
+
+function alignInitialHashTarget() {
+  const rawHash = window.location.hash.slice(1);
+  if (!rawHash) return;
+
+  let id = rawHash;
+  try {
+    id = decodeURIComponent(rawHash);
+  } catch (error) {
+    // A malformed fragment is left to the browser's normal behaviour.
+  }
+
+  const target = document.getElementById(id);
+  if (!target) return;
+
+  const align = () => {
+    const revealSelector = '.fade-in, .fade-in-left, .fade-in-right, .scale-in';
+    const revealTargets = [
+      ...(target.matches(revealSelector) ? [target] : []),
+      ...target.querySelectorAll(revealSelector),
+    ];
+    const revealParent = target.closest(revealSelector);
+    if (revealParent) revealTargets.push(revealParent);
+    revealTargets.forEach(el => el.classList.add('visible'));
+
+    const expectedTop = Number.parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+    if (Math.abs(target.getBoundingClientRect().top - expectedTop) > 2) {
+      const root = document.documentElement;
+      const previousScrollBehaviour = root.style.scrollBehavior;
+      root.style.scrollBehavior = 'auto';
+      target.scrollIntoView({ block: 'start', behavior: 'auto' });
+      root.style.scrollBehavior = previousScrollBehaviour;
+    }
+  };
+
+  requestAnimationFrame(() => requestAnimationFrame(align));
+  window.setTimeout(align, 120);
+  window.setTimeout(align, 420);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => requestAnimationFrame(align), { once: true });
+  }
+  if (document.fonts?.ready) {
+    document.fonts.ready.then(() => requestAnimationFrame(align));
+  }
+  if (document.readyState !== 'complete') {
+    window.addEventListener('load', () => requestAnimationFrame(align), { once: true });
+  }
+}
+
+
 // ---- Initialize everything ----
 function initPage(pageName) {
   wrapMainContent();
@@ -432,6 +504,8 @@ function initPage(pageName) {
   buildFooter();
   buildScrollTop();
   improveImageLoading();
+  completePageEntrance();
+  alignInitialHashTarget();
 
   // Wait for DOM to be ready
   requestAnimationFrame(() => {

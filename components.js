@@ -17,6 +17,16 @@ const SOCIAL_LINKS = {
 const PREFERS_REDUCED_MOTION =
   window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// Opt into the entrance state while this blocking script is still executing.
+// A safety release keeps the page visible if later page-specific code fails
+// before initPage() can complete the transition.
+if (!PREFERS_REDUCED_MOTION) {
+  document.documentElement.classList.add('js-page-enter');
+  window.setTimeout(() => {
+    document.documentElement.classList.add('page-entered');
+  }, 1600);
+}
+
 // ---- SVG Icons ----
 const ICONS = {
   chevronDown: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>',
@@ -1164,6 +1174,78 @@ function wrapMainContent() {
 }
 
 
+/* ---- First-view entrance -----------------------------------------------
+   The hero is the visitor's first orientation point, so its motion is kept
+   short and ordered: navigation, context, headline, supporting copy, action.
+   CSS owns the presentation; this function only releases the prepared state. */
+function completePageEntrance() {
+  if (PREFERS_REDUCED_MOTION) {
+    document.documentElement.classList.add('page-entered');
+    return;
+  }
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.documentElement.classList.add('page-entered');
+    });
+  });
+}
+
+
+/* ---- Initial hash alignment --------------------------------------------
+   Browsers resolve #hash positions before page scripts finish rendering.
+   Dynamic directories (notably the staff list) can then push the requested
+   target far below the viewport. Re-align after layout and reveal the target
+   immediately so deep links never land on translucent content. */
+function alignInitialHashTarget() {
+  const rawHash = window.location.hash.slice(1);
+  if (!rawHash) return;
+
+  let id = rawHash;
+  try {
+    id = decodeURIComponent(rawHash);
+  } catch (error) {
+    // A malformed fragment is left to the browser's normal behaviour.
+  }
+
+  const target = document.getElementById(id);
+  if (!target) return;
+
+  const align = () => {
+    const revealSelector = '.fade-in, .fade-in-left, .fade-in-right, .scale-in';
+    const revealTargets = [
+      ...(target.matches(revealSelector) ? [target] : []),
+      ...target.querySelectorAll(revealSelector),
+    ];
+    const revealParent = target.closest(revealSelector);
+    if (revealParent) revealTargets.push(revealParent);
+    revealTargets.forEach(el => el.classList.add('visible'));
+
+    const expectedTop = Number.parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+    if (Math.abs(target.getBoundingClientRect().top - expectedTop) > 2) {
+      const root = document.documentElement;
+      const previousScrollBehaviour = root.style.scrollBehavior;
+      root.style.scrollBehavior = 'auto';
+      target.scrollIntoView({ block: 'start', behavior: 'auto' });
+      root.style.scrollBehavior = previousScrollBehaviour;
+    }
+  };
+
+  requestAnimationFrame(() => requestAnimationFrame(align));
+  window.setTimeout(align, 120);
+  window.setTimeout(align, 420);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => requestAnimationFrame(align), { once: true });
+  }
+  if (document.fonts?.ready) {
+    document.fonts.ready.then(() => requestAnimationFrame(align));
+  }
+  if (document.readyState !== 'complete') {
+    window.addEventListener('load', () => requestAnimationFrame(align), { once: true });
+  }
+}
+
+
 // ---- Initialize everything ----
 function initPage(pageName) {
   wrapMainContent();
@@ -1177,6 +1259,8 @@ function initPage(pageName) {
   buildFooter();
   buildScrollTop();
   improveImageLoading();
+  completePageEntrance();
+  alignInitialHashTarget();
 
   // Wait for DOM to be ready
   requestAnimationFrame(() => {

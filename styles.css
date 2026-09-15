@@ -9069,3 +9069,149 @@ section[id] {
     width: 100%;
   }
 }
+
+
+/* ===================================================
+   First-view motion
+   A short, ordered entrance gives the page an immediate sense of response
+   without turning institutional content into a showreel. Only compositor-
+   friendly opacity and transform values move, with no bounce or looping.
+   =================================================== */
+.js-page-enter .navbar__inner,
+.js-page-enter .navbar__utility {
+  transition: opacity 360ms var(--ease-out),
+              transform 480ms var(--ease-out);
+}
+
+.js-page-enter main > .hero:first-child .hero__content > * {
+  transition: opacity 400ms var(--ease-out),
+              transform 520ms var(--ease-out);
+}
+
+.js-page-enter main > .hero:first-child .hero__bg img {
+  transition: transform 1000ms var(--ease-out);
+}
+
+.js-page-enter .home-hero__controls {
+  transition: opacity 360ms var(--ease-out),
+              transform 460ms var(--ease-out);
+}
+
+.js-page-enter:not(.page-entered) .navbar__inner {
+  opacity: 0;
+  transform: translateY(-7px);
+}
+
+.js-page-enter:not(.page-entered) .navbar__utility {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+.js-page-enter:not(.page-entered) main > .hero:first-child .hero__content > * {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.js-page-enter:not(.page-entered) main > .hero:first-child .hero__bg img {
+  transform: scale(1.025);
+}
+
+.js-page-enter:not(.page-entered) .home-hero__controls {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.js-page-enter.page-entered .navbar__inner,
+.js-page-enter.page-entered .navbar__utility,
+.js-page-enter.page-entered main > .hero:first-child .hero__content > *,
+.js-page-enter.page-entered .home-hero__controls {
+  opacity: 1;
+  transform: none;
+}
+
+.js-page-enter.page-entered main > .hero:first-child .hero__bg img {
+  transform: scale(1);
+}
+
+.js-page-enter.page-entered .navbar__utility {
+  transition-delay: 30ms;
+}
+
+.js-page-enter.page-entered main > .hero:first-child :is(.hero-breadcrumb, .hero__label, .home-hero__brandline, .hero-badges) {
+  transition-delay: 70ms;
+}
+
+.js-page-enter.page-entered main > .hero:first-child .hero__title {
+  transition-delay: 120ms;
+}
+
+.js-page-enter.page-entered main > .hero:first-child .hero__subtitle {
+  transition-delay: 180ms;
+}
+
+.js-page-enter.page-entered main > .hero:first-child :is(.hero__actions, .hero__trust) {
+  transition-delay: 240ms;
+}
+
+.js-page-enter.page-entered .home-hero__controls {
+  transition-delay: 290ms;
+}
+
+/* The old dark rounded-square control read like a generic site template.
+   This lighter material stays discoverable without competing with content. */
+.scroll-top {
+  width: 44px;
+  height: 44px;
+  color: var(--navy);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(15, 35, 63, 0.16);
+  border-radius: 50%;
+  box-shadow: 0 6px 20px rgba(10, 22, 40, 0.14);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  backdrop-filter: blur(14px) saturate(130%);
+  transition: opacity 180ms var(--ease-out),
+              transform 220ms var(--ease-out),
+              color 160ms var(--ease-out),
+              background-color 160ms var(--ease-out),
+              border-color 160ms var(--ease-out),
+              box-shadow 220ms var(--ease-out);
+}
+
+.scroll-top svg {
+  width: 18px;
+  height: 18px;
+}
+
+.scroll-top:hover {
+  color: var(--blue);
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(42, 99, 173, 0.32);
+  box-shadow: 0 9px 24px rgba(10, 22, 40, 0.18);
+  transform: translateY(-2px);
+}
+
+.scroll-top:active {
+  transform: scale(0.96);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js-page-enter:not(.page-entered) .navbar__inner,
+  .js-page-enter:not(.page-entered) .navbar__utility,
+  .js-page-enter:not(.page-entered) main > .hero:first-child .hero__content > *,
+  .js-page-enter:not(.page-entered) .home-hero__controls {
+    opacity: 1;
+    transform: none;
+  }
+
+  .js-page-enter:not(.page-entered) main > .hero:first-child .hero__bg img {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .scroll-top {
+    background: var(--white);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
