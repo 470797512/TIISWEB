@@ -109,7 +109,7 @@ function buildNavbar(currentPage) {
               <div>
                 <div class="navbar__dropdown-group-title">IT & Cyber Security</div>
                 <a href="course-bit.html">Bachelor of Information Technology</a>
-                <a href="course-gcit.html">Graduate Certificate in Information Technology</a>
+                <a href="course-gcit.html">Graduate Certificate of Information Technology</a>
                 <a href="course-mcs.html">Master of Cyber Security</a>
               </div>
               <div>
@@ -435,7 +435,7 @@ function buildSiteSearch() {
     ['Master of Business Administration', 'Postgraduate management program.', 'course-mba.html', 'business management mba postgraduate'],
     ['Graduate Certificate in Professional Accounting', 'Postgraduate accounting pathway.', 'course-gcpa.html', 'accounting postgraduate certificate'],
     ['Master of Professional Accounting (Advanced)', 'Professionally accredited accounting program.', 'course-mpaa.html', 'accounting postgraduate cpa caanz acca'],
-    ['Graduate Certificate in Information Technology', 'Postgraduate IT pathway.', 'course-gcit.html', 'technology cyber postgraduate certificate'],
+    ['Graduate Certificate of Information Technology', 'Postgraduate IT pathway.', 'course-gcit.html', 'technology cyber postgraduate certificate'],
     ['Master of Cyber Security', 'Postgraduate cyber security program.', 'course-mcs.html', 'technology cyber postgraduate master'],
     ['TIIS Online', 'Flexible online study options.', 'tiis-online/index.html', 'online remote financial planning mba cpd'],
     ['About TIIS', 'Mission, values and story.', 'about.html', 'about mission values story'],

@@ -1,0 +1,46 @@
+/* Course composition and qualification pathways. No timetable is implied. */
+.study-overview { border-top: 3px solid var(--navy); margin-bottom: 32px; background: var(--white); padding: 28px; }
+.study-overview__total { display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: baseline; margin-bottom: 22px; }
+.study-overview__total strong { font-family: var(--font-heading, Georgia, serif); font-size: clamp(1.7rem, 3vw, 2.2rem); color: var(--navy); }
+.study-overview__total span { color: var(--text-muted, #526073); font-size: .9rem; }
+.study-equation { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
+.study-equation > div { border-left: 2px solid var(--gold, #ae925d); padding-left: 16px; }
+.study-equation b { display: block; font-size: 1.35rem; color: var(--navy); }
+.study-equation span { display: block; margin-top: 4px; font-size: .9rem; }
+.study-note { font-size: .875rem; color: var(--text-muted, #526073); line-height: 1.65; margin: 18px 0 0; }
+.study-route { background: var(--white); border: 1px solid var(--n-300, #d7dce2); margin: 0 0 14px; scroll-margin-top: 160px; }
+.study-route > summary { cursor: pointer; padding: 22px 24px; color: var(--navy); font-weight: 600; font-size: 1.05rem; }
+.study-route > summary small { display: block; margin: 7px 0 0 18px; font-weight: 400; font-size: .875rem; color: var(--text-muted, #526073); }
+.study-route > summary:hover { background: #f3f5f7; }
+.study-route > summary:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+.study-route[open] > summary { border-bottom: 1px solid var(--n-300, #d7dce2); }
+.study-route__body { padding: 22px 24px; }
+.study-route__body > p { margin: 0 0 20px; }
+.study-table { width: 100%; border-collapse: collapse; text-align: left; font-size: .9rem; }
+.study-table caption { text-align: left; font-size: .8rem; color: var(--text-muted, #526073); padding: 0 0 12px; }
+.study-table th, .study-table td { padding: 12px 14px; border-bottom: 1px solid #e2e6eb; vertical-align: top; }
+.study-table thead { background: #f3f5f7; color: var(--navy); }
+.study-table th[scope="row"] { font-weight: 500; white-space: nowrap; color: var(--navy); }
+.study-table td:last-child, .study-table thead th:last-child { text-align: right; }
+.study-progression { margin-top: 36px; padding: 28px; background: #eef2f6; }
+.study-progression h3 { margin: 0 0 20px; }
+.study-path { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; list-style: none; padding: 0; margin: 0; counter-reset: pathway; }
+.study-path li { counter-increment: pathway; position: relative; border-top: 1px solid #b8c3d0; padding-top: 18px; }
+.study-path li::before { content: "0" counter(pathway); display: block; color: var(--blue); font-size: .75rem; font-weight: 700; margin-bottom: 10px; }
+.study-path strong { display: block; color: var(--navy); margin-bottom: 8px; }
+.study-path p { font-size: .875rem; line-height: 1.65; margin: 0; }
+.study-path a, .study-route a, .study-note a, .course-source a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+.course-source { font-size: .8125rem; line-height: 1.65; margin-top: 28px; color: var(--text-muted, #526073); }
+.course-alert { padding: 20px 24px; background: #fbf7ed; border-left: 3px solid #9b793b; margin: 24px 0; }
+.course-alert p { margin: 0; }
+@media (max-width: 700px) {
+  .study-overview, .study-progression { padding: 22px 18px; }
+  .study-equation { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .study-path { grid-template-columns: 1fr; gap: 20px; }
+  .study-route > summary { padding: 18px 16px; }
+  .study-route__body { padding: 18px 12px; }
+  .study-table { font-size: .8125rem; }
+  .study-table th, .study-table td { padding: 11px 6px; }
+  .study-table th[scope="row"] { white-space: nowrap; }
+  .study-table td { overflow-wrap: anywhere; }
+}

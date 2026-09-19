@@ -79,7 +79,7 @@ function buildNavbar(currentPage) {
                   aria-expanded="false" aria-haspopup="true">Courses ${ICONS.chevronDown}</button>
           <div class="navbar__dropdown">
             <a href="course-cpd.html">CPD for Financial Advisers</a>
-            <a href="course-mba.html">Online MBA</a>
+            <a href="course-mba.html">MBA Study Options</a>
             <a href="course-gdfp.html">Graduate Diploma of Financial Planning</a>
           </div>
         </li>
@@ -87,7 +87,7 @@ function buildNavbar(currentPage) {
         <li class="navbar__item"><a href="../contact.html" class="navbar__link">Contact</a></li>
       </ul>
 
-      <a href="#enquire" class="navbar__cta navbar__cta-desktop">Enquire Now</a>
+      <a href="index.html#enquire" class="navbar__cta navbar__cta-desktop">Enquire Now</a>
 
       <button class="navbar__toggle" id="navToggle" aria-label="Open menu"
               aria-expanded="false" aria-controls="mobileMenu">
@@ -119,13 +119,13 @@ function buildNavbar(currentPage) {
     <div class="navbar__mobile-link navbar__mobile-heading">Online Courses</div>
     <div class="navbar__mobile-sub">
       <a href="course-cpd.html">CPD for Financial Advisers</a>
-      <a href="course-mba.html">Online MBA</a>
+      <a href="course-mba.html">MBA Study Options</a>
       <a href="course-gdfp.html">Grad Diploma Financial Planning</a>
     </div>
     <a href="../index.html" class="navbar__mobile-link">Main Campus Site</a>
     <a href="../contact.html" class="navbar__mobile-link">Contact</a>
     <div style="margin-top:24px">
-      <a href="#enquire" class="btn btn--primary" style="width:100%;justify-content:center">Enquire Now</a>
+      <a href="index.html#enquire" class="btn btn--primary" style="width:100%;justify-content:center">Enquire Now</a>
     </div>
   `;
   document.body.appendChild(mobileMenu);
@@ -289,7 +289,7 @@ function buildFooter() {
           <div class="footer__heading">Online Courses</div>
           <ul class="footer__links">
             <li><a href="course-cpd.html">CPD for Financial Advisers</a></li>
-            <li><a href="course-mba.html">Online MBA</a></li>
+            <li><a href="course-mba.html">MBA Study Options</a></li>
             <li><a href="course-gdfp.html">Grad Diploma Financial Planning</a></li>
           </ul>
         </div>
