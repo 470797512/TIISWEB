@@ -1,4 +1,14 @@
 /* Course composition and qualification pathways. No timetable is implied. */
+.mba-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; margin-bottom: 24px; }
+.mba-facts > div { padding: 20px 0; border-bottom: 1px solid #d7dce2; }
+.mba-facts dt { font-size: .8125rem; color: var(--text-muted, #526073); margin-bottom: 8px; }
+.mba-facts dd { margin: 0; color: var(--navy); font-weight: 500; }
+.mba-facts h3 { margin-bottom: 12px; }
+.study-table.mba-subjects td:last-child, .study-table.mba-subjects thead th:last-child { text-align: left; }
+.mba-subjects small { display: block; margin-top: 7px; line-height: 1.6; color: var(--text-muted, #526073); }
+.mba-subjects + .study-note { margin-top: 18px; }
+.mba-facts a { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 700px) { .mba-facts { grid-template-columns: 1fr; } }
 .study-overview { border-top: 3px solid var(--navy); margin-bottom: 32px; background: var(--white); padding: 28px; }
 .study-overview__total { display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: baseline; margin-bottom: 22px; }
 .study-overview__total strong { font-family: var(--font-heading, Georgia, serif); font-size: clamp(1.7rem, 3vw, 2.2rem); color: var(--navy); }

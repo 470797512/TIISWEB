@@ -79,7 +79,7 @@ function buildNavbar(currentPage) {
                   aria-expanded="false" aria-haspopup="true">Courses ${ICONS.chevronDown}</button>
           <div class="navbar__dropdown">
             <a href="course-cpd.html">CPD for Financial Advisers</a>
-            <a href="course-mba.html">MBA Study Options</a>
+            <a href="course-mba.html">Online MBA</a>
             <a href="course-gdfp.html">Graduate Diploma of Financial Planning</a>
           </div>
         </li>
@@ -119,7 +119,7 @@ function buildNavbar(currentPage) {
     <div class="navbar__mobile-link navbar__mobile-heading">Online Courses</div>
     <div class="navbar__mobile-sub">
       <a href="course-cpd.html">CPD for Financial Advisers</a>
-      <a href="course-mba.html">MBA Study Options</a>
+      <a href="course-mba.html">Online MBA</a>
       <a href="course-gdfp.html">Grad Diploma Financial Planning</a>
     </div>
     <a href="../index.html" class="navbar__mobile-link">Main Campus Site</a>
@@ -289,7 +289,7 @@ function buildFooter() {
           <div class="footer__heading">Online Courses</div>
           <ul class="footer__links">
             <li><a href="course-cpd.html">CPD for Financial Advisers</a></li>
-            <li><a href="course-mba.html">MBA Study Options</a></li>
+            <li><a href="course-mba.html">Online MBA</a></li>
             <li><a href="course-gdfp.html">Grad Diploma Financial Planning</a></li>
           </ul>
         </div>
