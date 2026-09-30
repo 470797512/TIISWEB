@@ -121,12 +121,12 @@ function buildNavbar(currentPage) {
           </div>
         </li>
         <li class="navbar__item">
-          <a href="apply.html" class="navbar__link" data-nav="study">Study with Us ${ICONS.chevronDown}</a>
+          <a href="https://tiis.meshedhe.com.au/Publics/PublicsPages/StudentApply/pp_Application_Step0.aspx" class="navbar__link" data-nav="study">Study with Us ${ICONS.chevronDown}</a>
           <div class="navbar__dropdown">
             <a href="index.html#why-tiis">Why Study at TIIS</a>
             <a href="life-at-tiis.html">Life at TIIS</a>
             <a href="campuses.html">Our Campuses</a>
-            <a href="apply.html">How to Apply</a>
+            <a href="https://tiis.meshedhe.com.au/Publics/PublicsPages/StudentApply/pp_Application_Step0.aspx">Apply Online</a>
             <a href="application-forms.html">Application Forms</a>
             <a href="admission-criteria.html">Entry Requirements</a>
             <a href="key-dates.html">Key Dates</a>
@@ -139,7 +139,7 @@ function buildNavbar(currentPage) {
       <button class="navbar__search" type="button" data-search-open aria-label="Search the TIIS website">
         ${ICONS.search}<span>Search</span>
       </button>
-      <a href="apply.html" class="navbar__cta navbar__cta-desktop">Apply Now</a>
+      <a href="https://tiis.meshedhe.com.au/Publics/PublicsPages/StudentApply/pp_Application_Step0.aspx" class="navbar__cta navbar__cta-desktop">Apply Now</a>
 
       <button class="navbar__toggle" id="navToggle" aria-label="Open menu"
               aria-expanded="false" aria-controls="mobileMenu">
@@ -182,12 +182,12 @@ function buildNavbar(currentPage) {
       <a href="course-mcs.html">Master of Cyber Security</a>
       <a href="courses.html">Explore All Courses</a>
     </div>
-    <a href="apply.html" class="navbar__mobile-link" data-nav="study">Study with Us</a>
+    <a href="https://tiis.meshedhe.com.au/Publics/PublicsPages/StudentApply/pp_Application_Step0.aspx" class="navbar__mobile-link" data-nav="study">Study with Us</a>
     <div class="navbar__mobile-sub">
       <a href="index.html#why-tiis">Why Study at TIIS</a>
       <a href="life-at-tiis.html">Life at TIIS</a>
       <a href="campuses.html">Our Campuses</a>
-      <a href="apply.html">How to Apply</a>
+      <a href="https://tiis.meshedhe.com.au/Publics/PublicsPages/StudentApply/pp_Application_Step0.aspx">Apply Online</a>
       <a href="application-forms.html">Application Forms</a>
       <a href="admission-criteria.html">Entry Requirements</a>
       <a href="key-dates.html">Key Dates</a>
@@ -202,7 +202,7 @@ function buildNavbar(currentPage) {
       <a href="team.html#careers">Careers</a>
     </div>
     <div style="margin-top:24px">
-      <a href="apply.html" class="btn btn--primary" style="width:100%;justify-content:center">Apply Now</a>
+      <a href="https://tiis.meshedhe.com.au/Publics/PublicsPages/StudentApply/pp_Application_Step0.aspx" class="btn btn--primary" style="width:100%;justify-content:center">Apply Now</a>
     </div>
   `;
   document.body.appendChild(mobileMenu);
@@ -378,7 +378,7 @@ function buildBreadcrumbs(currentPage) {
   } else if (currentPage === 'team') {
     items.push({ label: 'About Us', href: 'about.html' });
   } else if (['campuses', 'apply', 'life'].includes(currentPage)) {
-    items.push({ label: 'Study with Us', href: 'apply.html' });
+    items.push({ label: 'Study with Us', href: 'https://tiis.meshedhe.com.au/Publics/PublicsPages/StudentApply/pp_Application_Step0.aspx' });
   } else if (currentPage === 'policies' || (currentPage === 'students' && file !== 'students.html')) {
     items.push({ label: 'Current Students', href: 'students.html' });
   }
@@ -442,7 +442,7 @@ function buildSiteSearch() {
     ['Our Team', 'Academic, professional and governance teams.', 'team.html', 'staff lecturers board careers'],
     ['Our Campuses', 'Sydney Ultimo and Melbourne Docklands.', 'campuses.html', 'campus locations sydney melbourne directions tour'],
     ['Life at TIIS', 'Community, support and student experience.', 'life-at-tiis.html', 'student life community events support'],
-    ['How to Apply', 'Application process and document checklist.', 'apply.html', 'apply admissions process documents offer enrolment'],
+    ['Apply Online', 'Start your TIIS student application in the online application system.', 'https://tiis.meshedhe.com.au/Publics/PublicsPages/StudentApply/pp_Application_Step0.aspx', 'apply admissions process documents offer enrolment'],
     ['Application Forms', 'Download domestic, international, GS and credit forms.', 'application-forms.html', 'apply admissions forms domestic international genuine student gs cpl agent'],
     ['Admission Criteria', 'Academic and English entry requirements.', 'admission-criteria.html', 'requirements entry ielts pte undergraduate postgraduate alternative admission'],
     ['Key Dates', '2026 orientation, teaching, census and assessment dates.', 'key-dates.html', 'calendar january march may july september november intakes census exams'],
