@@ -6450,7 +6450,7 @@ p {
   height: 20px;
 }
 
-/* Contact details and the form share the same ruled, document-like language. */
+/* Contact details and direct email share the same ruled, document-like language. */
 .contact-layout {
   grid-template-columns: minmax(260px, 0.82fr) minmax(0, 1.18fr);
   gap: clamp(48px, 7vw, 92px);
@@ -6487,7 +6487,7 @@ p {
   height: 19px;
 }
 
-.contact-form-panel {
+.contact-email-panel {
   padding: clamp(28px, 4vw, 44px);
   background: var(--off-white);
   border-top: 3px solid var(--blue);
@@ -6496,12 +6496,10 @@ p {
   box-shadow: none;
 }
 
-.contact-form-panel input,
-.contact-form-panel select,
-.contact-form-panel textarea {
-  border-radius: 4px;
-  box-shadow: none;
-}
+.contact-email-panel h3 { font-size: clamp(1.7rem, 3vw, 2.2rem); margin-bottom: 18px; }
+.contact-email-address { display: block; width: fit-content; margin: 30px 0 24px; font-size: clamp(1.3rem, 2.8vw, 2rem); color: var(--navy); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 7px; overflow-wrap: anywhere; }
+.contact-email-address:hover { color: var(--blue); }
+.contact-email-panel .contact-email-note { margin: 28px 0 0; padding-top: 20px; border-top: 1px solid var(--n-300); font-size: .875rem; color: var(--text-muted); }
 
 /* Shorter, quieter reveals keep the page responsive without announcing the
    animation system. Six-item grids no longer make visitors wait 600ms. */
@@ -6594,7 +6592,7 @@ p {
     gap: 48px;
   }
 
-  .contact-form-panel {
+  .contact-email-panel {
     padding: 26px 22px 30px;
   }
 }

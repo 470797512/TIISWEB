@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us — TIIS | Get in Touch</title>
   <meta name="description" content="Contact TIIS — reach our admissions team, visit our campuses in Sydney and Melbourne, or send us an enquiry.">
-  <link rel="stylesheet" href="styles.css?v=20260827-2">
+  <link rel="stylesheet" href="styles.css?v=20261001-2">
   <link rel="stylesheet" href="photography.css?v=20260915-1">
   <link rel="icon" type="image/png" href="images/logos/TIIS-Logo-black-and-white-1024x1024.png">
 
@@ -36,12 +36,12 @@
     <div class="hero__content">
       <span class="hero__label">Get in Touch</span>
       <h1 class="hero__title">Contact Us</h1>
-      <p class="hero__subtitle">Phone, email, or the enquiry form below.</p>
+      <p class="hero__subtitle">Email our team or find contact details for our Sydney and Melbourne campuses.</p>
     </div>
   </section>
 
 
-  <!-- Contact Info + Form -->
+  <!-- Contact details and direct email -->
   <section class="section">
     <div class="container">
       <div class="split contact-layout">
@@ -94,66 +94,14 @@
           </div>
         </div>
 
-        <!-- Contact Form -->
-        <div class="contact-form-panel fade-in-right">
-          <h3 style="margin-bottom:8px;">Send Us an Enquiry</h3>
-          <p class="form-intro">Fields marked <span aria-hidden="true">*</span><span class="sr-only">with an asterisk</span> are required.</p>
-
-          <!-- NOTE FOR DEPLOYMENT
-               This form has no server behind it. It hands the enquiry to the
-               visitor's own mail client, pre-filled and addressed to
-               info@tiis.edu.au, so nothing is silently discarded.
-
-               To collect submissions server-side instead: give the <form> an
-               action + method (or a form-service endpoint), drop the
-               data-mailto attribute, and the JS handler stands down. -->
-          <form id="contactForm" data-mailto="info@tiis.edu.au" novalidate>
-            <div class="form-group">
-              <label for="name">Full Name <span class="form-required" aria-hidden="true">*</span></label>
-              <input type="text" id="name" name="name" placeholder="Your full name"
-                     autocomplete="name" required aria-required="true">
-            </div>
-            <div class="form-group">
-              <label for="email">Email Address <span class="form-required" aria-hidden="true">*</span></label>
-              <input type="email" id="email" name="email" placeholder="you@example.com"
-                     autocomplete="email" inputmode="email" required aria-required="true">
-            </div>
-            <div class="form-group">
-              <label for="phone">Phone Number</label>
-              <input type="tel" id="phone" name="phone" placeholder="+61 400 000 000"
-                     autocomplete="tel" inputmode="tel">
-            </div>
-            <div class="form-group">
-              <label for="subject">Subject</label>
-              <select id="subject" name="subject">
-                <option value="">Select a topic...</option>
-                <option value="Admissions Enquiry">Admissions Enquiry</option>
-                <option value="Course Advice">Course Advice</option>
-                <option value="Course Information">Course Information</option>
-                <option value="Fees &amp; Scholarships">Fees &amp; Scholarships</option>
-                <option value="Campus Visit">Campus Visit</option>
-                <option value="Alumni">Alumni</option>
-                <option value="Agent Partnership">Agent Partnership</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="message">Message <span class="form-required" aria-hidden="true">*</span></label>
-              <textarea id="message" name="message" placeholder="How can we help you?"
-                        required aria-required="true"></textarea>
-            </div>
-            <button type="submit" class="btn btn--primary btn--lg" style="width:100%; justify-content:center;">Send Message</button>
-          </form>
-
-          <!-- Announced to screen readers whenever its text changes. -->
-          <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
-
-          <p class="form-fallback">
-            Prefer to write to us directly? Email
-            <a href="mailto:info@tiis.edu.au">info@tiis.edu.au</a>
-            or call <a href="tel:+61280980702">+61&nbsp;2&nbsp;8098&nbsp;0702</a>.
-          </p>
-        </div>
+        <aside class="contact-email-panel fade-in-right" aria-labelledby="emailHeading">
+          <span class="section-label">Email Admissions</span>
+          <h3 id="emailHeading">How can we help?</h3>
+          <p>For course advice, entry requirements or general enquiries, write directly to our admissions team.</p>
+          <a class="contact-email-address" href="mailto:info@tiis.edu.au">info@tiis.edu.au</a>
+          <a class="btn btn--primary" href="mailto:info@tiis.edu.au">Email our team <span aria-hidden="true">↗</span></a>
+          <p class="contact-email-note">Opens your email app. You can also copy the address into your preferred email service.</p>
+        </aside>
       </div>
     </div>
   </section>
@@ -185,10 +133,9 @@
     </div>
   </section>
 
-  <script src="components.js?v=20260930-1"></script>
+  <script src="components.js?v=20261001-2"></script>
   <script>
     initPage('contact');
-    initEnquiryForm('contactForm', 'formStatus');
   </script>
 </body>
 </html>
