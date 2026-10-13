@@ -612,7 +612,8 @@ function buildCoursePageNav() {
     inner.appendChild(link);
   });
   nav.appendChild(inner);
-  hero.insertAdjacentElement('afterend', nav);
+  const editionNav = document.getElementById('programme-edition');
+  (editionNav || hero).insertAdjacentElement('afterend', nav);
 
   if (!('IntersectionObserver' in window)) return;
   const links = [...inner.querySelectorAll('a')];

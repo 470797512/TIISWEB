@@ -1,4 +1,28 @@
 /* Course composition and qualification pathways. No timetable is implied. */
+.programme-kicker { font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #dfbd73; margin: 18px 0 12px; }
+.programme-edition { background: #f7f6f3; border-block: 1px solid #d7dce2; scroll-margin-top: 120px; }
+.programme-edition__inner { display: flex; align-items: center; justify-content: space-between; gap: 24px 40px; }
+.programme-edition__links { display: flex; align-self: stretch; gap: 30px; flex-shrink: 0; }
+.programme-edition__links a { display: flex; align-items: center; padding: 23px 0 20px; border-bottom: 3px solid transparent; font-size: .9375rem; font-weight: 500; color: #526073; }
+.programme-edition__links a[aria-current="page"] { border-bottom-color: var(--navy); color: var(--navy); }
+.programme-edition__links a:hover { color: var(--blue); }
+.programme-edition__links a:focus-visible { outline: 2px solid var(--blue); outline-offset: 5px; }
+.programme-edition__inner > p { max-width: 440px; margin: 16px 0; font-size: .8125rem; line-height: 1.6; color: #526073; }
+.programme-edition strong { color: var(--navy); font-weight: 600; }
+.programme-intro { max-width: 820px; }
+.programme-at-a-glance { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin: 36px 0 0; border-top: 1px solid #d7dce2; padding-top: 24px; }
+.programme-at-a-glance dt { font-size: .8125rem; color: #526073; }
+.programme-at-a-glance dd { margin: 8px 0 0; font-family: var(--font-heading, Georgia, serif); color: var(--navy); font-size: 2rem; }
+.programme-electives { margin-top: 40px; }
+@media (max-width: 850px) {
+  .programme-edition__inner { flex-direction: column; align-items: flex-start; gap: 0; }
+  .programme-edition__inner > p { margin: 14px 0 18px; max-width: none; }
+}
+@media (max-width: 520px) {
+  .programme-edition__links { gap: 24px; }
+  .programme-edition__links a { font-size: .875rem; padding-block: 18px 15px; }
+  .programme-at-a-glance { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 .mba-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; margin-bottom: 24px; }
 .mba-facts > div { padding: 20px 0; border-bottom: 1px solid #d7dce2; }
 .mba-facts dt { font-size: .8125rem; color: var(--text-muted, #526073); margin-bottom: 8px; }
