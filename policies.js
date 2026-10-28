@@ -1,3 +1,6 @@
+// Refresh document URLs when publishing a new policy release.
+const POLICY_RELEASE = '20261028';
+
 const POLICY_DOCUMENTS = [
   {
     title: 'Academic Freedom and Free Intellectual Inquiry Policy',
@@ -15,9 +18,24 @@ const POLICY_DOCUMENTS = [
     file: 'downloads/policies/Academic/Academic Records Management Policy.pdf'
   },
   {
-    title: 'Admission Policy & Procedures',
-    category: 'Academic', pages: 10, bytes: 4197846,
+    title: 'Admission Policy & Procedure',
+    category: 'Academic', pages: 10, bytes: 178682,
     file: 'downloads/policies/Academic/Admission Policy & Procedures.pdf'
+  },
+  {
+    title: 'Assessment of English Language Proficiency Procedure',
+    category: 'Academic', pages: 4, bytes: 91762,
+    file: 'downloads/policies/Academic/Assessment of English Language Proficiency Procedure.pdf'
+  },
+  {
+    title: 'Assessment Policy and Procedure',
+    category: 'Academic', pages: 17, bytes: 451363,
+    file: 'downloads/policies/Academic/Assessment Policy and Procedure.pdf'
+  },
+  {
+    title: 'Course Progression Policy',
+    category: 'Academic', pages: 10, bytes: 441791,
+    file: 'downloads/policies/Academic/Course Progression Policy.pdf'
   },
   {
     title: 'Course Review Policy and Procedure',
@@ -33,6 +51,11 @@ const POLICY_DOCUMENTS = [
     title: 'Deferment, Suspension or Cancellation of Enrolment',
     category: 'Academic', pages: 7, bytes: 300020,
     file: 'downloads/policies/Academic/Deferment, Suspension or Cancellation of Enrolment.pdf'
+  },
+  {
+    title: 'Generative Artificial Intelligence (GenAI) Policy',
+    category: 'Academic', pages: 21, bytes: 4330090,
+    file: 'downloads/policies/Academic/Generative Artificial Intelligence (GenAI) Policy.pdf'
   },
   {
     title: 'Graduation Policy and Procedure',
@@ -60,6 +83,11 @@ const POLICY_DOCUMENTS = [
     file: 'downloads/policies/Academic/Student Academic Integrity and Honesty Policy and Procedure.pdf'
   },
   {
+    title: 'TIIS Student Handbook',
+    category: 'Academic', pages: 98, bytes: 2121272,
+    file: 'downloads/handbooks/TIIS-Student-Handbook-2026.pdf'
+  },
+  {
     title: 'Conflict of Interest Policy',
     category: 'Management', pages: 7, bytes: 304149,
     file: 'downloads/policies/Management/Conflict of Interest Policy.pdf'
@@ -70,14 +98,14 @@ const POLICY_DOCUMENTS = [
     file: 'downloads/policies/Management/Crisis Management Policy and Procedure.pdf'
   },
   {
-    title: 'Critical Incident Management Policy',
-    category: 'Management', pages: 8, bytes: 377817,
+    title: 'Critical Incident Management Policy and Procedure',
+    category: 'Management', pages: 8, bytes: 168037,
     file: 'downloads/policies/Management/Critical Incident Management Policy.pdf'
   },
   {
-    title: 'Critical Incident Management Procedure',
-    category: 'Management', pages: 9, bytes: 388125,
-    file: 'downloads/policies/Management/Critical Incident Management Procedure.pdf'
+    title: 'Data and Cyber Security Policy',
+    category: 'Management', pages: 5, bytes: 110692,
+    file: 'downloads/policies/Management/Data and Cyber Security Policy.pdf'
   },
   {
     title: 'Diversity and Equity Policy',
@@ -85,9 +113,19 @@ const POLICY_DOCUMENTS = [
     file: 'downloads/policies/Management/Diversity and Equity Policy.pdf'
   },
   {
+    title: 'Marketing and Advertising Policy and Procedure',
+    category: 'Management', pages: 9, bytes: 187711,
+    file: 'downloads/policies/Management/Marketing and Advertising Policy and Procedure.pdf'
+  },
+  {
     title: 'Privacy Policy',
     category: 'Management', pages: 6, bytes: 364339,
     file: 'downloads/policies/Management/Privacy Policy.pdf'
+  },
+  {
+    title: 'Refund Policy and Procedure',
+    category: 'Management', pages: 9, bytes: 284347,
+    file: 'downloads/fees/TIIS-Refund-Policy.pdf'
   },
   {
     title: 'Research Integrity Breach Management Procedure',
@@ -105,14 +143,29 @@ const POLICY_DOCUMENTS = [
     file: 'downloads/policies/Management/Student Fees and Charges Policy.pdf'
   },
   {
+    title: 'Student Safety and Security Procedure',
+    category: 'Management', pages: 7, bytes: 188155,
+    file: 'downloads/policies/Management/Student Safety and Security Procedure.pdf'
+  },
+  {
     title: 'Student Support & Wellbeing Policy',
     category: 'Management', pages: 7, bytes: 308540,
     file: 'downloads/policies/Management/Student Support & Wellbeing Policy.pdf'
   },
   {
-    title: 'Students Complaint and Grievance Policy',
-    category: 'Management', pages: 6, bytes: 304075,
+    title: 'Students Complaint and Grievance Policy and Procedure',
+    category: 'Management', pages: 11, bytes: 354034,
     file: 'downloads/policies/Management/Students Complaint and Grievance Policy.pdf'
+  },
+  {
+    title: 'Tuition Fee Protection Policy and Procedure',
+    category: 'Management', pages: 8, bytes: 179745,
+    file: 'downloads/policies/Management/Tuition Fee Protection Policy and Procedure.pdf'
+  },
+  {
+    title: 'Work Health and Safety (WHS) Policy',
+    category: 'Management', pages: 6, bytes: 140053,
+    file: 'downloads/policies/Management/Work Health and Safety (WHS) Policy.pdf'
   }
 ];
 
@@ -143,6 +196,7 @@ function createPolicyIcon() {
 }
 
 function createPolicyRow(policy) {
+  const fileUrl = `${policy.file}?v=${POLICY_RELEASE}`;
   const row = document.createElement('li');
   row.className = 'policy-document';
 
@@ -172,7 +226,7 @@ function createPolicyRow(policy) {
 
   const view = document.createElement('a');
   view.className = 'policy-document__view';
-  view.href = policy.file;
+  view.href = fileUrl;
   view.target = '_blank';
   view.rel = 'noopener';
   view.textContent = 'View';
@@ -180,7 +234,7 @@ function createPolicyRow(policy) {
 
   const download = document.createElement('a');
   download.className = 'policy-document__download';
-  download.href = policy.file;
+  download.href = fileUrl;
   download.download = policy.file.split('/').pop();
   download.setAttribute('aria-label', `Download ${policy.title}`);
   download.innerHTML = `
