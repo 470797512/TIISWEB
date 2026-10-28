@@ -1,5 +1,5 @@
 // Refresh document URLs when publishing a new policy release.
-const POLICY_RELEASE = '20261028';
+const POLICY_RELEASE = '20261029';
 
 const POLICY_DOCUMENTS = [
   {
@@ -111,6 +111,11 @@ const POLICY_DOCUMENTS = [
     title: 'Diversity and Equity Policy',
     category: 'Management', pages: 6, bytes: 290882,
     file: 'downloads/policies/Management/Diversity and Equity Policy.pdf'
+  },
+  {
+    title: 'Education Agent Management Policy',
+    category: 'Management', pages: 9, bytes: 258947,
+    file: 'downloads/policies/Management/Education Agent Management Policy.pdf'
   },
   {
     title: 'Marketing and Advertising Policy and Procedure',
