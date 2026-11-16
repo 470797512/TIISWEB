@@ -128,6 +128,21 @@
 .ceremony-schedule p { margin: 0; font-size: .9375rem; line-height: 1.8; }
 .ceremony-schedule time { color: var(--navy); font-weight: 600; }
 .ceremony-schedule__venue { display: block; margin-top: 10px; }
+
+.ceremony-map {
+  display: block;
+  width: 100%;
+  height: 300px;
+  margin-top: 20px;
+  border: 1px solid var(--n-200);
+  border-radius: 4px;
+  background: var(--off-white);
+}
+
+.ceremony-map-links { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 16px; margin-top: 8px; }
+.ceremony-map-links a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--blue); font-size: .75rem; font-weight: 600; }
+.ceremony-map-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
 .news-article__footer { max-width: 760px; margin: 36px auto 0; padding: 22px 24px 64px; border-top: 1px solid var(--n-200); }
 
 /* A quiet, in-flow announcement below the homepage hero. Dates live in
