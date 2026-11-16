@@ -7,6 +7,7 @@
   <meta name="description" content="Explore undergraduate, postgraduate and online study at TIIS in business, accounting, information technology, cyber security and financial planning.">
   <link rel="stylesheet" href="styles.css?v=20260827-2">
   <link rel="stylesheet" href="photography.css?v=20260915-1">
+  <link rel="stylesheet" href="news.css?v=20261116-1">
   <link rel="icon" type="image/png" href="images/logos/TIIS-Logo-black-and-white-1024x1024.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -87,6 +88,29 @@
       <button type="button" class="home-hero__control" data-hero-pause>Pause</button>
     </div>
   </section>
+
+  <!-- Campaign window: 16–20 November, Australia/Sydney (AEDT, UTC+11).
+       The end is exclusive. Edit these timestamps to change the display dates. -->
+  <aside class="home-announcement" data-announcement="graduation-2026"
+         data-starts-at="2026-11-16T00:00:00+11:00"
+         data-ends-at="2026-11-21T00:00:00+11:00"
+         aria-labelledby="graduation-announcement-title" hidden>
+    <div class="container home-announcement__inner">
+      <time class="home-announcement__date" datetime="2026-11-20" aria-label="20 November 2026">
+        <span class="home-announcement__day" aria-hidden="true">20</span>
+        <span class="home-announcement__month" aria-hidden="true">NOV 2026</span>
+      </time>
+      <div>
+        <span class="home-announcement__eyebrow">Graduation 2026</span>
+        <h2 id="graduation-announcement-title">Celebrating the Class of 2026</h2>
+        <p>Melbourne · The Wheeler Centre · Friday, 20 November</p>
+      </div>
+      <a class="news-link home-announcement__link" href="news-graduation-2026.html">Ceremony details <span aria-hidden="true">→</span></a>
+      <button class="home-announcement__close" type="button" data-announcement-dismiss aria-label="Dismiss graduation announcement">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg>
+      </button>
+    </div>
+  </aside>
 
   <section class="section section--stats" aria-label="TIIS at a glance">
     <div class="container">
@@ -282,7 +306,8 @@
     </div>
   </section>
 
-  <script src="components.js?v=20260930-1"></script>
+  <script src="announcements.js?v=20261116-1"></script>
+  <script src="components.js?v=20261116-1"></script>
   <script>
     initPage('home');
     initHeroCarousel('homeHero');

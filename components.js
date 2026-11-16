@@ -133,6 +133,7 @@ function buildNavbar(currentPage) {
             <a href="fees-and-charges.html">Fees & Charges</a>
           </div>
         </li>
+        <li class="navbar__item"><a href="news.html" class="navbar__link" data-nav="news">News</a></li>
         <li class="navbar__item"><a href="contact.html" class="navbar__link" data-nav="contact">Contact Us</a></li>
       </ul>
 
@@ -193,6 +194,7 @@ function buildNavbar(currentPage) {
       <a href="key-dates.html">Key Dates</a>
       <a href="fees-and-charges.html">Fees & Charges</a>
     </div>
+    <a href="news.html" class="navbar__mobile-link" data-nav="news">News</a>
     <a href="contact.html" class="navbar__mobile-link" data-nav="contact">Contact Us</a>
     <button class="navbar__mobile-search" type="button" data-search-open>${ICONS.search} Search</button>
     <div class="navbar__mobile-utility">
@@ -428,6 +430,8 @@ function alignCurrentResourceNav() {
    known set of pages locally. Results always lead to a real page. */
 function buildSiteSearch() {
   const pages = [
+    ['News', 'Campus announcements and community milestones.', 'news.html', 'news announcements campus updates events'],
+    ['TIIS Graduation Ceremony 2026', 'Sydney: 30 October at Sydney Masonic Centre. Melbourne: 20 November at The Wheeler Centre. Eligible graduands should check their email.', 'news-graduation-2026.html', 'graduation graduands ceremony 2026 sydney melbourne wheeler masonic rsvp gown'],
     ['Courses', 'Explore all undergraduate, postgraduate and online courses.', 'courses.html', 'courses study programs'],
     ['Bachelor of Business', 'Undergraduate business degree.', 'course-bbus.html', 'business undergraduate bachelor'],
     ['Bachelor of Information Technology', 'Undergraduate IT degree.', 'course-bit.html', 'technology cyber undergraduate bachelor'],
@@ -697,6 +701,7 @@ function buildFooter() {
             <li><a href="courses.html">Courses</a></li>
             <li><a href="campuses.html">Campuses</a></li>
             <li><a href="team.html">Our Team</a></li>
+            <li><a href="news.html">News</a></li>
             <li><a href="contact.html">Contact Us</a></li>
           </ul>
         </div>
