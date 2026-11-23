@@ -8703,6 +8703,84 @@ section[id] {
   background: var(--blue-tint);
 }
 
+/* Keep both fee categories visible together, including on narrow screens. */
+.tuition-table {
+  min-width: 0;
+  table-layout: fixed;
+  border-top: 2px solid var(--navy);
+  font-variant-numeric: tabular-nums;
+}
+
+.tuition-table th:first-child {
+  width: 50%;
+  padding-left: 0;
+}
+
+.tuition-table td,
+.tuition-table thead th:not(:first-child) {
+  text-align: right;
+}
+
+.tuition-table td:last-child,
+.tuition-table thead th:last-child {
+  padding-right: 0;
+}
+
+.tuition-table tbody th a {
+  color: var(--navy);
+  text-decoration: underline;
+  text-decoration-color: var(--n-300);
+  text-underline-offset: 4px;
+}
+
+.tuition-table tbody th a:hover {
+  color: var(--blue-deep);
+  text-decoration-color: currentColor;
+}
+
+.tuition-table td strong {
+  color: var(--navy);
+  font-size: 1.125rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.tuition-table__detail {
+  display: block;
+  margin-top: 6px;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.tuition-conditions {
+  max-width: 860px;
+  margin-top: var(--space-lg);
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+}
+
+@media (max-width: 600px) {
+  .tuition-table th,
+  .tuition-table td {
+    padding: 18px 6px;
+  }
+
+  .tuition-table th:first-child {
+    width: 44%;
+  }
+
+  .tuition-table thead th {
+    font-size: 0.6875rem;
+    letter-spacing: 0.02em;
+  }
+
+  .tuition-table td strong {
+    font-size: 1rem;
+  }
+}
+
 .note-panel {
   margin-top: var(--space-xl);
   padding: 20px 22px;

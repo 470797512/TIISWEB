@@ -450,7 +450,7 @@ function buildSiteSearch() {
     ['Application Forms', 'Download domestic, international, GS and credit forms.', 'application-forms.html', 'apply admissions forms domestic international genuine student gs cpl agent'],
     ['Admission Criteria', 'Academic and English entry requirements.', 'admission-criteria.html', 'requirements entry ielts pte undergraduate postgraduate alternative admission'],
     ['Key Dates', '2026 orientation, teaching, census and assessment dates.', 'key-dates.html', 'calendar january march may july september november intakes census exams'],
-    ['Fees & Charges', 'Current fee schedule and refund information.', 'fees-and-charges.html', 'fees charges tuition cost refund payment schedule'],
+    ['Fees & Charges', '2027 onshore and offshore tuition fees, downloads and refund information.', 'fees-and-charges.html', 'fees charges tuition cost refund payment schedule 2027 onshore offshore scholarship'],
     ['Current Students', 'Student resources, support and policies.', 'students.html', 'portal support resources policies'],
     ['My TIIS Login', 'Direct links to Moodle, Microsoft 365, the Learning Centre and Student Hub.', 'student-login.html', 'login portal moodle office microsoft library sharepoint'],
     ['Student Support', 'Academic, wellbeing, safety and practical support.', 'student-support.html', 'support wellbeing counselling academic safety accommodation careers'],
