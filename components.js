@@ -431,6 +431,7 @@ function alignCurrentResourceNav() {
 function buildSiteSearch() {
   const pages = [
     ['News', 'Campus announcements and community milestones.', 'news.html', 'news announcements campus updates events'],
+    ['TIIS Melbourne Celebrates the Class of 2026: Honouring Excellence, Inspiring Tomorrow', 'Highlights and photographs from the Melbourne graduation ceremony on 20 November 2026, including graduate awards and guest speaker Dr Ari Pinar.', 'news-melbourne-graduation-2026.html', 'news graduation melbourne class 2026 wheeler ceremony awards excellence leadership hassan nawaz arshiya bikash thapa shenhao wang krizia marian fernandez abellon ari pinar'],
     ['TIIS Graduation Ceremony 2026', 'Sydney: 30 October at Sydney Masonic Centre. Melbourne: 20 November at The Wheeler Centre. Eligible graduands should check their email.', 'news-graduation-2026.html', 'graduation graduands ceremony 2026 sydney melbourne wheeler masonic rsvp gown'],
     ['Courses', 'Explore all undergraduate, postgraduate and online courses.', 'courses.html', 'courses study programs'],
     ['Bachelor of Business', 'Undergraduate business degree.', 'course-bbus.html', 'business undergraduate bachelor'],
