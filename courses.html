@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Courses — TIIS | Undergraduate & Postgraduate Programs</title>
   <meta name="description" content="Explore TIIS courses: Bachelor of Business, Bachelor of IT, MBA, Master of Cyber Security, Professional Accounting, Financial Planning and more.">
+  <link rel="canonical" href="https://tiis.edu.au/courses">
   <link rel="stylesheet" href="styles.css?v=20260827-2">
   <link rel="stylesheet" href="photography.css?v=20260915-1">
   <link rel="icon" type="image/png" href="images/logos/TIIS-Logo-black-and-white-1024x1024.png">
@@ -14,9 +15,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
 
-  <!-- Social sharing. Add og:url and og:image using your production
-       domain (absolute URLs are required) to get link preview images. -->
+  <!-- Social sharing. Add an absolute og:image URL for link preview images. -->
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tiis.edu.au/courses">
   <meta property="og:site_name" content="TIIS — The Institute of International Studies">
   <meta property="og:locale" content="en_AU">
   <meta property="og:title" content="Courses — TIIS | Undergraduate & Postgraduate Programs">
@@ -79,7 +80,7 @@
           <button type="button" data-course-filter="all" aria-pressed="true">All Courses</button>
           <button type="button" data-course-filter="undergraduate" aria-pressed="false">Undergraduate</button>
           <button type="button" data-course-filter="postgraduate" aria-pressed="false">Postgraduate</button>
-          <a href="tiis-online/index.html">TIIS Online</a>
+          <a href="tiis-online/">TIIS Online</a>
         </div>
         <span class="course-filter__status" data-course-filter-status aria-live="polite"></span>
       </div>
@@ -110,7 +111,7 @@
                 Sydney & Melbourne
               </div>
             </div>
-            <a href="course-bbus.html" class="btn btn--outline-dark btn--sm" style="width:100%;justify-content:center;">View Course Details →</a>
+            <a href="course-bbus" class="btn btn--outline-dark btn--sm" style="width:100%;justify-content:center;">View Course Details →</a>
           </div>
           <div class="course-card fade-in delay-2" id="gcba" data-level="postgraduate">
             <span class="course-card__level">Postgraduate</span>
@@ -130,7 +131,7 @@
                 Sydney & Melbourne
               </div>
             </div>
-            <a href="course-gcba.html" class="btn btn--outline-dark btn--sm" style="width:100%;justify-content:center;">View Course Details →</a>
+            <a href="course-gcba" class="btn btn--outline-dark btn--sm" style="width:100%;justify-content:center;">View Course Details →</a>
           </div>
           <div class="course-card fade-in delay-3" id="mba" data-level="postgraduate">
             <span class="course-card__level">Postgraduate</span>
@@ -150,7 +151,7 @@
                 Sydney & Melbourne
               </div>
             </div>
-            <a href="course-mba.html" class="btn btn--outline-dark btn--sm" style="width:100%;justify-content:center;">View Course Details →</a>
+            <a href="course-mba" class="btn btn--outline-dark btn--sm" style="width:100%;justify-content:center;">View Course Details →</a>
           </div>
         </div>
       </div>
@@ -181,7 +182,7 @@
                 Sydney only
               </div>
 </div>
-            <a href="course-gcpa.html" class="btn btn--outline-dark btn--sm" style="width:100%;justify-content:center;">View Course Details →</a>
+            <a href="course-gcpa" class="btn btn--outline-dark btn--sm" style="width:100%;justify-content:center;">View Course Details →</a>
           </div>
           <div class="course-card fade-in delay-2" id="mpaa" data-level="postgraduate">
             <span class="course-card__level">Postgraduate</span>
@@ -201,7 +202,7 @@
                 CPA, CAANZ & ACCA Accredited
               </div>
             </div>
-            <a href="course-mpaa.html" class="btn btn--outline-dark btn--sm" style="width:100%;justify-content:center;">View Course Details →</a>
+            <a href="course-mpaa" class="btn btn--outline-dark btn--sm" style="width:100%;justify-content:center;">View Course Details →</a>
           </div>
         </div>
       </div>
@@ -232,7 +233,7 @@
                 Sydney & Melbourne
               </div>
             </div>
-            <a href="course-bit.html" class="btn btn--outline-dark btn--sm" style="width:100%;justify-content:center;">View Course Details →</a>
+            <a href="course-bit" class="btn btn--outline-dark btn--sm" style="width:100%;justify-content:center;">View Course Details →</a>
           </div>
           <div class="course-card fade-in delay-2" id="gcit" data-level="postgraduate">
             <span class="course-card__level">Postgraduate</span>
@@ -252,7 +253,7 @@
                 Sydney &amp; Melbourne
               </div>
 </div>
-            <a href="course-gcit.html" class="btn btn--outline-dark btn--sm" style="width:100%;justify-content:center;">View Course Details →</a>
+            <a href="course-gcit" class="btn btn--outline-dark btn--sm" style="width:100%;justify-content:center;">View Course Details →</a>
           </div>
           <div class="course-card fade-in delay-3" id="mcs" data-level="postgraduate">
             <span class="course-card__level">Postgraduate</span>
@@ -272,7 +273,7 @@
                 Sydney & Melbourne
               </div>
             </div>
-            <a href="course-mcs.html" class="btn btn--outline-dark btn--sm" style="width:100%;justify-content:center;">View Course Details →</a>
+            <a href="course-mcs" class="btn btn--outline-dark btn--sm" style="width:100%;justify-content:center;">View Course Details →</a>
           </div>
         </div>
       </div>
@@ -284,13 +285,13 @@
           <h2>Study Online with TIIS</h2>
           <p>Explore online CPD for financial advisers and the Graduate Diploma of Financial Planning. The MBA is also available online through live classes and Moodle.</p>
           <ul class="online-banner__list">
-            <li><a href="tiis-online/course-cpd.html">CPD for Financial Advisers</a></li>
-            <li><a href="tiis-online/course-mba.html">Online MBA</a></li>
-            <li><a href="tiis-online/course-gdfp.html">Graduate Diploma of Financial Planning</a></li>
+            <li><a href="tiis-online/course-cpd">CPD for Financial Advisers</a></li>
+            <li><a href="tiis-online/course-mba">Online MBA</a></li>
+            <li><a href="tiis-online/course-gdfp">Graduate Diploma of Financial Planning</a></li>
           </ul>
         </div>
         <div class="online-banner__action">
-          <a href="tiis-online/index.html" class="btn btn--white btn--lg">Explore TIIS Online</a>
+          <a href="tiis-online/" class="btn btn--white btn--lg">Explore TIIS Online</a>
         </div>
       </div>
 
@@ -305,14 +306,14 @@
         <h2>Compare Courses with an Adviser</h2>
         <p>If you are choosing between two courses, or unsure whether your qualifications meet entry requirements, admissions can check before you apply.</p>
         <div class="cta-banner__actions">
-          <a href="contact.html?subject=Course%20Advice" class="btn btn--white btn--lg">Speak to a Course Adviser</a>
+          <a href="contact?subject=Course%20Advice" class="btn btn--white btn--lg">Speak to a Course Adviser</a>
           <a href="https://tiis.meshedhe.com.au/Publics/PublicsPages/StudentApply/pp_Application_Step0.aspx" class="btn btn--outline btn--lg">Apply Now</a>
         </div>
       </div>
     </div>
   </section>
 
-  <script src="components.js?v=20260930-1"></script>
+  <script src="components.js?v=20261126-2"></script>
   <script>initPage('courses');</script>
 </body>
 </html>

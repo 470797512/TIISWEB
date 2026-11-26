@@ -2,6 +2,19 @@
    TIIS — Shared Components (Navbar, Footer, Utils)
    =================================================== */
 
+// GitHub Pages serves extensionless URLs from the existing .html files.
+// Clean up old bookmarks without reloading or losing query strings / anchors.
+function cleanPagePath(pathname) {
+  return pathname.replace(/\/index(?:\.html)?$/, '/').replace(/\.html$/, '');
+}
+
+if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
+  const path = cleanPagePath(window.location.pathname);
+  if (path !== window.location.pathname) {
+    window.history.replaceState(window.history.state, '', path + window.location.search + window.location.hash);
+  }
+}
+
 /* ---- Site configuration ----
    Social profiles previously rendered as href="#", so all three
    footer icons were dead links. Fill in the real URLs here and the
@@ -68,54 +81,54 @@ function buildNavbar(currentPage) {
   nav.innerHTML = `
     <div class="navbar__utility" aria-label="Community links">
       <div class="navbar__utility-inner">
-        <a href="students.html" data-utility="students">Current Students</a>
-        <a href="contact.html?subject=Alumni">Alumni</a>
-        <a href="contact.html?subject=Agent%20Partnership">Agents</a>
-        <a href="team.html#careers">Careers</a>
+        <a href="students" data-utility="students">Current Students</a>
+        <a href="contact?subject=Alumni">Alumni</a>
+        <a href="contact?subject=Agent%20Partnership">Agents</a>
+        <a href="team#careers">Careers</a>
       </div>
     </div>
     <div class="navbar__inner">
-      <a href="index.html" class="navbar__logo" aria-label="TIIS Home">
+      <a href="./" class="navbar__logo" aria-label="TIIS Home">
         <img src="${logoSrc}" alt="TIIS Logo" id="navLogo" data-white="images/logos/TIIS-white.png" data-color="images/logos/TIIS-Logo-PNG-1024x468.png">
       </a>
 
       <ul class="navbar__menu">
-        <li class="navbar__item"><a href="index.html" class="navbar__link" data-nav="home">Home</a></li>
+        <li class="navbar__item"><a href="./" class="navbar__link" data-nav="home">Home</a></li>
         <li class="navbar__item">
-          <a href="about.html" class="navbar__link" data-nav="about">About Us ${ICONS.chevronDown}</a>
+          <a href="about" class="navbar__link" data-nav="about">About Us ${ICONS.chevronDown}</a>
           <div class="navbar__dropdown">
-            <a href="about.html">About Us</a>
-            <a href="about.html#values">Mission & Values</a>
-            <a href="about.html#story">Our Story</a>
-            <a href="team.html">Our Team</a>
+            <a href="about">About Us</a>
+            <a href="about#values">Mission & Values</a>
+            <a href="about#story">Our Story</a>
+            <a href="team">Our Team</a>
           </div>
         </li>
         <li class="navbar__item">
-          <a href="courses.html" class="navbar__link" data-nav="courses">Courses ${ICONS.chevronDown}</a>
+          <a href="courses" class="navbar__link" data-nav="courses">Courses ${ICONS.chevronDown}</a>
           <div class="navbar__dropdown navbar__dropdown--wide">
-            <a href="courses.html" class="navbar__dropdown-all">Explore All Courses <span aria-hidden="true">→</span></a>
+            <a href="courses" class="navbar__dropdown-all">Explore All Courses <span aria-hidden="true">→</span></a>
             <div class="navbar__dropdown-grid">
               <div>
                 <div class="navbar__dropdown-group-title">Business & Management</div>
-                <a href="course-bbus.html">Bachelor of Business</a>
-                <a href="course-gcba.html">Graduate Certificate in Business Administration</a>
-                <a href="course-mba.html">Master of Business Administration</a>
+                <a href="course-bbus">Bachelor of Business</a>
+                <a href="course-gcba">Graduate Certificate in Business Administration</a>
+                <a href="course-mba">Master of Business Administration</a>
               </div>
               <div>
                 <div class="navbar__dropdown-group-title">Professional Accounting</div>
-                <a href="course-gcpa.html">Graduate Certificate in Professional Accounting</a>
-                <a href="course-mpaa.html">Master of Professional Accounting (Advanced)</a>
+                <a href="course-gcpa">Graduate Certificate in Professional Accounting</a>
+                <a href="course-mpaa">Master of Professional Accounting (Advanced)</a>
               </div>
               <div>
                 <div class="navbar__dropdown-group-title">IT & Cyber Security</div>
-                <a href="course-bit.html">Bachelor of Information Technology</a>
-                <a href="course-gcit.html">Graduate Certificate of Information Technology</a>
-                <a href="course-mcs.html">Master of Cyber Security</a>
+                <a href="course-bit">Bachelor of Information Technology</a>
+                <a href="course-gcit">Graduate Certificate of Information Technology</a>
+                <a href="course-mcs">Master of Cyber Security</a>
               </div>
               <div>
                 <div class="navbar__dropdown-group-title">Online Study</div>
-                <a href="tiis-online/index.html">TIIS Online</a>
-                <a href="tiis-online/course-gdfp.html">Graduate Diploma of Financial Planning</a>
+                <a href="tiis-online/">TIIS Online</a>
+                <a href="tiis-online/course-gdfp">Graduate Diploma of Financial Planning</a>
               </div>
             </div>
           </div>
@@ -123,18 +136,18 @@ function buildNavbar(currentPage) {
         <li class="navbar__item">
           <a href="https://tiis.meshedhe.com.au/Publics/PublicsPages/StudentApply/pp_Application_Step0.aspx" class="navbar__link" data-nav="study">Study with Us ${ICONS.chevronDown}</a>
           <div class="navbar__dropdown">
-            <a href="index.html#why-tiis">Why Study at TIIS</a>
-            <a href="life-at-tiis.html">Life at TIIS</a>
-            <a href="campuses.html">Our Campuses</a>
+            <a href="./#why-tiis">Why Study at TIIS</a>
+            <a href="life-at-tiis">Life at TIIS</a>
+            <a href="campuses">Our Campuses</a>
             <a href="https://tiis.meshedhe.com.au/Publics/PublicsPages/StudentApply/pp_Application_Step0.aspx">Apply Online</a>
-            <a href="application-forms.html">Application Forms</a>
-            <a href="admission-criteria.html">Entry Requirements</a>
-            <a href="key-dates.html">Key Dates</a>
-            <a href="fees-and-charges.html">Fees & Charges</a>
+            <a href="application-forms">Application Forms</a>
+            <a href="admission-criteria">Entry Requirements</a>
+            <a href="key-dates">Key Dates</a>
+            <a href="fees-and-charges">Fees & Charges</a>
           </div>
         </li>
-        <li class="navbar__item"><a href="news.html" class="navbar__link" data-nav="news">News</a></li>
-        <li class="navbar__item"><a href="contact.html" class="navbar__link" data-nav="contact">Contact Us</a></li>
+        <li class="navbar__item"><a href="news" class="navbar__link" data-nav="news">News</a></li>
+        <li class="navbar__item"><a href="contact" class="navbar__link" data-nav="contact">Contact Us</a></li>
       </ul>
 
       <button class="navbar__search" type="button" data-search-open aria-label="Search the TIIS website">
@@ -167,41 +180,41 @@ function buildNavbar(currentPage) {
   mobileMenu.setAttribute('aria-label', 'Site menu');
   mobileMenu.innerHTML = `
     <button class="navbar__mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
-    <a href="index.html" class="navbar__mobile-link" data-nav="home">Home</a>
-    <a href="about.html" class="navbar__mobile-link" data-nav="about">About Us</a>
+    <a href="./" class="navbar__mobile-link" data-nav="home">Home</a>
+    <a href="about" class="navbar__mobile-link" data-nav="about">About Us</a>
     <div class="navbar__mobile-sub">
-      <a href="about.html#values">Mission & Values</a>
-      <a href="about.html#story">Our Story</a>
-      <a href="team.html">Our Team</a>
+      <a href="about#values">Mission & Values</a>
+      <a href="about#story">Our Story</a>
+      <a href="team">Our Team</a>
     </div>
-    <a href="courses.html" class="navbar__mobile-link" data-nav="courses">Courses</a>
+    <a href="courses" class="navbar__mobile-link" data-nav="courses">Courses</a>
     <div class="navbar__mobile-sub">
-      <a href="course-bbus.html">Bachelor of Business</a>
-      <a href="course-bit.html">Bachelor of Information Technology</a>
-      <a href="course-mba.html">Master of Business Administration</a>
-      <a href="course-mpaa.html">Master of Professional Accounting</a>
-      <a href="course-mcs.html">Master of Cyber Security</a>
-      <a href="courses.html">Explore All Courses</a>
+      <a href="course-bbus">Bachelor of Business</a>
+      <a href="course-bit">Bachelor of Information Technology</a>
+      <a href="course-mba">Master of Business Administration</a>
+      <a href="course-mpaa">Master of Professional Accounting</a>
+      <a href="course-mcs">Master of Cyber Security</a>
+      <a href="courses">Explore All Courses</a>
     </div>
     <a href="https://tiis.meshedhe.com.au/Publics/PublicsPages/StudentApply/pp_Application_Step0.aspx" class="navbar__mobile-link" data-nav="study">Study with Us</a>
     <div class="navbar__mobile-sub">
-      <a href="index.html#why-tiis">Why Study at TIIS</a>
-      <a href="life-at-tiis.html">Life at TIIS</a>
-      <a href="campuses.html">Our Campuses</a>
+      <a href="./#why-tiis">Why Study at TIIS</a>
+      <a href="life-at-tiis">Life at TIIS</a>
+      <a href="campuses">Our Campuses</a>
       <a href="https://tiis.meshedhe.com.au/Publics/PublicsPages/StudentApply/pp_Application_Step0.aspx">Apply Online</a>
-      <a href="application-forms.html">Application Forms</a>
-      <a href="admission-criteria.html">Entry Requirements</a>
-      <a href="key-dates.html">Key Dates</a>
-      <a href="fees-and-charges.html">Fees & Charges</a>
+      <a href="application-forms">Application Forms</a>
+      <a href="admission-criteria">Entry Requirements</a>
+      <a href="key-dates">Key Dates</a>
+      <a href="fees-and-charges">Fees & Charges</a>
     </div>
-    <a href="news.html" class="navbar__mobile-link" data-nav="news">News</a>
-    <a href="contact.html" class="navbar__mobile-link" data-nav="contact">Contact Us</a>
+    <a href="news" class="navbar__mobile-link" data-nav="news">News</a>
+    <a href="contact" class="navbar__mobile-link" data-nav="contact">Contact Us</a>
     <button class="navbar__mobile-search" type="button" data-search-open>${ICONS.search} Search</button>
     <div class="navbar__mobile-utility">
-      <a href="students.html" data-utility="students">Current Students</a>
-      <a href="contact.html?subject=Alumni">Alumni</a>
-      <a href="contact.html?subject=Agent%20Partnership">Agents</a>
-      <a href="team.html#careers">Careers</a>
+      <a href="students" data-utility="students">Current Students</a>
+      <a href="contact?subject=Alumni">Alumni</a>
+      <a href="contact?subject=Agent%20Partnership">Agents</a>
+      <a href="team#careers">Careers</a>
     </div>
     <div style="margin-top:24px">
       <a href="https://tiis.meshedhe.com.au/Publics/PublicsPages/StudentApply/pp_Application_Step0.aspx" class="btn btn--primary" style="width:100%;justify-content:center">Apply Now</a>
@@ -311,7 +324,7 @@ function buildNavbar(currentPage) {
     window.addEventListener('scroll', syncNavbar, { passive: true });
     // Run once on load. Without this, arriving already scrolled — a reload
     // with restored scroll position, a back-navigation, or a link to
-    // index.html#anchor — left the navbar transparent, i.e. white links on
+    // /#anchor — left the navbar transparent, i.e. white links on
     // a white background.
     syncNavbar();
   }
@@ -323,7 +336,7 @@ function buildNavbar(currentPage) {
 /* ---- Mark the current page in the navigation ----
    Nothing indicated which page you were on. */
 function markCurrentPage(nav, mobileMenu, currentPage) {
-  const here = window.location.pathname.replace(/\/$/, '/index.html');
+  const here = cleanPagePath(window.location.pathname);
 
   [nav, mobileMenu].forEach(root => {
     root.querySelectorAll('a[href]').forEach(a => {
@@ -332,8 +345,8 @@ function markCurrentPage(nav, mobileMenu, currentPage) {
       if (a.classList.contains('navbar__logo')) return;
       const url = new URL(a.getAttribute('href'), window.location.href);
       if (url.origin !== window.location.origin) return;
-      // Compare paths only — a link to about.html#values still marks About.
-      const target = url.pathname.replace(/\/$/, '/index.html');
+      // Compare paths only — a link to about#values still marks About.
+      const target = cleanPagePath(url.pathname);
       if (target !== here) return;
       // Bare page links get the marker; deep #anchor links in a dropdown
       // shouldn't all light up, only the one matching the current hash.
@@ -372,17 +385,17 @@ function buildBreadcrumbs(currentPage) {
   const heading = heroContent?.querySelector('h1');
   if (!heroContent || !heading) return;
 
-  const file = window.location.pathname.split('/').pop() || 'index.html';
-  const items = [{ label: 'Home', href: 'index.html' }];
+  const file = cleanPagePath(window.location.pathname).split('/').pop();
+  const items = [{ label: 'Home', href: './' }];
 
   if (/^course-/.test(file)) {
-    items.push({ label: 'Courses', href: 'courses.html' });
+    items.push({ label: 'Courses', href: 'courses' });
   } else if (currentPage === 'team') {
-    items.push({ label: 'About Us', href: 'about.html' });
+    items.push({ label: 'About Us', href: 'about' });
   } else if (['campuses', 'apply', 'life'].includes(currentPage)) {
     items.push({ label: 'Study with Us', href: 'https://tiis.meshedhe.com.au/Publics/PublicsPages/StudentApply/pp_Application_Step0.aspx' });
-  } else if (currentPage === 'policies' || (currentPage === 'students' && file !== 'students.html')) {
-    items.push({ label: 'Current Students', href: 'students.html' });
+  } else if (currentPage === 'policies' || (currentPage === 'students' && file !== 'students')) {
+    items.push({ label: 'Current Students', href: 'students' });
   }
 
   items.push({ label: heading.textContent.trim(), href: '' });
@@ -430,35 +443,35 @@ function alignCurrentResourceNav() {
    known set of pages locally. Results always lead to a real page. */
 function buildSiteSearch() {
   const pages = [
-    ['News', 'Campus announcements and community milestones.', 'news.html', 'news announcements campus updates events'],
-    ['TIIS Melbourne Celebrates the Class of 2026: Honouring Excellence, Inspiring Tomorrow', 'Highlights and photographs from the Melbourne graduation ceremony on 20 November 2026, including graduate awards and guest speaker Dr Ari Pinar.', 'news-melbourne-graduation-2026.html', 'news graduation melbourne class 2026 wheeler ceremony awards excellence leadership hassan nawaz arshiya bikash thapa shenhao wang krizia marian fernandez abellon ari pinar'],
-    ['TIIS Graduation Ceremony 2026', 'Sydney: 30 October at Sydney Masonic Centre. Melbourne: 20 November at The Wheeler Centre. Eligible graduands should check their email.', 'news-graduation-2026.html', 'graduation graduands ceremony 2026 sydney melbourne wheeler masonic rsvp gown'],
-    ['Courses', 'Explore all undergraduate, postgraduate and online courses.', 'courses.html', 'courses study programs'],
-    ['Bachelor of Business', 'Undergraduate business degree.', 'course-bbus.html', 'business undergraduate bachelor'],
-    ['Bachelor of Information Technology', 'Undergraduate IT degree.', 'course-bit.html', 'technology cyber undergraduate bachelor'],
-    ['Graduate Certificate in Business Administration', 'Postgraduate pathway into the MBA.', 'course-gcba.html', 'business postgraduate certificate'],
-    ['Master of Business Administration', 'Postgraduate management program.', 'course-mba.html', 'business management mba postgraduate'],
-    ['Graduate Certificate in Professional Accounting', 'Postgraduate accounting pathway.', 'course-gcpa.html', 'accounting postgraduate certificate'],
-    ['Master of Professional Accounting (Advanced)', 'Professionally accredited accounting program.', 'course-mpaa.html', 'accounting postgraduate cpa caanz acca'],
-    ['Graduate Certificate of Information Technology', 'Postgraduate IT pathway.', 'course-gcit.html', 'technology cyber postgraduate certificate'],
-    ['Master of Cyber Security', 'Postgraduate cyber security program.', 'course-mcs.html', 'technology cyber postgraduate master'],
-    ['TIIS Online', 'Flexible online study options.', 'tiis-online/index.html', 'online remote financial planning mba cpd'],
-    ['About TIIS', 'Mission, values and story.', 'about.html', 'about mission values story'],
-    ['Our Team', 'Academic, professional and governance teams.', 'team.html', 'staff lecturers board careers'],
-    ['Our Campuses', 'Sydney Ultimo and Melbourne Docklands.', 'campuses.html', 'campus locations sydney melbourne directions tour'],
-    ['Life at TIIS', 'Community, support and student experience.', 'life-at-tiis.html', 'student life community events support'],
+    ['News', 'Campus announcements and community milestones.', 'news', 'news announcements campus updates events'],
+    ['TIIS Melbourne Celebrates the Class of 2026: Honouring Excellence, Inspiring Tomorrow', 'Highlights and photographs from the Melbourne graduation ceremony on 20 November 2026, including graduate awards and guest speaker Dr Ari Pinar.', 'news-melbourne-graduation-2026', 'news graduation melbourne class 2026 wheeler ceremony awards excellence leadership hassan nawaz arshiya bikash thapa shenhao wang krizia marian fernandez abellon ari pinar'],
+    ['TIIS Graduation Ceremony 2026', 'Sydney: 30 October at Sydney Masonic Centre. Melbourne: 20 November at The Wheeler Centre. Eligible graduands should check their email.', 'news-graduation-2026', 'graduation graduands ceremony 2026 sydney melbourne wheeler masonic rsvp gown'],
+    ['Courses', 'Explore all undergraduate, postgraduate and online courses.', 'courses', 'courses study programs'],
+    ['Bachelor of Business', 'Undergraduate business degree.', 'course-bbus', 'business undergraduate bachelor'],
+    ['Bachelor of Information Technology', 'Undergraduate IT degree.', 'course-bit', 'technology cyber undergraduate bachelor'],
+    ['Graduate Certificate in Business Administration', 'Postgraduate pathway into the MBA.', 'course-gcba', 'business postgraduate certificate'],
+    ['Master of Business Administration', 'Postgraduate management program.', 'course-mba', 'business management mba postgraduate'],
+    ['Graduate Certificate in Professional Accounting', 'Postgraduate accounting pathway.', 'course-gcpa', 'accounting postgraduate certificate'],
+    ['Master of Professional Accounting (Advanced)', 'Professionally accredited accounting program.', 'course-mpaa', 'accounting postgraduate cpa caanz acca'],
+    ['Graduate Certificate of Information Technology', 'Postgraduate IT pathway.', 'course-gcit', 'technology cyber postgraduate certificate'],
+    ['Master of Cyber Security', 'Postgraduate cyber security program.', 'course-mcs', 'technology cyber postgraduate master'],
+    ['TIIS Online', 'Flexible online study options.', 'tiis-online/', 'online remote financial planning mba cpd'],
+    ['About TIIS', 'Mission, values and story.', 'about', 'about mission values story'],
+    ['Our Team', 'Academic, professional and governance teams.', 'team', 'staff lecturers board careers'],
+    ['Our Campuses', 'Sydney Ultimo and Melbourne Docklands.', 'campuses', 'campus locations sydney melbourne directions tour'],
+    ['Life at TIIS', 'Community, support and student experience.', 'life-at-tiis', 'student life community events support'],
     ['Apply Online', 'Start your TIIS student application in the online application system.', 'https://tiis.meshedhe.com.au/Publics/PublicsPages/StudentApply/pp_Application_Step0.aspx', 'apply admissions process documents offer enrolment'],
-    ['Application Forms', 'Download domestic, international, GS and credit forms.', 'application-forms.html', 'apply admissions forms domestic international genuine student gs cpl agent'],
-    ['Admission Criteria', 'Academic and English entry requirements.', 'admission-criteria.html', 'requirements entry ielts pte undergraduate postgraduate alternative admission'],
-    ['Key Dates', '2026 orientation, teaching, census and assessment dates.', 'key-dates.html', 'calendar january march may july september november intakes census exams'],
-    ['Fees & Charges', '2027 onshore and offshore tuition fees, downloads and refund information.', 'fees-and-charges.html', 'fees charges tuition cost refund payment schedule 2027 onshore offshore scholarship'],
-    ['Current Students', 'Student resources, support and policies.', 'students.html', 'portal support resources policies'],
-    ['My TIIS Login', 'Direct links to Moodle, Microsoft 365, the Learning Centre and Student Hub.', 'student-login.html', 'login portal moodle office microsoft library sharepoint'],
-    ['Student Support', 'Academic, wellbeing, safety and practical support.', 'student-support.html', 'support wellbeing counselling academic safety accommodation careers'],
-    ['Student Handbook', 'View or download the current student handbook.', 'student-handbook.html', 'handbook guide rights responsibilities download'],
-    ['Student Ambassador Program', 'Represent TIIS and support the student community.', 'student-ambassadors.html', 'ambassador sap leadership orientation community'],
-    ['Policies & Procedures', 'Search, view and download TIIS academic and management policies.', 'policies.html', 'policies procedures academic management privacy integrity complaints fees'],
-    ['Contact Us', 'Ask a question or speak with admissions.', 'contact.html', 'contact enquiry adviser admissions phone email'],
+    ['Application Forms', 'Download domestic, international, GS and credit forms.', 'application-forms', 'apply admissions forms domestic international genuine student gs cpl agent'],
+    ['Admission Criteria', 'Academic and English entry requirements.', 'admission-criteria', 'requirements entry ielts pte undergraduate postgraduate alternative admission'],
+    ['Key Dates', '2026 orientation, teaching, census and assessment dates.', 'key-dates', 'calendar january march may july september november intakes census exams'],
+    ['Fees & Charges', '2027 onshore and offshore tuition fees, downloads and refund information.', 'fees-and-charges', 'fees charges tuition cost refund payment schedule 2027 onshore offshore scholarship'],
+    ['Current Students', 'Student resources, support and policies.', 'students', 'portal support resources policies'],
+    ['My TIIS Login', 'Direct links to Moodle, Microsoft 365, the Learning Centre and Student Hub.', 'student-login', 'login portal moodle office microsoft library sharepoint'],
+    ['Student Support', 'Academic, wellbeing, safety and practical support.', 'student-support', 'support wellbeing counselling academic safety accommodation careers'],
+    ['Student Handbook', 'View or download the current student handbook.', 'student-handbook', 'handbook guide rights responsibilities download'],
+    ['Student Ambassador Program', 'Represent TIIS and support the student community.', 'student-ambassadors', 'ambassador sap leadership orientation community'],
+    ['Policies & Procedures', 'Search, view and download TIIS academic and management policies.', 'policies', 'policies procedures academic management privacy integrity complaints fees'],
+    ['Contact Us', 'Ask a question or speak with admissions.', 'contact', 'contact enquiry adviser admissions phone email'],
   ].map(([title, description, href, keywords]) => ({ title, description, href, keywords }));
 
   const modal = document.createElement('div');
@@ -698,37 +711,37 @@ function buildFooter() {
         <div>
           <div class="footer__heading">Quick Links</div>
           <ul class="footer__links">
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="courses.html">Courses</a></li>
-            <li><a href="campuses.html">Campuses</a></li>
-            <li><a href="team.html">Our Team</a></li>
-            <li><a href="news.html">News</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="about">About Us</a></li>
+            <li><a href="courses">Courses</a></li>
+            <li><a href="campuses">Campuses</a></li>
+            <li><a href="team">Our Team</a></li>
+            <li><a href="news">News</a></li>
+            <li><a href="contact">Contact Us</a></li>
           </ul>
         </div>
 
         <div>
           <div class="footer__heading">Courses</div>
           <ul class="footer__links">
-            <li><a href="course-bbus.html">Bachelor of Business</a></li>
-            <li><a href="course-bit.html">Bachelor of IT</a></li>
-            <li><a href="course-mba.html">MBA</a></li>
-            <li><a href="course-mcs.html">Master of Cyber Security</a></li>
-            <li><a href="course-mpaa.html">Master of Accounting</a></li>
-            <li><a href="tiis-online/index.html">TIIS Online →</a></li>
+            <li><a href="course-bbus">Bachelor of Business</a></li>
+            <li><a href="course-bit">Bachelor of IT</a></li>
+            <li><a href="course-mba">MBA</a></li>
+            <li><a href="course-mcs">Master of Cyber Security</a></li>
+            <li><a href="course-mpaa">Master of Accounting</a></li>
+            <li><a href="tiis-online/">TIIS Online →</a></li>
           </ul>
         </div>
 
         <div>
           <div class="footer__heading">Students</div>
           <ul class="footer__links">
-            <li><a href="students.html">Current Students</a></li>
-            <li><a href="student-login.html">My TIIS Login</a></li>
-            <li><a href="student-support.html">Student Support</a></li>
-            <li><a href="student-handbook.html">Student Handbook</a></li>
-            <li><a href="policies.html">Policies & Procedures</a></li>
-            <li><a href="fees-and-charges.html">Fees & Charges</a></li>
-            <li><a href="key-dates.html">Key Dates</a></li>
+            <li><a href="students">Current Students</a></li>
+            <li><a href="student-login">My TIIS Login</a></li>
+            <li><a href="student-support">Student Support</a></li>
+            <li><a href="student-handbook">Student Handbook</a></li>
+            <li><a href="policies">Policies & Procedures</a></li>
+            <li><a href="fees-and-charges">Fees & Charges</a></li>
+            <li><a href="key-dates">Key Dates</a></li>
           </ul>
         </div>
 
@@ -738,8 +751,8 @@ function buildFooter() {
             <li><a href="tel:1300164600">1300 164 600</a></li>
             <li><a href="tel:+61280980702">+61 2 8098 0702</a></li>
             <li><a href="mailto:info@tiis.edu.au">info@tiis.edu.au</a></li>
-            <li><a href="campuses.html">Sydney Campus</a></li>
-            <li><a href="campuses.html#melbourne">Melbourne Campus</a></li>
+            <li><a href="campuses">Sydney Campus</a></li>
+            <li><a href="campuses#melbourne">Melbourne Campus</a></li>
           </ul>
         </div>
       </div>

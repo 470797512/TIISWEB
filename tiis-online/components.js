@@ -2,6 +2,19 @@
    TIIS Online — Shared Components (Navbar, Footer, Utils)
    =================================================== */
 
+// GitHub Pages serves extensionless URLs from the existing .html files.
+// Clean up old bookmarks without reloading or losing query strings / anchors.
+function cleanPagePath(pathname) {
+  return pathname.replace(/\/index(?:\.html)?$/, '/').replace(/\.html$/, '');
+}
+
+if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
+  const path = cleanPagePath(window.location.pathname);
+  if (path !== window.location.pathname) {
+    window.history.replaceState(window.history.state, '', path + window.location.search + window.location.hash);
+  }
+}
+
 // ---- SVG Icons ----
 const ICONS = {
   chevronDown: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>',
@@ -63,14 +76,14 @@ function buildNavbar(currentPage) {
 
   nav.innerHTML = `
     <div class="navbar__inner">
-      <a href="index.html" class="navbar__logo" aria-label="TIIS Online Home">
+      <a href="./" class="navbar__logo" aria-label="TIIS Online Home">
         <img src="${logoSrc}" alt="TIIS Logo" id="navLogo" data-white="images/logos/TIIS-white.png" data-color="images/logos/TIIS-Logo-PNG-1024x468.png">
         <span class="navbar__logo-divider"></span>
         <span class="navbar__logo-online">Online</span>
       </a>
 
       <ul class="navbar__menu">
-        <li class="navbar__item"><a href="index.html" class="navbar__link">Home</a></li>
+        <li class="navbar__item"><a href="./" class="navbar__link">Home</a></li>
         <li class="navbar__item">
           <!-- Was href="#", which navigated nowhere when clicked. There is no
                online-courses index page, so this is a group label, not a link:
@@ -78,16 +91,16 @@ function buildNavbar(currentPage) {
           <button type="button" class="navbar__link navbar__link--group"
                   aria-expanded="false" aria-haspopup="true">Courses ${ICONS.chevronDown}</button>
           <div class="navbar__dropdown">
-            <a href="course-cpd.html">CPD for Financial Advisers</a>
-            <a href="course-mba.html">Online MBA</a>
-            <a href="course-gdfp.html">Graduate Diploma of Financial Planning</a>
+            <a href="course-cpd">CPD for Financial Advisers</a>
+            <a href="course-mba">Online MBA</a>
+            <a href="course-gdfp">Graduate Diploma of Financial Planning</a>
           </div>
         </li>
-        <li class="navbar__item"><a href="../index.html" class="navbar__link">Main Campus Site ${ICONS.externalLink}</a></li>
-        <li class="navbar__item"><a href="../contact.html" class="navbar__link">Contact</a></li>
+        <li class="navbar__item"><a href="../" class="navbar__link">Main Campus Site ${ICONS.externalLink}</a></li>
+        <li class="navbar__item"><a href="../contact" class="navbar__link">Contact</a></li>
       </ul>
 
-      <a href="index.html#enquire" class="navbar__cta navbar__cta-desktop">Enquire Now</a>
+      <a href="./#enquire" class="navbar__cta navbar__cta-desktop">Enquire Now</a>
 
       <button class="navbar__toggle" id="navToggle" aria-label="Open menu"
               aria-expanded="false" aria-controls="mobileMenu">
@@ -114,18 +127,18 @@ function buildNavbar(currentPage) {
   mobileMenu.setAttribute('aria-label', 'Site menu');
   mobileMenu.innerHTML = `
     <button class="navbar__mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
-    <a href="index.html" class="navbar__mobile-link">Home</a>
+    <a href="./" class="navbar__mobile-link">Home</a>
     <!-- A heading, not a link: there is no online-courses index page. -->
     <div class="navbar__mobile-link navbar__mobile-heading">Online Courses</div>
     <div class="navbar__mobile-sub">
-      <a href="course-cpd.html">CPD for Financial Advisers</a>
-      <a href="course-mba.html">Online MBA</a>
-      <a href="course-gdfp.html">Grad Diploma Financial Planning</a>
+      <a href="course-cpd">CPD for Financial Advisers</a>
+      <a href="course-mba">Online MBA</a>
+      <a href="course-gdfp">Grad Diploma Financial Planning</a>
     </div>
-    <a href="../index.html" class="navbar__mobile-link">Main Campus Site</a>
-    <a href="../contact.html" class="navbar__mobile-link">Contact</a>
+    <a href="../" class="navbar__mobile-link">Main Campus Site</a>
+    <a href="../contact" class="navbar__mobile-link">Contact</a>
     <div style="margin-top:24px">
-      <a href="index.html#enquire" class="btn btn--primary" style="width:100%;justify-content:center">Enquire Now</a>
+      <a href="./#enquire" class="btn btn--primary" style="width:100%;justify-content:center">Enquire Now</a>
     </div>
   `;
   document.body.appendChild(mobileMenu);
@@ -248,14 +261,14 @@ function buildNavbar(currentPage) {
 
 /* ---- Mark the current page in the navigation ---- */
 function markCurrentPage(nav, mobileMenu) {
-  const here = window.location.pathname.replace(/\/$/, '/index.html');
+  const here = cleanPagePath(window.location.pathname);
 
   [nav, mobileMenu].forEach(root => {
     root.querySelectorAll('a[href]').forEach(a => {
       if (a.classList.contains('navbar__logo')) return;
       const url = new URL(a.getAttribute('href'), window.location.href);
       if (url.origin !== window.location.origin) return;
-      const target = url.pathname.replace(/\/$/, '/index.html');
+      const target = cleanPagePath(url.pathname);
       if (target !== here) return;
       if (url.hash && url.hash !== window.location.hash) return;
       a.setAttribute('aria-current', 'page');
@@ -288,19 +301,19 @@ function buildFooter() {
         <div>
           <div class="footer__heading">Online Courses</div>
           <ul class="footer__links">
-            <li><a href="course-cpd.html">CPD for Financial Advisers</a></li>
-            <li><a href="course-mba.html">Online MBA</a></li>
-            <li><a href="course-gdfp.html">Grad Diploma Financial Planning</a></li>
+            <li><a href="course-cpd">CPD for Financial Advisers</a></li>
+            <li><a href="course-mba">Online MBA</a></li>
+            <li><a href="course-gdfp">Grad Diploma Financial Planning</a></li>
           </ul>
         </div>
 
         <div>
           <div class="footer__heading">Quick Links</div>
           <ul class="footer__links">
-            <li><a href="index.html">TIIS Online Home</a></li>
-            <li><a href="../index.html">Main Campus Site</a></li>
-            <li><a href="../about.html">About TIIS</a></li>
-            <li><a href="../contact.html">Contact Us</a></li>
+            <li><a href="./">TIIS Online Home</a></li>
+            <li><a href="../">Main Campus Site</a></li>
+            <li><a href="../about">About TIIS</a></li>
+            <li><a href="../contact">Contact Us</a></li>
           </ul>
         </div>
 
